@@ -18,6 +18,14 @@ Flexible text input field with validation, error states, and customizable stylin
 **Features:** Text/email/password types, validation states, prefix/suffix icons, size variants  
 **Documentation:** [Input README](./input/README.md)
 
+### NumberInput
+Numeric input component with increment/decrement controls, validation, and formatting options.
+
+**Features:** Increment/decrement buttons, keyboard navigation, min/max limits, decimal support, thousands formatting  
+**Documentation:** [NumberInput README](./numberinput/README.md)
+
+### Radio
+
 ### Checkbox
 Single and grouped checkbox controls for multiple selections with indeterminate state support.
 
@@ -77,7 +85,6 @@ Multi-line text input with auto-resize capabilities and validation support.
 Future form components planned for development. These will follow the same design principles and patterns as the current components.
 
 ### Advanced Input Controls
-- **NumberInput** - Numeric input with increment/decrement controls
 - **PasswordInput** - Password field with visibility toggle
 - **SearchInput** - Search field with autocomplete functionality
 

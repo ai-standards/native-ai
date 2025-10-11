@@ -4,6 +4,7 @@ export { ColorPicker, type ColorPickerProps } from './colorpicker';
 export { DatePicker, type DatePickerProps } from './datepicker';
 export { FileUpload, type FileUploadProps } from './fileupload';
 export { Input, type InputProps } from './input';
+export { NumberInput, type NumberInputProps } from './numberinput';
 export { Radio, type RadioProps, type RadioOption } from './radio';
 export { Select, type SelectProps } from './select';
 export { Slider, type SliderProps } from './slider';
