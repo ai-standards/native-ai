@@ -1,7 +1,10 @@
 export { Button, type ButtonProps } from './button';
 export { Checkbox, type CheckboxProps } from './checkbox';
+export { DatePicker, type DatePickerProps } from './datepicker';
+export { FileUpload, type FileUploadProps } from './fileupload';
 export { Input, type InputProps } from './input';
 export { Radio, type RadioProps, type RadioOption } from './radio';
 export { Select, type SelectProps } from './select';
+export { Slider, type SliderProps } from './slider';
 export { Switch, type SwitchProps } from './switch';
 export { Textarea, type TextareaProps } from './textarea';

@@ -13,6 +13,22 @@ export {
   type ContainerProps
 } from './container';
 export { 
+  Section, 
+  SectionHeader, 
+  SectionContent, 
+  SectionFooter,
+  type SectionProps, 
+  type SectionHeaderProps, 
+  type SectionContentProps, 
+  type SectionFooterProps 
+} from './section';
+export {
+  Grid,
+  GridItem,
+  type GridProps,
+  type GridItemProps
+} from './grid';
+export { 
   Layout,
   ActionBar,
   TopBar,
