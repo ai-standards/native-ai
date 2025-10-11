@@ -44,6 +44,10 @@ const meta = {
       control: 'boolean',
       description: 'Disables the input field',
     },
+    validateEmail: {
+      control: 'boolean',
+      description: 'Enable automatic email validation when type="email"',
+    },
   },
   args: {
     placeholder: 'Enter text...',
@@ -232,6 +236,39 @@ export const ValidationStates: Story = {
     docs: {
       description: {
         story: 'Different validation states showing success, error, and neutral states.',
+      },
+    },
+  },
+};
+
+export const EmailValidation: Story = {
+  render: () => (
+    <div className="w-80 space-y-4">
+      <Input
+        type="email"
+        label="Email Address"
+        placeholder="Enter your email"
+        helperText="Type an invalid email and click outside to see validation"
+      />
+      <Input
+        type="email"
+        label="Email with Manual Validation Disabled"
+        placeholder="Enter your email"
+        validateEmail={false}
+        helperText="This email field won't auto-validate"
+      />
+      <Input
+        type="email"
+        label="Pre-filled Invalid Email"
+        defaultValue="invalid-email"
+        helperText="This will show an error when you click outside"
+      />
+    </div>
+  ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'Email inputs with automatic validation. The component validates email format on blur when type="email".',
       },
     },
   },

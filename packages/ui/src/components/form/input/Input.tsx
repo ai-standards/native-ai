@@ -1,5 +1,5 @@
-import React, { forwardRef } from 'react';
-import { cn } from '@/utils/cn';
+import React, { forwardRef, useState } from 'react';
+import { cn } from '../../../utils/cn';
 
 export interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   label?: string;
@@ -8,6 +8,8 @@ export interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> 
   variant?: 'default' | 'filled';
   leftIcon?: React.ReactNode;
   rightIcon?: React.ReactNode;
+  /** Enable automatic email validation when type="email" */
+  validateEmail?: boolean;
 }
 
 export const Input = forwardRef<HTMLInputElement, InputProps>(({
@@ -17,16 +19,65 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(({
   variant = 'default',
   leftIcon,
   rightIcon,
+  validateEmail = true,
   className,
   id,
+  type = 'text',
+  onChange,
+  onBlur,
+  value,
   ...props
 }, ref) => {
   const inputId = id || `input-${Math.random().toString(36).substr(2, 9)}`;
+  const [internalError, setInternalError] = useState<string>('');
 
   const inputVariants = {
     default: 'border border-gray-300 focus:border-blue-500 focus:ring-blue-500 bg-white',
     filled: 'border-0 bg-gray-100 focus:bg-white focus:ring-blue-500'
   };
+
+  // Email validation function
+  const validateEmailFormat = (email: string): boolean => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+  };
+
+  // Handle input changes with validation
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const newValue = e.target.value;
+    
+    // Clear internal error when user starts typing
+    if (internalError) {
+      setInternalError('');
+    }
+    
+    // Call original onChange if provided
+    if (onChange) {
+      onChange(e);
+    }
+  };
+
+  // Handle blur with validation
+  const handleBlur = (e: React.FocusEvent<HTMLInputElement>) => {
+    const inputValue = e.target.value;
+    
+    // Validate email on blur if type is email and validateEmail is true
+    if (type === 'email' && validateEmail && inputValue) {
+      if (!validateEmailFormat(inputValue)) {
+        setInternalError('Please enter a valid email address');
+      } else {
+        setInternalError('');
+      }
+    }
+    
+    // Call original onBlur if provided
+    if (onBlur) {
+      onBlur(e);
+    }
+  };
+
+  // Use internal error if no external error is provided
+  const displayError = error || internalError;
 
   return (
     <div className="w-full">
@@ -51,6 +102,10 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(({
         <input
           ref={ref}
           id={inputId}
+          type={type}
+          value={value}
+          onChange={handleChange}
+          onBlur={handleBlur}
           className={cn(
             // Base styles
             'block w-full rounded-md shadow-sm',
@@ -65,7 +120,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(({
             // Variant styles
             inputVariants[variant],
             // Error styles
-            error && 'border-red-300 focus:border-red-500 focus:ring-red-500',
+            displayError && 'border-red-300 focus:border-red-500 focus:ring-red-500',
             className
           )}
           {...props}
@@ -80,12 +135,12 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(({
         )}
       </div>
       
-      {(error || helperText) && (
+      {(displayError || helperText) && (
         <p className={cn(
           'mt-2 text-sm',
-          error ? 'text-red-600' : 'text-gray-500'
+          displayError ? 'text-red-600' : 'text-gray-500'
         )}>
-          {error || helperText}
+          {displayError || helperText}
         </p>
       )}
     </div>

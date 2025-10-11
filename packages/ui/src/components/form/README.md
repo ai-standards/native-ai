@@ -50,6 +50,12 @@ File upload component with drag-and-drop support, validation, and file managemen
 **Features:** Drag & drop interface, file validation, multiple files, visual feedback, size variants  
 **Documentation:** [FileUpload README](./fileupload/README.md)
 
+### Form
+Form wrapper component that automatically collects data from named form controls with debounced change tracking.
+
+**Features:** Automatic data collection, debounced updates, error tracking, validation modes, form context  
+**Documentation:** [Form README](./form/README.md)
+
 ### Radio
 Radio button groups for exclusive selection with flexible layouts and styling options.
 
@@ -89,7 +95,6 @@ Future form components planned for development. These will follow the same desig
 - **SearchInput** - Search field with autocomplete functionality
 
 ### Form Structure
-- **Form** - Form wrapper with validation context
 - **FormField** - Field wrapper with label and error handling
 - **FormSection** - Grouped form sections with dividers
 - **FieldArray** - Dynamic form arrays for repeatable fields

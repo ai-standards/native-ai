@@ -3,6 +3,7 @@ export { Checkbox, type CheckboxProps } from './checkbox';
 export { ColorPicker, type ColorPickerProps } from './colorpicker';
 export { DatePicker, type DatePickerProps } from './datepicker';
 export { FileUpload, type FileUploadProps } from './fileupload';
+export { Form, useFormContext, type FormProps, type FormData, type FormErrors, type FormControlProps } from './form';
 export { Input, type InputProps } from './input';
 export { NumberInput, type NumberInputProps } from './numberinput';
 export { Radio, type RadioProps, type RadioOption } from './radio';

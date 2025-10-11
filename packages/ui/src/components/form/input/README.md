@@ -8,6 +8,7 @@ A flexible, accessible input field component with labels, validation, and icon s
 - **Form Integration**: Works seamlessly with forms and validation libraries
 - **Icon Support**: Left and right icon slots
 - **Error Handling**: Built-in error state styling and messaging
+- **Email Validation**: Automatic email format validation when `type="email"`
 - **Labels & Help Text**: Optional labels and helper text
 - **Accessibility**: Proper labeling, focus management, and ARIA attributes
 - **TypeScript**: Full TypeScript support with proper type definitions
@@ -20,7 +21,7 @@ import { Input } from '@/lib/ui/input';
 // Basic usage
 <Input placeholder="Enter your name" />
 
-// With label
+// With label and email validation
 <Input label="Email" type="email" placeholder="Enter email" />
 
 // With validation
@@ -55,6 +56,7 @@ import { Input } from '@/lib/ui/input';
 | `variant` | `'default' \| 'filled'` | `'default'` | Visual style variant |
 | `leftIcon` | `React.ReactNode` | - | Icon displayed on the left |
 | `rightIcon` | `React.ReactNode` | - | Icon displayed on the right |
+| `validateEmail` | `boolean` | `true` | Enable automatic email validation when type="email" |
 | `className` | `string` | - | Additional CSS classes |
 | `id` | `string` | auto-generated | Input ID for label association |
 
@@ -81,6 +83,29 @@ Red border and text when error prop is provided.
 
 ### Disabled
 Reduced opacity and disabled cursor when disabled.
+
+## Email Validation
+
+When `type="email"` is used, the component automatically validates email format on blur:
+
+```tsx
+// Automatic validation (default)
+<Input type="email" label="Email" placeholder="Enter email" />
+
+// Disable automatic validation
+<Input 
+  type="email" 
+  label="Email" 
+  validateEmail={false}
+  placeholder="Enter email" 
+/>
+```
+
+**Validation Rules:**
+- Checks for basic email format: `user@domain.com`
+- Only validates when field has content (empty fields pass validation)
+- Shows error message: "Please enter a valid email address"
+- Validates on blur (when user clicks outside the field)
 
 ## Accessibility
 
