@@ -1,7 +1,8 @@
-import * as keytar from 'keytar';
+import { ApiKeyAdapter } from './adapters';
+import { KeytarAdapter } from './adapters/keytar-adapter';
 
 /**
- * Service name for storing API keys in the system keychain
+ * Service name for storing API keys
  */
 const SERVICE_NAME = 'native-ai';
 
@@ -11,43 +12,52 @@ const SERVICE_NAME = 'native-ai';
 const DEFAULT_ACCOUNT = 'api-key';
 
 /**
- * Sets an API key in the system keychain
+ * Default adapter instance
+ */
+let defaultAdapter: ApiKeyAdapter = new KeytarAdapter();
+
+/**
+ * Sets the adapter to use for API key storage
+ * @param adapter The adapter instance to use
+ */
+export function setAdapter(adapter: ApiKeyAdapter): void {
+  defaultAdapter = adapter;
+}
+
+/**
+ * Gets the current adapter
+ * @returns The current adapter instance
+ */
+export function getAdapter(): ApiKeyAdapter {
+  return defaultAdapter;
+}
+
+/**
+ * Sets an API key
  * @param key The API key to store
  * @param account Optional account name (defaults to 'api-key')
  * @returns Promise that resolves when the key is stored
  */
 export async function setKey(key: string, account: string = DEFAULT_ACCOUNT): Promise<void> {
-  try {
-    await keytar.setPassword(SERVICE_NAME, account, key);
-  } catch (error) {
-    throw new Error(`Failed to store API key: ${error instanceof Error ? error.message : 'Unknown error'}`);
-  }
+  return defaultAdapter.setKey(SERVICE_NAME, account, key);
 }
 
 /**
- * Retrieves an API key from the system keychain
+ * Retrieves an API key
  * @param account Optional account name (defaults to 'api-key')
  * @returns Promise that resolves to the API key or null if not found
  */
 export async function getKey(account: string = DEFAULT_ACCOUNT): Promise<string | null> {
-  try {
-    return await keytar.getPassword(SERVICE_NAME, account);
-  } catch (error) {
-    throw new Error(`Failed to retrieve API key: ${error instanceof Error ? error.message : 'Unknown error'}`);
-  }
+  return defaultAdapter.getKey(SERVICE_NAME, account);
 }
 
 /**
- * Removes an API key from the system keychain
+ * Removes an API key
  * @param account Optional account name (defaults to 'api-key')
  * @returns Promise that resolves to true if the key was deleted, false if it didn't exist
  */
 export async function destroyKey(account: string = DEFAULT_ACCOUNT): Promise<boolean> {
-  try {
-    return await keytar.deletePassword(SERVICE_NAME, account);
-  } catch (error) {
-    throw new Error(`Failed to delete API key: ${error instanceof Error ? error.message : 'Unknown error'}`);
-  }
+  return defaultAdapter.deleteKey(SERVICE_NAME, account);
 }
 
 /**
@@ -55,10 +65,5 @@ export async function destroyKey(account: string = DEFAULT_ACCOUNT): Promise<boo
  * @returns Promise that resolves to an array of account names
  */
 export async function listAccounts(): Promise<string[]> {
-  try {
-    const credentials = await keytar.findCredentials(SERVICE_NAME);
-    return credentials.map(cred => cred.account);
-  } catch (error) {
-    throw new Error(`Failed to list accounts: ${error instanceof Error ? error.message : 'Unknown error'}`);
-  }
+  return defaultAdapter.listAccounts(SERVICE_NAME);
 }
