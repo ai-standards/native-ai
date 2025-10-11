@@ -1,0 +1,22 @@
+{
+  "name": "@ai-standards/native-ai-ui",
+  "version": "1.0.0",
+  "description": "UI components for native AI",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "test": "jest"
+  },
+  "keywords": ["ai", "ui", "components"],
+  "author": "",
+  "license": "ISC",
+  "peerDependencies": {
+    "react": ">=16.8.0"
+  },
+  "devDependencies": {
+    "@types/react": "^18.0.0",
+    "typescript": "^5.0.0"
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "name": "@ai-standards/native-ai-ai",
+  "version": "1.0.0",
+  "description": "AI engine and models for native AI",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "test": "jest"
+  },
+  "keywords": ["ai", "machine-learning", "models", "engine"],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "typescript": "^5.0.0",
+    "jest": "^29.0.0",
+    "@types/jest": "^29.0.0"
+  }
+}
