@@ -24,6 +24,12 @@ Single and grouped checkbox controls for multiple selections with indeterminate 
 **Features:** Individual checkboxes, checkbox groups, indeterminate state, custom styling  
 **Documentation:** [Checkbox README](./checkbox/README.md)
 
+### ColorPicker
+Color selection interface with hue/saturation picker, presets, and multiple format support.
+
+**Features:** Interactive color wheel, HEX/RGB/HSL formats, preset colors, alpha channel, format conversion  
+**Documentation:** [ColorPicker README](./colorpicker/README.md)
+
 ### DatePicker
 Interactive date selection component with calendar interface and date range validation.
 
@@ -71,7 +77,6 @@ Multi-line text input with auto-resize capabilities and validation support.
 Future form components planned for development. These will follow the same design principles and patterns as the current components.
 
 ### Advanced Input Controls
-- **ColorPicker** - Color selection interface
 - **NumberInput** - Numeric input with increment/decrement controls
 - **PasswordInput** - Password field with visibility toggle
 - **SearchInput** - Search field with autocomplete functionality

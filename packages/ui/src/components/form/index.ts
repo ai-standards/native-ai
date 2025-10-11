@@ -1,5 +1,6 @@
 export { Button, type ButtonProps } from './button';
 export { Checkbox, type CheckboxProps } from './checkbox';
+export { ColorPicker, type ColorPickerProps } from './colorpicker';
 export { DatePicker, type DatePickerProps } from './datepicker';
 export { FileUpload, type FileUploadProps } from './fileupload';
 export { Input, type InputProps } from './input';
