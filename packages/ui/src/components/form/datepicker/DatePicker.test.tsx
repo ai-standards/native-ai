@@ -72,7 +72,7 @@ describe('DatePicker', () => {
   });
 
   it('calls onChange when date is selected', () => {
-    const handleChange = jest.fn();
+    const handleChange = vi.fn();
     render(<DatePicker onChange={handleChange} />);
     
     const input = screen.getByPlaceholderText('Select date');
@@ -128,7 +128,7 @@ describe('DatePicker', () => {
   });
 
   it('handles manual date input', () => {
-    const handleChange = jest.fn();
+    const handleChange = vi.fn();
     render(<DatePicker onChange={handleChange} />);
     
     const input = screen.getByPlaceholderText('Select date');

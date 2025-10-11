@@ -1,5 +1,8 @@
 import React, { forwardRef, useState } from 'react';
 import { cn } from '../../../utils/cn';
+import { ErrorMessage } from '../errormessage/ErrorMessage';
+import { HelperText } from '../helpertext/HelperText';
+import { ValidationIndicator } from '../validationindicator/ValidationIndicator';
 
 export interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   label?: string;
@@ -10,6 +13,8 @@ export interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> 
   rightIcon?: React.ReactNode;
   /** Enable automatic email validation when type="email" */
   validateEmail?: boolean;
+  /** Show validation indicator */
+  showValidationIndicator?: boolean;
 }
 
 export const Input = forwardRef<HTMLInputElement, InputProps>(({
@@ -20,6 +25,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(({
   leftIcon,
   rightIcon,
   validateEmail = true,
+  showValidationIndicator = false,
   className,
   id,
   type = 'text',
@@ -30,6 +36,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(({
 }, ref) => {
   const inputId = id || `input-${Math.random().toString(36).substr(2, 9)}`;
   const [internalError, setInternalError] = useState<string>('');
+  const [validationStatus, setValidationStatus] = useState<'idle' | 'validating' | 'valid' | 'invalid'>('idle');
 
   const inputVariants = {
     default: 'border border-gray-300 focus:border-blue-500 focus:ring-blue-500 bg-white',
@@ -63,11 +70,21 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(({
     
     // Validate email on blur if type is email and validateEmail is true
     if (type === 'email' && validateEmail && inputValue) {
-      if (!validateEmailFormat(inputValue)) {
-        setInternalError('Please enter a valid email address');
-      } else {
-        setInternalError('');
-      }
+      setValidationStatus('validating');
+      // Simulate async validation delay
+      setTimeout(() => {
+        if (!validateEmailFormat(inputValue)) {
+          setInternalError('Please enter a valid email address');
+          setValidationStatus('invalid');
+        } else {
+          setInternalError('');
+          setValidationStatus('valid');
+        }
+      }, 300);
+    } else if (inputValue && type !== 'email') {
+      setValidationStatus('valid');
+    } else if (!inputValue) {
+      setValidationStatus('idle');
     }
     
     // Call original onBlur if provided
@@ -78,6 +95,11 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(({
 
   // Use internal error if no external error is provided
   const displayError = error || internalError;
+  
+  // Determine validation status based on error state
+  const currentValidationStatus = displayError ? 'invalid' : 
+    (validationStatus === 'validating' ? 'validating' : 
+     (validationStatus === 'valid' ? 'valid' : 'idle'));
 
   return (
     <div className="w-full">
@@ -115,7 +137,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(({
             'placeholder:text-gray-400',
             // Padding adjustments for icons
             leftIcon ? 'pl-10' : 'pl-3',
-            rightIcon ? 'pr-10' : 'pr-3',
+            (rightIcon || showValidationIndicator) ? 'pr-10' : 'pr-3',
             'py-2',
             // Variant styles
             inputVariants[variant],
@@ -126,23 +148,24 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(({
           {...props}
         />
         
-        {rightIcon && (
-          <div className="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
-            <div className="h-5 w-5 text-gray-400">
-              {rightIcon}
-            </div>
+        {(rightIcon || showValidationIndicator) && (
+          <div className="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none gap-2">
+            {showValidationIndicator && (
+              <ValidationIndicator status={currentValidationStatus} />
+            )}
+            {rightIcon && (
+              <div className="h-5 w-5 text-gray-400">
+                {rightIcon}
+              </div>
+            )}
           </div>
         )}
       </div>
       
-      {(displayError || helperText) && (
-        <p className={cn(
-          'mt-2 text-sm',
-          displayError ? 'text-red-600' : 'text-gray-500'
-        )}>
-          {displayError || helperText}
-        </p>
-      )}
+      <div className="mt-2">
+        <ErrorMessage message={displayError} fieldId={inputId} />
+        <HelperText text={!displayError ? helperText : undefined} fieldId={inputId} />
+      </div>
     </div>
   );
 });

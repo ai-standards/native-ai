@@ -1,4 +1,5 @@
 import React from 'react';
+import { describe, it, expect, vi } from 'vitest';
 import { render, screen, fireEvent } from '@testing-library/react';
 import { FileUpload } from './FileUpload';
 
@@ -42,7 +43,7 @@ describe('FileUpload', () => {
   });
 
   it('handles file selection', () => {
-    const handleFilesChange = jest.fn();
+    const handleFilesChange = vi.fn();
     render(<FileUpload onFilesChange={handleFilesChange} />);
     
     const input = screen.getByRole('textbox', { hidden: true });
@@ -54,7 +55,7 @@ describe('FileUpload', () => {
   });
 
   it('shows selected files', () => {
-    const handleFilesChange = jest.fn();
+    const handleFilesChange = vi.fn();
     render(<FileUpload onFilesChange={handleFilesChange} showFileList />);
     
     const input = screen.getByRole('textbox', { hidden: true });
@@ -67,7 +68,7 @@ describe('FileUpload', () => {
   });
 
   it('allows multiple file selection', () => {
-    const handleFilesChange = jest.fn();
+    const handleFilesChange = vi.fn();
     render(<FileUpload multiple onFilesChange={handleFilesChange} />);
     
     const input = screen.getByRole('textbox', { hidden: true });
@@ -80,7 +81,7 @@ describe('FileUpload', () => {
   });
 
   it('validates file size', () => {
-    const handleFilesChange = jest.fn();
+    const handleFilesChange = vi.fn();
     render(<FileUpload maxSize={1000} onFilesChange={handleFilesChange} />);
     
     const input = screen.getByRole('textbox', { hidden: true });
@@ -93,7 +94,7 @@ describe('FileUpload', () => {
   });
 
   it('validates max files', () => {
-    const handleFilesChange = jest.fn();
+    const handleFilesChange = vi.fn();
     render(<FileUpload multiple maxFiles={2} onFilesChange={handleFilesChange} />);
     
     const input = screen.getByRole('textbox', { hidden: true });
@@ -109,7 +110,7 @@ describe('FileUpload', () => {
   });
 
   it('removes individual files', () => {
-    const handleFilesChange = jest.fn();
+    const handleFilesChange = vi.fn();
     render(<FileUpload multiple onFilesChange={handleFilesChange} />);
     
     const input = screen.getByRole('textbox', { hidden: true });
@@ -135,7 +136,7 @@ describe('FileUpload', () => {
   });
 
   it('clears all files', () => {
-    const handleFilesChange = jest.fn();
+    const handleFilesChange = vi.fn();
     render(<FileUpload multiple onFilesChange={handleFilesChange} />);
     
     const input = screen.getByRole('textbox', { hidden: true });
@@ -163,7 +164,7 @@ describe('FileUpload', () => {
   });
 
   it('formats file sizes correctly', () => {
-    const handleFilesChange = jest.fn();
+    const handleFilesChange = vi.fn();
     render(<FileUpload onFilesChange={handleFilesChange} />);
     
     const input = screen.getByRole('textbox', { hidden: true });
@@ -182,7 +183,7 @@ describe('FileUpload', () => {
   });
 
   it('handles drag and drop events', () => {
-    const handleDrop = jest.fn();
+    const handleDrop = vi.fn();
     render(<FileUpload onDrop={handleDrop} />);
     
     const uploadArea = screen.getByText('Click to upload or drag and drop').closest('div');

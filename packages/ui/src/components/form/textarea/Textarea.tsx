@@ -1,5 +1,7 @@
 import React, { forwardRef } from 'react';
-import { cn } from '@/utils/cn';
+import { cn } from '../../../utils/cn';
+import { ErrorMessage } from '../errormessage/ErrorMessage';
+import { HelperText } from '../helpertext/HelperText';
 
 export interface TextareaProps extends React.TextareaHTMLAttributes<HTMLTextAreaElement> {
   label?: string;
@@ -67,14 +69,10 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(({
         {...props}
       />
       
-      {(error || helperText) && (
-        <p className={cn(
-          'mt-2 text-sm',
-          error ? 'text-red-600' : 'text-gray-500'
-        )}>
-          {error || helperText}
-        </p>
-      )}
+      <div className="mt-2">
+        <ErrorMessage message={error} fieldId={id} />
+        <HelperText text={!error ? helperText : undefined} fieldId={id} />
+      </div>
     </div>
   );
 });

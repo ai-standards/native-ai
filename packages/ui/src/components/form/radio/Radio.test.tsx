@@ -32,7 +32,7 @@ describe('Radio', () => {
   });
 
   it('calls onChange when option is selected', () => {
-    const handleChange = jest.fn();
+    const handleChange = vi.fn();
     render(<Radio options={mockOptions} name="test-radio" onChange={handleChange} />);
     
     const option2Radio = screen.getByRole('radio', { name: 'Option 2' });
@@ -42,7 +42,7 @@ describe('Radio', () => {
   });
 
   it('does not call onChange when disabled', () => {
-    const handleChange = jest.fn();
+    const handleChange = vi.fn();
     render(<Radio options={mockOptions} name="test-radio" onChange={handleChange} disabled />);
     
     const option1Radio = screen.getByRole('radio', { name: 'Option 1' });

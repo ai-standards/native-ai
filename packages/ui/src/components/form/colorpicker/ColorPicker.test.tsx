@@ -46,7 +46,7 @@ describe('ColorPicker', () => {
   });
 
   it('calls onChange when color changes', () => {
-    const handleChange = jest.fn();
+    const handleChange = vi.fn();
     render(<ColorPicker onChange={handleChange} />);
     
     const colorButton = screen.getByRole('button');
@@ -110,7 +110,7 @@ describe('ColorPicker', () => {
   });
 
   it('handles hue slider interaction', () => {
-    const handleChange = jest.fn();
+    const handleChange = vi.fn();
     render(<ColorPicker onChange={handleChange} />);
     
     const colorButton = screen.getByRole('button');
@@ -155,7 +155,7 @@ describe('ColorPicker', () => {
   });
 
   it('handles saturation area interaction', () => {
-    const handleChange = jest.fn();
+    const handleChange = vi.fn();
     render(<ColorPicker onChange={handleChange} />);
     
     const colorButton = screen.getByRole('button');

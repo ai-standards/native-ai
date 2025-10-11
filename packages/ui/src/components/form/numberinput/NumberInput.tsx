@@ -1,5 +1,7 @@
-import React, { forwardRef, useState, useCallback } from 'react';
+import React, { forwardRef, useState, useCallback, useEffect } from 'react';
 import { cn } from '../../../utils/cn';
+import { ErrorMessage } from '../errormessage/ErrorMessage';
+import { HelperText } from '../helpertext/HelperText';
 
 export interface NumberInputProps {
   /** Current value */
@@ -299,12 +301,8 @@ const NumberInput = forwardRef<HTMLInputElement, NumberInputProps>(
             {label}
           </label>
           {inputElement}
-          {helperText && !error && (
-            <p className="text-sm text-gray-500">{helperText}</p>
-          )}
-          {error && errorMessage && (
-            <p className="text-sm text-red-600">{errorMessage}</p>
-          )}
+          <ErrorMessage message={error && errorMessage ? errorMessage : undefined} fieldId={id} />
+          <HelperText text={!error ? helperText : undefined} fieldId={id} />
         </div>
       );
     }
@@ -312,12 +310,10 @@ const NumberInput = forwardRef<HTMLInputElement, NumberInputProps>(
     return (
       <div>
         {inputElement}
-        {helperText && !error && (
-          <p className="mt-1 text-sm text-gray-500">{helperText}</p>
-        )}
-        {error && errorMessage && (
-          <p className="mt-1 text-sm text-red-600">{errorMessage}</p>
-        )}
+        <div className="mt-1">
+          <ErrorMessage message={error && errorMessage ? errorMessage : undefined} fieldId={id} />
+          <HelperText text={!error ? helperText : undefined} fieldId={id} />
+        </div>
       </div>
     );
   }

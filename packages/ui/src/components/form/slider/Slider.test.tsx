@@ -26,7 +26,7 @@ describe('Slider', () => {
   });
 
   it('calls onChange when value changes', () => {
-    const handleChange = jest.fn();
+    const handleChange = vi.fn();
     render(<Slider onChange={handleChange} />);
     
     const slider = screen.getByRole('slider');
@@ -51,7 +51,7 @@ describe('Slider', () => {
   });
 
   it('does not call onChange when disabled', () => {
-    const handleChange = jest.fn();
+    const handleChange = vi.fn();
     render(<Slider onChange={handleChange} disabled />);
     
     const slider = screen.getByRole('slider');
@@ -91,7 +91,7 @@ describe('Slider', () => {
   });
 
   it('clamps values to min/max bounds', () => {
-    const handleChange = jest.fn();
+    const handleChange = vi.fn();
     render(<Slider min={20} max={80} onChange={handleChange} />);
     
     const slider = screen.getByRole('slider');

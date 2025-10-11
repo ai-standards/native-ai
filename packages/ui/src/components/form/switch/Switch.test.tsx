@@ -1,4 +1,5 @@
 import React from 'react';
+import { describe, it, expect, vi } from 'vitest';
 import { render, screen, fireEvent } from '@testing-library/react';
 import { Switch } from './Switch';
 
@@ -26,7 +27,7 @@ describe('Switch', () => {
   });
 
   it('calls onChange when toggled', () => {
-    const handleChange = jest.fn();
+    const handleChange = vi.fn();
     render(<Switch onChange={handleChange} />);
     
     const switchElement = screen.getByRole('switch');
@@ -36,7 +37,7 @@ describe('Switch', () => {
   });
 
   it('does not call onChange when disabled', () => {
-    const handleChange = jest.fn();
+    const handleChange = vi.fn();
     render(<Switch onChange={handleChange} disabled />);
     
     const switchElement = screen.getByRole('switch');

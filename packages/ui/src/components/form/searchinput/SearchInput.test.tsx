@@ -42,7 +42,7 @@ describe('SearchInput', () => {
   });
 
   it('calls onSearch when search button is clicked', () => {
-    const handleSearch = jest.fn();
+    const handleSearch = vi.fn();
     render(<SearchInput onSearch={handleSearch} defaultValue="test query" />);
     
     const searchButton = screen.getAllByRole('button')[0];
@@ -52,7 +52,7 @@ describe('SearchInput', () => {
   });
 
   it('calls onSearch on Enter key', () => {
-    const handleSearch = jest.fn();
+    const handleSearch = vi.fn();
     render(<SearchInput onSearch={handleSearch} />);
     
     const input = screen.getByRole('textbox');
@@ -73,7 +73,7 @@ describe('SearchInput', () => {
   });
 
   it('selects suggestion on click', () => {
-    const handleSuggestionSelect = jest.fn();
+    const handleSuggestionSelect = vi.fn();
     render(
       <SearchInput 
         suggestions={mockSuggestions} 
@@ -143,7 +143,7 @@ describe('SearchInput', () => {
   });
 
   it('debounces search calls', async () => {
-    const handleSearch = jest.fn();
+    const handleSearch = vi.fn();
     render(<SearchInput onSearch={handleSearch} debounceMs={100} />);
     
     const input = screen.getByRole('textbox');

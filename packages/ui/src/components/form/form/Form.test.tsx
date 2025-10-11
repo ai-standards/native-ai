@@ -1,4 +1,5 @@
 import React from 'react';
+import { describe, it, expect, vi } from 'vitest';
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import { Form } from './Form';
 import { Input } from '../input';
@@ -39,7 +40,7 @@ describe('Form', () => {
   });
 
   it('collects form data from named controls', async () => {
-    const handleChange = jest.fn();
+    const handleChange = vi.fn();
     
     render(
       <Form onChange={handleChange}>
@@ -64,7 +65,7 @@ describe('Form', () => {
   });
 
   it('handles different field types', async () => {
-    const handleChange = jest.fn();
+    const handleChange = vi.fn();
     
     render(
       <Form onChange={handleChange}>
@@ -122,7 +123,7 @@ describe('Form', () => {
   });
 
   it('debounces onChange calls', async () => {
-    const handleChange = jest.fn();
+    const handleChange = vi.fn();
     
     render(
       <Form onChange={handleChange} debounceMs={100}>
@@ -145,7 +146,7 @@ describe('Form', () => {
   });
 
   it('handles error tracking', async () => {
-    const handleErrorChange = jest.fn();
+    const handleErrorChange = vi.fn();
     
     const MockInputWithError = ({ name, onChange, onBlur, ...props }: any) => {
       const [hasError, setHasError] = React.useState(false);
@@ -183,7 +184,7 @@ describe('Form', () => {
   });
 
   it('handles nested form controls', async () => {
-    const handleChange = jest.fn();
+    const handleChange = vi.fn();
     
     render(
       <Form onChange={handleChange}>
@@ -206,7 +207,7 @@ describe('Form', () => {
   });
 
   it('prevents default form submission', () => {
-    const handleSubmit = jest.fn();
+    const handleSubmit = vi.fn();
     
     render(
       <Form onSubmit={handleSubmit}>

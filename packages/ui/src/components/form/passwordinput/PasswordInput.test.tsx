@@ -58,7 +58,7 @@ describe('PasswordInput', () => {
   });
 
   it('calls onChange when value changes', () => {
-    const handleChange = jest.fn();
+    const handleChange = vi.fn();
     render(<PasswordInput onChange={handleChange} />);
     
     const input = screen.getByDisplayValue('');

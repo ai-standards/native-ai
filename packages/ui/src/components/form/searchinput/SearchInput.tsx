@@ -1,5 +1,7 @@
 import React, { forwardRef, useState, useRef, useCallback } from 'react';
 import { cn } from '../../../utils/cn';
+import { ErrorMessage } from '../errormessage/ErrorMessage';
+import { HelperText } from '../helpertext/HelperText';
 
 export interface SearchOption {
   value: string;
@@ -395,13 +397,8 @@ const SearchInput = forwardRef<HTMLInputElement, SearchInputProps>(
           )}
         </div>
 
-        {helperText && !error && (
-          <p className="text-sm text-gray-500">{helperText}</p>
-        )}
-        
-        {error && (
-          <p className="text-sm text-red-600">{error}</p>
-        )}
+        <ErrorMessage message={error} fieldId={inputId} />
+        <HelperText text={!error ? helperText : undefined} fieldId={inputId} />
       </div>
     );
   }

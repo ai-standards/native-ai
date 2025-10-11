@@ -1,4 +1,5 @@
 import React from 'react';
+import { describe, it, expect, vi } from 'vitest';
 import { render, screen, fireEvent } from '@testing-library/react';
 import { NumberInput } from './NumberInput';
 
@@ -32,7 +33,7 @@ describe('NumberInput', () => {
   });
 
   it('calls onChange when value changes', () => {
-    const handleChange = jest.fn();
+    const handleChange = vi.fn();
     render(<NumberInput onChange={handleChange} />);
     
     const input = screen.getByPlaceholderText('Enter number');
@@ -42,7 +43,7 @@ describe('NumberInput', () => {
   });
 
   it('handles increment button click', () => {
-    const handleChange = jest.fn();
+    const handleChange = vi.fn();
     render(<NumberInput defaultValue={5} step={2} onChange={handleChange} />);
     
     const buttons = screen.getAllByRole('button');
@@ -53,7 +54,7 @@ describe('NumberInput', () => {
   });
 
   it('handles decrement button click', () => {
-    const handleChange = jest.fn();
+    const handleChange = vi.fn();
     render(<NumberInput defaultValue={10} step={3} onChange={handleChange} />);
     
     const buttons = screen.getAllByRole('button');
@@ -64,7 +65,7 @@ describe('NumberInput', () => {
   });
 
   it('respects min value', () => {
-    const handleChange = jest.fn();
+    const handleChange = vi.fn();
     render(<NumberInput min={0} defaultValue={2} onChange={handleChange} />);
     
     const buttons = screen.getAllByRole('button');
@@ -84,7 +85,7 @@ describe('NumberInput', () => {
   });
 
   it('respects max value', () => {
-    const handleChange = jest.fn();
+    const handleChange = vi.fn();
     render(<NumberInput max={10} defaultValue={9} onChange={handleChange} />);
     
     const buttons = screen.getAllByRole('button');
@@ -100,7 +101,7 @@ describe('NumberInput', () => {
   });
 
   it('handles arrow key navigation', () => {
-    const handleChange = jest.fn();
+    const handleChange = vi.fn();
     render(<NumberInput defaultValue={5} onChange={handleChange} />);
     
     const input = screen.getByDisplayValue('5');
@@ -164,7 +165,7 @@ describe('NumberInput', () => {
   });
 
   it('validates decimal input', () => {
-    const handleChange = jest.fn();
+    const handleChange = vi.fn();
     render(<NumberInput allowDecimal onChange={handleChange} />);
     
     const input = screen.getByPlaceholderText('Enter number');
@@ -174,7 +175,7 @@ describe('NumberInput', () => {
   });
 
   it('rejects invalid input', () => {
-    const handleChange = jest.fn();
+    const handleChange = vi.fn();
     render(<NumberInput onChange={handleChange} />);
     
     const input = screen.getByPlaceholderText('Enter number');
@@ -187,7 +188,7 @@ describe('NumberInput', () => {
   });
 
   it('handles negative numbers when allowed', () => {
-    const handleChange = jest.fn();
+    const handleChange = vi.fn();
     render(<NumberInput allowNegative onChange={handleChange} />);
     
     const input = screen.getByPlaceholderText('Enter number');
@@ -197,7 +198,7 @@ describe('NumberInput', () => {
   });
 
   it('rejects negative numbers when not allowed', () => {
-    const handleChange = jest.fn();
+    const handleChange = vi.fn();
     render(<NumberInput allowNegative={false} onChange={handleChange} />);
     
     const input = screen.getByPlaceholderText('Enter number');
@@ -230,7 +231,7 @@ describe('NumberInput', () => {
   });
 
   it('handles empty input', () => {
-    const handleChange = jest.fn();
+    const handleChange = vi.fn();
     render(<NumberInput onChange={handleChange} />);
     
     const input = screen.getByPlaceholderText('Enter number');

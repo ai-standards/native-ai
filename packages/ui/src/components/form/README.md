@@ -104,15 +104,45 @@ Future form components planned for development. These will follow the same desig
 
 ### Advanced Input Controls
 
+### FieldArray
+Dynamic form arrays for repeatable fields with add/remove functionality, validation, and drag-and-drop sorting.
+
+**Features:** Add/remove items, drag & drop reordering, validation, min/max constraints, helper functions  
+**Documentation:** [FieldArray README](./fieldarray/README.md)
+
+### FormField
+Field wrapper component that provides consistent labeling, error handling, and layout for form controls.
+
+**Features:** Flexible labeling, error handling, helper text, required indicators, size variants, accessibility  
+**Documentation:** [FormField README](./formfield/README.md)
+
+### FormSection
+Form section component for grouping related form fields with optional dividers, titles, and collapsible functionality.
+
+**Features:** Section headers, visual dividers, collapsible content, size variants, controlled state, accessibility  
+**Documentation:** [FormSection README](./formsection/README.md)
+
 ### Form Structure
-- **FormField** - Field wrapper with label and error handling
-- **FormSection** - Grouped form sections with dividers
-- **FieldArray** - Dynamic form arrays for repeatable fields
+
+### ErrorMessage
+Styled error message component for displaying validation errors and other error states.
+
+**Features:** Consistent styling, accessibility, size variants, icons, animations, auto association  
+**Documentation:** [ErrorMessage README](./errormessage/README.md)
+
+### HelperText
+Helper text component for providing contextual information and guidance to users.
+
+**Features:** Contextual guidance, visual variants, flexible positioning, icon support, accessibility  
+**Documentation:** [HelperText README](./helpertext/README.md)
+
+### ValidationIndicator
+Visual validation status indicators for form fields with icons and optional status text.
+
+**Features:** Status states, visual feedback, loading animation, flexible display, size variants, positioning, accessibility  
+**Documentation:** [ValidationIndicator README](./validationindicator/README.md)
 
 ### Validation & Feedback
-- **ErrorMessage** - Styled error message display
-- **HelperText** - Helpful hints and guidance text
-- **ValidationIndicator** - Visual validation status indicators
 
 ## Design Principles
 

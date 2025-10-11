@@ -1,5 +1,7 @@
-import React, { forwardRef, useRef, useState, useCallback } from 'react';
+import React, { useState, useRef, useCallback, forwardRef } from 'react';
 import { cn } from '../../../utils/cn';
+import { ErrorMessage } from '../errormessage/ErrorMessage';
+import { HelperText } from '../helpertext/HelperText';
 
 export interface ColorPickerProps {
   /** Selected color value */
@@ -409,9 +411,7 @@ const ColorPicker = forwardRef<HTMLDivElement, ColorPickerProps>(
             {label}
           </label>
           {colorPreview}
-          {error && errorMessage && (
-            <p className="text-sm text-red-600">{errorMessage}</p>
-          )}
+          <ErrorMessage message={error && errorMessage ? errorMessage : undefined} fieldId={id} />
           <input type="hidden" name={name} value={selectedColor} />
         </div>
       );
@@ -420,9 +420,9 @@ const ColorPicker = forwardRef<HTMLDivElement, ColorPickerProps>(
     return (
       <div className={className} ref={ref} {...props}>
         {colorPreview}
-        {error && errorMessage && (
-          <p className="mt-1 text-sm text-red-600">{errorMessage}</p>
-        )}
+        <div className="mt-1">
+          <ErrorMessage message={error && errorMessage ? errorMessage : undefined} fieldId={id} />
+        </div>
         <input type="hidden" name={name} value={selectedColor} />
       </div>
     );
