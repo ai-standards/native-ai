@@ -1,27 +1,35 @@
 {
   "name": "@nativeai/workspace",
-  "version": "1.0.1",
+  "version": "0.9.1",
   "description": "Safe workspaces for native AI",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "repository": {
     "type": "git",
-    "url": "https://github.com/ai-standards/native-ai.git",
+    "url": "https://github.com/ai-standards/nativeai.git",
     "directory": "packages/workspace"
   },
-  "homepage": "https://github.com/ai-standards/native-ai/tree/main/packages/workspace",
+  "homepage": "https://github.com/ai-standards/nativeai/tree/main/packages/workspace",
   "bugs": {
-    "url": "https://github.com/ai-standards/native-ai/issues"
+    "url": "https://github.com/ai-standards/nativeai/issues"
   },
   "scripts": {
     "build": "tsc",
     "dev": "tsc --watch",
     "test": "jest"
   },
-  "keywords": ["ai", "workspace", "native"],
+  "keywords": [
+    "ai",
+    "workspace",
+    "native"
+  ],
   "author": "",
   "license": "MIT",
   "devDependencies": {
-    "typescript": "^5.0.0"
+    "typescript": "^5.0.0",
+    "@types/glob": "^7.2.0"
+  },
+  "dependencies": {
+    "glob": "^7.2.3"
   }
 }

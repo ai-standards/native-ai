@@ -1,5 +1,5 @@
 {
-  "name": "@ai-standards/native-ai",
+  "name": "@ai-standards/nativeai",
   "version": "1.0.0",
   "description": "",
   "private": true,
@@ -8,11 +8,11 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/ai-standards/native-ai.git"
+    "url": "https://github.com/ai-standards/nativeai.git"
   },
-  "homepage": "https://github.com/ai-standards/native-ai",
+  "homepage": "https://github.com/ai-standards/nativeai",
   "bugs": {
-    "url": "https://github.com/ai-standards/native-ai/issues"
+    "url": "https://github.com/ai-standards/nativeai/issues"
   },
   "scripts": {
     "test": "npm run test --workspaces",

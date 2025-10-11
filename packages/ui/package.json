@@ -1,31 +1,107 @@
 {
-  "name": "@ai-standards/native-ai-ui",
-  "version": "1.0.0",
-  "description": "UI components for native AI",
+  "name": "@nativeai/ui",
+  "version": "0.1.0",
+  "type": "module",
+  "description": "A comprehensive React UI component library with VS Code-inspired design patterns",
   "main": "dist/index.js",
+  "module": "dist/index.esm.js",
   "types": "dist/index.d.ts",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/ai-standards/native-ai.git",
-    "directory": "packages/ui"
-  },
-  "homepage": "https://github.com/ai-standards/native-ai/tree/main/packages/ui",
-  "bugs": {
-    "url": "https://github.com/ai-standards/native-ai/issues"
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "exports": {
+    ".": {
+      "import": "./dist/index.esm.js",
+      "require": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    },
+    "./styles": "./dist/styles.css"
   },
   "scripts": {
-    "build": "tsc",
-    "dev": "tsc --watch",
-    "test": "jest"
+    "build": "rollup -c",
+    "build:watch": "rollup -c -w",
+    "dev": "rollup -c -w",
+    "test": "vitest",
+    "test:ui": "vitest --ui",
+    "test:coverage": "vitest --coverage",
+    "lint": "eslint src --ext .ts,.tsx",
+    "lint:fix": "eslint src --ext .ts,.tsx --fix",
+    "typecheck": "tsc --noEmit",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build",
+    "clean": "rimraf dist",
+    "prepublishOnly": "npm run clean && npm run build"
   },
-  "keywords": ["ai", "ui", "components"],
-  "author": "",
+  "keywords": [
+    "react",
+    "ui",
+    "components",
+    "design-system",
+    "typescript",
+    "vscode",
+    "electron",
+    "nativeai"
+  ],
+  "author": "Native AI",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/nativeai/ui.git"
+  },
+  "bugs": {
+    "url": "https://github.com/nativeai/ui/issues"
+  },
+  "homepage": "https://github.com/nativeai/ui#readme",
   "peerDependencies": {
-    "react": ">=16.8.0"
+    "react": ">=18.0.0",
+    "react-dom": ">=18.0.0"
+  },
+  "dependencies": {
+    "class-variance-authority": "^0.7.0",
+    "clsx": "^2.0.0",
+    "react-icons": "^4.12.0"
   },
   "devDependencies": {
-    "@types/react": "^18.0.0",
-    "typescript": "^5.0.0"
+    "@rollup/plugin-commonjs": "^25.0.7",
+    "@rollup/plugin-node-resolve": "^15.2.3",
+    "@rollup/plugin-typescript": "^11.1.5",
+    "@storybook/addon-essentials": "^7.6.6",
+    "@storybook/addon-interactions": "^7.6.6",
+    "@storybook/addon-links": "^7.6.6",
+    "@storybook/blocks": "^7.6.6",
+    "@storybook/react": "^7.6.6",
+    "@storybook/react-vite": "^7.6.6",
+    "@storybook/testing-library": "^0.2.2",
+    "@testing-library/jest-dom": "^6.1.5",
+    "@testing-library/react": "^14.1.2",
+    "@testing-library/user-event": "^14.5.1",
+    "@types/react": "^18.2.43",
+    "@types/react-dom": "^18.2.17",
+    "@typescript-eslint/eslint-plugin": "^6.14.0",
+    "@typescript-eslint/parser": "^6.14.0",
+    "@vitejs/plugin-react": "^4.2.1",
+    "@vitest/coverage-v8": "^1.1.0",
+    "@vitest/ui": "^1.1.0",
+    "autoprefixer": "^10.4.16",
+    "eslint": "^8.56.0",
+    "eslint-plugin-react": "^7.33.2",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "eslint-plugin-storybook": "^0.6.15",
+    "jsdom": "^23.0.1",
+    "postcss": "^8.4.32",
+    "rimraf": "^5.0.5",
+    "rollup": "^4.9.1",
+    "rollup-plugin-dts": "^6.1.0",
+    "rollup-plugin-postcss": "^4.0.2",
+    "storybook": "^7.6.6",
+    "tailwindcss": "^3.3.6",
+    "typescript": "^5.3.3",
+    "vite": "^5.0.10",
+    "vitest": "^1.1.0"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }

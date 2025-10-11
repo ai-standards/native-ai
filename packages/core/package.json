@@ -1,17 +1,17 @@
 {
-  "name": "@ai-standards/native-ai-core",
+  "name": "@ai-standards/nativeai-core",
   "version": "1.0.0",
   "description": "Core functionality for native AI",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "repository": {
     "type": "git",
-    "url": "https://github.com/ai-standards/native-ai.git",
+    "url": "https://github.com/ai-standards/nativeai.git",
     "directory": "packages/core"
   },
-  "homepage": "https://github.com/ai-standards/native-ai/tree/main/packages/core",
+  "homepage": "https://github.com/ai-standards/nativeai/tree/main/packages/core",
   "bugs": {
-    "url": "https://github.com/ai-standards/native-ai/issues"
+    "url": "https://github.com/ai-standards/nativeai/issues"
   },
   "scripts": {
     "build": "tsc",
