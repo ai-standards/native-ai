@@ -132,7 +132,26 @@ export class WebSecureAdapter implements ApiKeyAdapter {
   }
 
   async setKey(service: string, account: string, key: string): Promise<void> {
+    const operationKey = `setKey:${service}:${account}`;
+    
     try {
+      // Input validation
+      InputValidator.validateService(service);
+      InputValidator.validateAccount(account);
+      InputValidator.validateKey(key);
+
+      // Rate limiting
+      this.rateLimiter.checkLimit(operationKey);
+
+      // Audit logging
+      this.auditLogger?.log({
+        action: 'setKey',
+        service,
+        account,
+        level: 'info',
+        message: 'Attempting to store API key'
+      });
+
       const masterKey = await this.getMasterKey();
       const { encrypted, iv } = await this.encrypt(key, masterKey);
       
@@ -149,18 +168,61 @@ export class WebSecureAdapter implements ApiKeyAdapter {
           account,
           encrypted: Array.from(new Uint8Array(encrypted)),
           iv: Array.from(new Uint8Array(iv)),
-          timestamp: Date.now()
+          timestamp: Date.now(),
+          keyVersion: 1 // For key rotation support
         });
         request.onsuccess = () => resolve();
         request.onerror = () => reject(request.error);
       });
+
+      // Success audit
+      this.auditLogger?.log({
+        action: 'setKey',
+        service,
+        account,
+        level: 'info',
+        message: 'API key stored successfully'
+      });
+
+      // Reset rate limit on success
+      this.rateLimiter.reset(operationKey);
+
+      // Secure memory wipe
+      SecureMemory.wipe(key);
+
     } catch (error) {
+      this.auditLogger?.log({
+        action: 'setKey',
+        service,
+        account,
+        level: 'error',
+        message: `Failed to store API key: ${error instanceof Error ? error.message : 'Unknown error'}`
+      });
+
       throw new Error(`Failed to store API key: ${error instanceof Error ? error.message : 'Unknown error'}`);
     }
   }
 
   async getKey(service: string, account: string): Promise<string | null> {
+    const operationKey = `getKey:${service}:${account}`;
+    
     try {
+      // Input validation
+      InputValidator.validateService(service);
+      InputValidator.validateAccount(account);
+
+      // Rate limiting
+      this.rateLimiter.checkLimit(operationKey);
+
+      // Audit logging
+      this.auditLogger?.log({
+        action: 'getKey',
+        service,
+        account,
+        level: 'info',
+        message: 'Attempting to retrieve API key'
+      });
+
       const masterKey = await this.getMasterKey();
       const db = await this.openDB();
       const transaction = db.transaction([this.storeName], 'readonly');
@@ -175,20 +237,68 @@ export class WebSecureAdapter implements ApiKeyAdapter {
       });
 
       if (!result) {
+        this.auditLogger?.log({
+          action: 'getKey',
+          service,
+          account,
+          level: 'info',
+          message: 'API key not found'
+        });
         return null;
       }
 
       const encrypted = new Uint8Array(result.encrypted).buffer;
       const iv = new Uint8Array(result.iv).buffer;
       
-      return await this.decrypt(encrypted, iv, masterKey);
+      const decrypted = await this.decrypt(encrypted, iv, masterKey);
+
+      // Success audit
+      this.auditLogger?.log({
+        action: 'getKey',
+        service,
+        account,
+        level: 'info',
+        message: 'API key retrieved successfully'
+      });
+
+      // Reset rate limit on success
+      this.rateLimiter.reset(operationKey);
+
+      return decrypted;
+
     } catch (error) {
+      this.auditLogger?.log({
+        action: 'getKey',
+        service,
+        account,
+        level: 'error',
+        message: `Failed to retrieve API key: ${error instanceof Error ? error.message : 'Unknown error'}`
+      });
+
       throw new Error(`Failed to retrieve API key: ${error instanceof Error ? error.message : 'Unknown error'}`);
     }
   }
 
   async deleteKey(service: string, account: string): Promise<boolean> {
+    const operationKey = `deleteKey:${service}:${account}`;
+    
     try {
+      // Input validation
+      InputValidator.validateService(service);
+      InputValidator.validateAccount(account);
+
+      // Rate limiting
+      this.rateLimiter.checkLimit(operationKey);
+
+      // Audit logging
+      this.auditLogger?.log({
+        action: 'deleteKey',
+        service,
+        account,
+        level: 'info',
+        message: 'Attempting to delete API key'
+      });
+
       const db = await this.openDB();
       const transaction = db.transaction([this.storeName], 'readwrite');
       const store = transaction.objectStore(this.storeName);
@@ -203,6 +313,13 @@ export class WebSecureAdapter implements ApiKeyAdapter {
       });
 
       if (!existsResult) {
+        this.auditLogger?.log({
+          action: 'deleteKey',
+          service,
+          account,
+          level: 'info',
+          message: 'API key not found for deletion'
+        });
         return false;
       }
 
@@ -212,14 +329,51 @@ export class WebSecureAdapter implements ApiKeyAdapter {
         request.onerror = () => reject(request.error);
       });
 
+      // Success audit
+      this.auditLogger?.log({
+        action: 'deleteKey',
+        service,
+        account,
+        level: 'info',
+        message: 'API key deleted successfully'
+      });
+
+      // Reset rate limit on success
+      this.rateLimiter.reset(operationKey);
+
       return true;
+
     } catch (error) {
+      this.auditLogger?.log({
+        action: 'deleteKey',
+        service,
+        account,
+        level: 'error',
+        message: `Failed to delete API key: ${error instanceof Error ? error.message : 'Unknown error'}`
+      });
+
       throw new Error(`Failed to delete API key: ${error instanceof Error ? error.message : 'Unknown error'}`);
     }
   }
 
   async listAccounts(service: string): Promise<string[]> {
+    const operationKey = `listAccounts:${service}`;
+    
     try {
+      // Input validation
+      InputValidator.validateService(service);
+
+      // Rate limiting
+      this.rateLimiter.checkLimit(operationKey);
+
+      // Audit logging
+      this.auditLogger?.log({
+        action: 'listAccounts',
+        service,
+        level: 'info',
+        message: 'Attempting to list accounts'
+      });
+
       const db = await this.openDB();
       const transaction = db.transaction([this.storeName], 'readonly');
       const store = transaction.objectStore(this.storeName);
@@ -230,12 +384,128 @@ export class WebSecureAdapter implements ApiKeyAdapter {
         request.onerror = () => reject(request.error);
       });
 
-      return results
-        .filter(item => item.service === service && item.id !== this.masterKeyName)
+      const accounts = results
+        .filter(item => item.service === service && 
+                       item.id !== this.masterKeyName && 
+                       item.id !== this.backupKeyName)
         .map(item => item.account);
+
+      // Success audit
+      this.auditLogger?.log({
+        action: 'listAccounts',
+        service,
+        level: 'info',
+        message: `Found ${accounts.length} accounts`
+      });
+
+      // Reset rate limit on success
+      this.rateLimiter.reset(operationKey);
+
+      return accounts;
+
     } catch (error) {
+      this.auditLogger?.log({
+        action: 'listAccounts',
+        service,
+        level: 'error',
+        message: `Failed to list accounts: ${error instanceof Error ? error.message : 'Unknown error'}`
+      });
+
       throw new Error(`Failed to list accounts: ${error instanceof Error ? error.message : 'Unknown error'}`);
     }
+  }
+
+  async rotateKeys(): Promise<void> {
+    try {
+      this.auditLogger?.log({
+        action: 'rotateKeys',
+        level: 'info',
+        message: 'Starting key rotation process'
+      });
+
+      const db = await this.openDB();
+      
+      // Generate new master key
+      const newMasterKey = await crypto.subtle.generateKey(
+        { name: 'AES-GCM', length: 256 },
+        true,
+        ['encrypt', 'decrypt']
+      );
+
+      // Get old master key for re-encryption
+      const oldMasterKey = await this.getMasterKey();
+
+      // Get all encrypted data
+      const transaction = db.transaction([this.storeName], 'readwrite');
+      const store = transaction.objectStore(this.storeName);
+      
+      const allData = await new Promise<any[]>((resolve, reject) => {
+        const request = store.getAll();
+        request.onsuccess = () => resolve(request.result);
+        request.onerror = () => reject(request.error);
+      });
+
+      // Re-encrypt all keys with new master key
+      for (const item of allData) {
+        if (item.id === this.masterKeyName || item.id === this.backupKeyName) {
+          continue; // Skip key storage entries
+        }
+
+        // Decrypt with old key
+        const encrypted = new Uint8Array(item.encrypted).buffer;
+        const iv = new Uint8Array(item.iv).buffer;
+        const plaintext = await this.decrypt(encrypted, iv, oldMasterKey);
+
+        // Encrypt with new key
+        const { encrypted: newEncrypted, iv: newIv } = await this.encrypt(plaintext, newMasterKey);
+
+        // Update storage
+        await new Promise<void>((resolve, reject) => {
+          const request = store.put({
+            ...item,
+            encrypted: Array.from(new Uint8Array(newEncrypted)),
+            iv: Array.from(new Uint8Array(newIv)),
+            keyVersion: (item.keyVersion || 1) + 1,
+            rotatedAt: Date.now()
+          });
+          request.onsuccess = () => resolve();
+          request.onerror = () => reject(request.error);
+        });
+
+        // Secure wipe
+        SecureMemory.wipe(plaintext);
+      }
+
+      // Store new master key
+      const exportedNewKey = await crypto.subtle.exportKey('raw', newMasterKey);
+      await new Promise<void>((resolve, reject) => {
+        const request = store.put({ 
+          id: this.masterKeyName, 
+          key: exportedNewKey,
+          createdAt: Date.now()
+        });
+        request.onsuccess = () => resolve();
+        request.onerror = () => reject(request.error);
+      });
+
+      this.auditLogger?.log({
+        action: 'rotateKeys',
+        level: 'info',
+        message: 'Key rotation completed successfully'
+      });
+
+    } catch (error) {
+      this.auditLogger?.log({
+        action: 'rotateKeys',
+        level: 'error',
+        message: `Key rotation failed: ${error instanceof Error ? error.message : 'Unknown error'}`
+      });
+      throw new Error(`Key rotation failed: ${error instanceof Error ? error.message : 'Unknown error'}`);
+    }
+  }
+
+  async getSecurityWarnings(): Promise<SecurityWarning[]> {
+    return EnvironmentChecker.checkWebEnvironment();
   }
 
   /**
@@ -243,6 +513,12 @@ export class WebSecureAdapter implements ApiKeyAdapter {
    */
   async clearAll(): Promise<void> {
     try {
+      this.auditLogger?.log({
+        action: 'clearAll',
+        level: 'info',
+        message: 'Clearing all stored data'
+      });
+
       const db = await this.openDB();
       const transaction = db.transaction([this.storeName], 'readwrite');
       const store = transaction.objectStore(this.storeName);
@@ -252,7 +528,19 @@ export class WebSecureAdapter implements ApiKeyAdapter {
         request.onsuccess = () => resolve();
         request.onerror = () => reject(request.error);
       });
+
+      this.auditLogger?.log({
+        action: 'clearAll',
+        level: 'info',
+        message: 'All data cleared successfully'
+      });
+
     } catch (error) {
+      this.auditLogger?.log({
+        action: 'clearAll',
+        level: 'error',
+        message: `Failed to clear data: ${error instanceof Error ? error.message : 'Unknown error'}`
+      });
       throw new Error(`Failed to clear data: ${error instanceof Error ? error.message : 'Unknown error'}`);
     }
   }
