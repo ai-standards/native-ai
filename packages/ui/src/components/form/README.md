@@ -24,6 +24,12 @@ Numeric input component with increment/decrement controls, validation, and forma
 **Features:** Increment/decrement buttons, keyboard navigation, min/max limits, decimal support, thousands formatting  
 **Documentation:** [NumberInput README](./numberinput/README.md)
 
+### PasswordInput
+Password input field with visibility toggle, strength indicator, and character count features.
+
+**Features:** Visibility toggle, password strength indicator, character count, custom validation, size variants  
+**Documentation:** [PasswordInput README](./passwordinput/README.md)
+
 ### Radio
 
 ### Checkbox
@@ -62,6 +68,12 @@ Radio button groups for exclusive selection with flexible layouts and styling op
 **Features:** Horizontal/vertical layouts, size variants, individual option disabling  
 **Documentation:** [Radio README](./radio/README.md)
 
+### SearchInput
+Search input field with autocomplete suggestions, debounced search, and keyboard navigation.
+
+**Features:** Autocomplete suggestions, debounced search, keyboard navigation, search/clear buttons, loading states  
+**Documentation:** [SearchInput README](./searchinput/README.md)
+
 ### Select
 Dropdown selection component with search capabilities and multi-select support.
 
@@ -91,8 +103,6 @@ Multi-line text input with auto-resize capabilities and validation support.
 Future form components planned for development. These will follow the same design principles and patterns as the current components.
 
 ### Advanced Input Controls
-- **PasswordInput** - Password field with visibility toggle
-- **SearchInput** - Search field with autocomplete functionality
 
 ### Form Structure
 - **FormField** - Field wrapper with label and error handling
