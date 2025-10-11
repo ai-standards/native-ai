@@ -1,4 +1,5 @@
 import React from 'react';
+import { describe, it, expect, vi } from 'vitest';
 import { render, screen, fireEvent } from '@testing-library/react';
 import { PasswordInput } from './PasswordInput';
 
@@ -77,28 +78,29 @@ describe('PasswordInput', () => {
   it('applies size classes', () => {
     render(<PasswordInput size="lg" />);
     
-    const input = screen.getByRole('textbox');
+    const input = document.querySelector('input[type="password"]');
     expect(input).toHaveClass('px-4', 'py-3', 'text-lg');
   });
 
   it('respects maxLength attribute', () => {
     render(<PasswordInput maxLength={8} />);
     
-    const input = screen.getByRole('textbox');
+    const input = document.querySelector('input[type="password"]');
     expect(input.getAttribute('maxlength')).toBe('8');
   });
 
   it('updates strength score correctly', () => {
     render(<PasswordInput showStrength />);
     
-    const input = screen.getByRole('textbox');
+    const input = document.querySelector('input[type="password"]');
+    expect(input).toBeTruthy();
     
     // Weak password
-    fireEvent.change(input, { target: { value: 'weak' } });
+    fireEvent.change(input!, { target: { value: 'weak' } });
     expect(screen.getByText(/Too weak/)).toBeDefined();
     
     // Strong password
-    fireEvent.change(input, { target: { value: 'StrongPass123!' } });
+    fireEvent.change(input!, { target: { value: 'StrongPass123!' } });
     expect(screen.getByText(/Strong/)).toBeDefined();
   });
 
@@ -110,24 +112,31 @@ describe('PasswordInput', () => {
     
     render(<PasswordInput showStrength validateStrength={customValidate} />);
     
-    const input = screen.getByRole('textbox');
-    fireEvent.change(input, { target: { value: 'custom' } });
+    const input = document.querySelector('input[type="password"]');
+    expect(input).toBeTruthy();
     
+    // Test weak password (5 chars or less)
+    fireEvent.change(input!, { target: { value: 'test' } });
     expect(screen.getByText(/Custom Weak/)).toBeDefined();
+    
+    // Test strong password (more than 5 chars)
+    fireEvent.change(input!, { target: { value: 'custom' } });
+    expect(screen.getByText(/Custom Strong/)).toBeDefined();
   });
 
   it('sets name and id attributes', () => {
     render(<PasswordInput name="password" id="password-input" />);
     
-    const input = screen.getByRole('textbox');
-    expect(input.getAttribute('name')).toBe('password');
-    expect(input.getAttribute('id')).toBe('password-input');
+    const input = document.querySelector('input[type="password"]');
+    expect(input).toBeTruthy();
+    expect(input!.getAttribute('name')).toBe('password');
+    expect(input!.getAttribute('id')).toBe('password-input');
   });
 
   it('applies error styling', () => {
     render(<PasswordInput error="Error message" />);
     
-    const input = screen.getByRole('textbox');
+    const input = document.querySelector('input[type="password"]');
     expect(input).toHaveClass('border-red-500');
   });
 });

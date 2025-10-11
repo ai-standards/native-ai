@@ -124,10 +124,12 @@ export const FormSection = React.forwardRef<HTMLDivElement, FormSectionProps>(
           </div>
         )}
         
-        {(!collapsible || !isCollapsed) && (
-          <div className={collapsible && isCollapsed ? 'hidden' : ''}>
+        {collapsible ? (
+          <div style={{ display: isCollapsed ? 'none' : 'block' }}>
             {children}
           </div>
+        ) : (
+          <div>{children}</div>
         )}
       </div>
     );

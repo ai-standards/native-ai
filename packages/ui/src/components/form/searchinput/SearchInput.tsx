@@ -1,7 +1,8 @@
-import React, { forwardRef, useState, useRef, useCallback } from 'react';
+import React, { forwardRef, useState, useRef, useCallback, useMemo } from 'react';
 import { cn } from '../../../utils/cn';
 import { ErrorMessage } from '../errormessage/ErrorMessage';
 import { HelperText } from '../helpertext/HelperText';
+import { useDebounce } from '../../../hooks';
 
 export interface SearchOption {
   value: string;
@@ -65,19 +66,23 @@ const SearchInput = forwardRef<HTMLInputElement, SearchInputProps>(
       onChange,
       onFocus,
       onBlur,
+      defaultValue,
       ...props
     },
     ref
   ) => {
-    const [inputValue, setInputValue] = useState((value || '') as string);
+    const [inputValue, setInputValue] = useState(() => {
+      if (value !== undefined) return value as string;
+      if (defaultValue !== undefined) return defaultValue as string;
+      return '';
+    });
     const [isOpen, setIsOpen] = useState(false);
-    const [filteredSuggestions, setFilteredSuggestions] = useState<SearchOption[]>([]);
     const [selectedIndex, setSelectedIndex] = useState(-1);
     
     const inputRef = useRef<HTMLInputElement>(null);
     const suggestionRefs = useRef<(HTMLLIElement | null)[]>([]);
     const containerRef = useRef<HTMLDivElement>(null);
-    const debounceRef = useRef<NodeJS.Timeout | null>(null);
+    const blurTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
     const inputId = id || `search-${Math.random().toString(36).substr(2, 9)}`;
 
@@ -88,53 +93,39 @@ const SearchInput = forwardRef<HTMLInputElement, SearchInputProps>(
       }
     }, [value]);
 
-    // Filter suggestions based on input
-    React.useEffect(() => {
+    // Filter suggestions based on input using useMemo to prevent infinite re-renders
+    const filteredSuggestions = useMemo(() => {
       if (!filterSuggestions) {
-        const allSuggestions = suggestions.slice(0, maxSuggestions);
-        setFilteredSuggestions(allSuggestions);
-        // Open dropdown if there are suggestions and input has focus
-        if (allSuggestions.length > 0 && inputValue.trim()) {
-          setIsOpen(true);
-        }
-        return;
+        return suggestions.slice(0, maxSuggestions);
       }
 
       if (!inputValue.trim()) {
-        setFilteredSuggestions([]);
-        setIsOpen(false);
-        return;
+        return [];
       }
 
-      const filtered = suggestions
+      return suggestions
         .filter(suggestion => 
           suggestion.label.toLowerCase().includes(inputValue.toLowerCase()) ||
           suggestion.description?.toLowerCase().includes(inputValue.toLowerCase())
         )
         .slice(0, maxSuggestions);
-
-      setFilteredSuggestions(filtered);
-      
-      // Open dropdown if there are filtered suggestions
-      if (filtered.length > 0 && inputValue.trim()) {
-        setIsOpen(true);
-      } else {
-        setIsOpen(false);
-      }
     }, [inputValue, suggestions, filterSuggestions, maxSuggestions]);
 
-    // Debounced search
-    const debouncedSearch = useCallback((query: string) => {
-      if (debounceRef.current) {
-        clearTimeout(debounceRef.current);
+    // Update dropdown state when suggestions or input change
+    React.useEffect(() => {
+      if (filteredSuggestions.length > 0 && inputValue.trim()) {
+        setIsOpen(true);
+      } else if (!inputValue.trim()) {
+        setIsOpen(false);
       }
+    }, [filteredSuggestions, inputValue]);
 
-      debounceRef.current = setTimeout(() => {
-        if (onSearch && query.trim()) {
-          onSearch(query);
-        }
-      }, debounceMs);
-    }, [onSearch, debounceMs]);
+    // Debounced search using our robust hook
+    const debouncedSearch = useDebounce((query: string) => {
+      if (onSearch && query.trim()) {
+        onSearch(query);
+      }
+    }, debounceMs);
 
     // Handle input changes
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -247,9 +238,15 @@ const SearchInput = forwardRef<HTMLInputElement, SearchInputProps>(
 
     // Handle blur with delay to allow suggestion clicks
     const handleBlur = (e: React.FocusEvent<HTMLInputElement>) => {
-      setTimeout(() => {
+      // Clear any existing blur timeout
+      if (blurTimeoutRef.current) {
+        clearTimeout(blurTimeoutRef.current);
+      }
+      
+      blurTimeoutRef.current = setTimeout(() => {
         setIsOpen(false);
         setSelectedIndex(-1);
+        blurTimeoutRef.current = null;
       }, 150);
       
       if (onBlur) {
@@ -270,6 +267,15 @@ const SearchInput = forwardRef<HTMLInputElement, SearchInputProps>(
         return () => document.removeEventListener('mousedown', handleClickOutside);
       }
     }, [isOpen]);
+
+    // Cleanup blur timeout on unmount
+    React.useEffect(() => {
+      return () => {
+        if (blurTimeoutRef.current) {
+          clearTimeout(blurTimeoutRef.current);
+        }
+      };
+    }, []);
 
     const sizeStyles = {
       sm: 'px-2 py-1 text-sm',
@@ -334,6 +340,7 @@ const SearchInput = forwardRef<HTMLInputElement, SearchInputProps>(
                 <button
                   type="button"
                   onClick={handleClear}
+                  aria-label="Clear search"
                   className="p-1 text-gray-400 hover:text-gray-600 transition-colors"
                 >
                   <svg className={cn(iconSizes[size])} fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -347,6 +354,7 @@ const SearchInput = forwardRef<HTMLInputElement, SearchInputProps>(
                   type="button"
                   onClick={handleSearch}
                   disabled={loading}
+                  aria-label={loading ? "Searching..." : "Search"}
                   className={cn(
                     'p-1 mr-2 text-gray-400 hover:text-gray-600 transition-colors disabled:opacity-50',
                     loading && 'cursor-not-allowed'

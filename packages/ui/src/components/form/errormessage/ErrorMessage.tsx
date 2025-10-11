@@ -86,7 +86,6 @@ export const ErrorMessage = React.forwardRef<HTMLDivElement, ErrorMessageProps>(
         id={errorId}
         role="alert"
         className={`
-          text-red-600 dark:text-red-400 
           flex items-start gap-1
           ${sizeClasses[size]}
           ${animationClasses[animation]}
@@ -95,7 +94,7 @@ export const ErrorMessage = React.forwardRef<HTMLDivElement, ErrorMessageProps>(
         {...props}
       >
         {showIcon && (icon || defaultIcon)}
-        <span className="flex-1">{message}</span>
+        <span className="flex-1 text-red-600 dark:text-red-400">{message}</span>
       </div>
     );
   }

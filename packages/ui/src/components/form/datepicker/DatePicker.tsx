@@ -231,6 +231,7 @@ const DatePicker = forwardRef<HTMLInputElement, DatePickerProps>(
               <button
                 type="button"
                 onClick={() => navigateMonth('prev')}
+                aria-label="Previous month"
                 className="p-1 hover:bg-gray-100 rounded"
               >
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -245,6 +246,7 @@ const DatePicker = forwardRef<HTMLInputElement, DatePickerProps>(
               <button
                 type="button"
                 onClick={() => navigateMonth('next')}
+                aria-label="Next month"
                 className="p-1 hover:bg-gray-100 rounded"
               >
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">

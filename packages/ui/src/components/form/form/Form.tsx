@@ -1,5 +1,6 @@
 import React, { forwardRef, useRef, useCallback, useEffect } from 'react';
 import { cn } from '../../../utils/cn';
+import { useDebounce } from '../../../hooks';
 
 export interface FormData {
   [key: string]: any;
@@ -89,8 +90,6 @@ const Form = forwardRef<HTMLFormElement, FormProps>(
     }));
     const [formErrors, setFormErrors] = React.useState<FormErrors>({});
     
-    const onChangeTimeoutRef = useRef<NodeJS.Timeout | null>(null);
-    const onErrorTimeoutRef = useRef<NodeJS.Timeout | null>(null);
     const previousDataRef = useRef<FormData>(formData);
     const previousErrorsRef = useRef<FormErrors>(formErrors);
 
@@ -104,35 +103,23 @@ const Form = forwardRef<HTMLFormElement, FormProps>(
       }
     }, [values]);
 
-    // Debounced onChange handler
-    const debouncedOnChange = useCallback((newData: FormData) => {
-      if (onChangeTimeoutRef.current) {
-        clearTimeout(onChangeTimeoutRef.current);
+    // Debounced onChange handler using our robust hook
+    const debouncedOnChange = useDebounce((newData: FormData) => {
+      const hasChanged = JSON.stringify(previousDataRef.current) !== JSON.stringify(newData);
+      if (hasChanged && onChange) {
+        onChange(newData);
+        previousDataRef.current = { ...newData };
       }
-      
-      onChangeTimeoutRef.current = setTimeout(() => {
-        const hasChanged = JSON.stringify(previousDataRef.current) !== JSON.stringify(newData);
-        if (hasChanged && onChange) {
-          onChange(newData);
-          previousDataRef.current = { ...newData };
-        }
-      }, debounceMs);
-    }, [onChange, debounceMs]);
+    }, debounceMs);
 
-    // Debounced onErrorChange handler
-    const debouncedOnError = useCallback((newErrors: FormErrors) => {
-      if (onErrorTimeoutRef.current) {
-        clearTimeout(onErrorTimeoutRef.current);
+    // Debounced onErrorChange handler using our robust hook
+    const debouncedOnError = useDebounce((newErrors: FormErrors) => {
+      const hasChanged = JSON.stringify(previousErrorsRef.current) !== JSON.stringify(newErrors);
+      if (hasChanged && onErrorChange) {
+        onErrorChange(newErrors);
+        previousErrorsRef.current = { ...newErrors };
       }
-      
-      onErrorTimeoutRef.current = setTimeout(() => {
-        const hasChanged = JSON.stringify(previousErrorsRef.current) !== JSON.stringify(newErrors);
-        if (hasChanged && onErrorChange) {
-          onErrorChange(newErrors);
-          previousErrorsRef.current = { ...newErrors };
-        }
-      }, debounceMs);
-    }, [onErrorChange, debounceMs]);
+    }, debounceMs);
 
     // Update field value
     const updateField = useCallback((name: string, value: any) => {
@@ -170,16 +157,7 @@ const Form = forwardRef<HTMLFormElement, FormProps>(
     }, [debouncedOnError]);
 
     // Cleanup timeouts
-    useEffect(() => {
-      return () => {
-        if (onChangeTimeoutRef.current) {
-          clearTimeout(onChangeTimeoutRef.current);
-        }
-        if (onErrorTimeoutRef.current) {
-          clearTimeout(onErrorTimeoutRef.current);
-        }
-      };
-    }, []);
+    // Cleanup is now handled automatically by our useDebounce hooks
 
     // Handle form submission
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -218,16 +196,33 @@ const Form = forwardRef<HTMLFormElement, FormProps>(
           const currentValue = formData[name];
           const currentError = formErrors[name];
           
+          // Determine if this is a checkbox or radio element by checking the element type or props
+          const isCheckboxOrRadio = (
+            child.type === 'input' && (child.props.type === 'checkbox' || child.props.type === 'radio')
+          ) || (
+            // For custom components, check if they have checkbox/radio props
+            child.props.type === 'checkbox' || child.props.type === 'radio'
+          );
+          
           // Clone the element with form-connected props
           return React.cloneElement(child as React.ReactElement<any>, {
-            value: currentValue !== undefined ? currentValue : child.props.value,
+            ...(isCheckboxOrRadio 
+              ? { checked: currentValue !== undefined ? currentValue : child.props.checked }
+              : { value: currentValue !== undefined ? currentValue : child.props.value }
+            ),
             onChange: (valueOrEvent: any) => {
               // Extract actual value from event or use directly
               let actualValue = valueOrEvent;
               
               // Handle React synthetic events (for native inputs)
               if (valueOrEvent && typeof valueOrEvent === 'object' && valueOrEvent.target) {
-                actualValue = valueOrEvent.target.value;
+                const target = valueOrEvent.target;
+                // For checkboxes and radio buttons, use checked property
+                if (target.type === 'checkbox' || target.type === 'radio') {
+                  actualValue = target.checked;
+                } else {
+                  actualValue = target.value;
+                }
               }
               
               // Call original onChange if provided

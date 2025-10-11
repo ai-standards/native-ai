@@ -1,4 +1,5 @@
 import { render, screen } from '@testing-library/react';
+import { describe, it, expect, vi } from 'vitest';
 import '@testing-library/jest-dom';
 import { HelperText } from './HelperText';
 
@@ -46,7 +47,7 @@ describe('HelperText', () => {
   it('applies variant classes correctly', () => {
     render(<HelperText text="Helper text" variant="info" />);
     
-    const helperElement = screen.getByText('Helper text').parentElement;
+    const helperElement = screen.getByText('Helper text');
     expect(helperElement).toHaveClass('text-blue-600');
   });
 

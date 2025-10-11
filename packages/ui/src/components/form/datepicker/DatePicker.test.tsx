@@ -1,4 +1,5 @@
 import React from 'react';
+import { describe, it, expect, vi } from 'vitest';
 import { render, screen, fireEvent } from '@testing-library/react';
 import { DatePicker } from './DatePicker';
 
@@ -39,7 +40,9 @@ describe('DatePicker', () => {
     const input = screen.getByPlaceholderText('Select date');
     fireEvent.click(input);
     
-    expect(screen.getByText('January')).toBeDefined();
+    // Check that some month name is displayed (current month)
+    const monthRegex = /January|February|March|April|May|June|July|August|September|October|November|December/;
+    expect(screen.getByText(monthRegex)).toBeDefined();
   });
 
   it('renders with label', () => {
@@ -91,11 +94,12 @@ describe('DatePicker', () => {
     const input = screen.getByPlaceholderText('Select date');
     fireEvent.click(input);
     
-    const nextButton = screen.getByRole('button', { name: '' });
+    const nextButton = screen.getByRole('button', { name: 'Next month' });
     fireEvent.click(nextButton);
     
     // Should show next month (testing is complex without knowing current date)
-    expect(screen.getByRole('button')).toBeDefined();
+    const monthRegex = /January|February|March|April|May|June|July|August|September|October|November|December/;
+    expect(screen.getByText(monthRegex)).toBeDefined();
   });
 
   it('closes calendar on outside click', () => {
@@ -109,8 +113,9 @@ describe('DatePicker', () => {
     const input = screen.getByPlaceholderText('Select date');
     fireEvent.click(input);
     
-    // Calendar should be open
-    expect(screen.getByText('January')).toBeDefined();
+    // Calendar should be open - check that some month name is displayed
+    const monthRegex = /January|February|March|April|May|June|July|August|September|October|November|December/;
+    expect(screen.getByText(monthRegex)).toBeDefined();
     
     // Click outside
     const outsideButton = screen.getByText('Outside button');

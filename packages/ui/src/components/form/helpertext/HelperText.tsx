@@ -134,7 +134,6 @@ export const HelperText = React.forwardRef<HTMLDivElement, HelperTextProps>(
         ref={ref}
         id={helperId}
         className={`
-          ${variantClasses[variant]}
           ${sizeClasses[size]}
           ${positionClasses[position]}
           ${showIcon ? 'flex items-start gap-1' : ''}
@@ -143,7 +142,7 @@ export const HelperText = React.forwardRef<HTMLDivElement, HelperTextProps>(
         {...props}
       >
         {showIcon && (icon || getDefaultIcon())}
-        <span className={showIcon ? 'flex-1' : ''}>{text}</span>
+        <span className={`${variantClasses[variant]} ${showIcon ? 'flex-1' : ''}`}>{text}</span>
       </div>
     );
   }

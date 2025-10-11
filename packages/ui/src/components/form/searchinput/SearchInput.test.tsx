@@ -1,4 +1,5 @@
 import React from 'react';
+import { describe, it, expect, vi } from 'vitest';
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import { SearchInput } from './SearchInput';
 
@@ -43,9 +44,9 @@ describe('SearchInput', () => {
 
   it('calls onSearch when search button is clicked', () => {
     const handleSearch = vi.fn();
-    render(<SearchInput onSearch={handleSearch} defaultValue="test query" />);
+    render(<SearchInput onSearch={handleSearch} defaultValue="test query" showSearchButton />);
     
-    const searchButton = screen.getAllByRole('button')[0];
+    const searchButton = screen.getByRole('button', { name: 'Search' });
     fireEvent.click(searchButton);
     
     expect(handleSearch).toHaveBeenCalledWith('test query');
@@ -63,9 +64,9 @@ describe('SearchInput', () => {
   });
 
   it('clears input when clear button is clicked', () => {
-    render(<SearchInput defaultValue="clear me" />);
+    render(<SearchInput defaultValue="clear me" showClearButton />);
     
-    const clearButton = screen.getByRole('button');
+    const clearButton = screen.getByRole('button', { name: 'Clear search' });
     fireEvent.click(clearButton);
     
     const input = screen.getByRole('textbox');
@@ -143,6 +144,7 @@ describe('SearchInput', () => {
   });
 
   it('debounces search calls', async () => {
+    vi.useFakeTimers();
     const handleSearch = vi.fn();
     render(<SearchInput onSearch={handleSearch} debounceMs={100} />);
     
@@ -153,11 +155,13 @@ describe('SearchInput', () => {
     fireEvent.change(input, { target: { value: 'ab' } });
     fireEvent.change(input, { target: { value: 'abc' } });
     
-    // Should only call once after debounce
-    await waitFor(() => {
-      expect(handleSearch).toHaveBeenCalledTimes(1);
-      expect(handleSearch).toHaveBeenCalledWith('abc');
-    }, { timeout: 200 });
+    // Advance timers to trigger debounced function
+    vi.advanceTimersByTime(150);
+    
+    expect(handleSearch).toHaveBeenCalledTimes(1);
+    expect(handleSearch).toHaveBeenCalledWith('abc');
+    
+    vi.useRealTimers();
   });
 
   it('limits max suggestions', () => {

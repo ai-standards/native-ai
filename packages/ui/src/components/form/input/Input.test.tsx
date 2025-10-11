@@ -134,7 +134,7 @@ describe('Input Component', () => {
     it('shows helper text in gray when no error', () => {
       render(<Input helperText="Helper message" />);
       const helperText = screen.getByText('Helper message');
-      expect(helperText).toHaveClass('text-gray-500');
+      expect(helperText).toHaveClass('text-gray-600');
     });
 
     it('prioritizes error message over helper text', () => {
