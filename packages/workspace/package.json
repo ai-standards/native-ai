@@ -4,6 +4,15 @@
   "description": "Safe workspaces for native AI",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ai-standards/native-ai.git",
+    "directory": "packages/workspace"
+  },
+  "homepage": "https://github.com/ai-standards/native-ai/tree/main/packages/workspace",
+  "bugs": {
+    "url": "https://github.com/ai-standards/native-ai/issues"
+  },
   "scripts": {
     "build": "tsc",
     "dev": "tsc --watch",

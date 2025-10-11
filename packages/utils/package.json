@@ -4,6 +4,15 @@
   "description": "Utility functions for native AI",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ai-standards/native-ai.git",
+    "directory": "packages/utils"
+  },
+  "homepage": "https://github.com/ai-standards/native-ai/tree/main/packages/utils",
+  "bugs": {
+    "url": "https://github.com/ai-standards/native-ai/issues"
+  },
   "scripts": {
     "build": "tsc",
     "dev": "tsc --watch",
@@ -11,7 +20,7 @@
   },
   "keywords": ["ai", "utils", "helpers"],
   "author": "",
-  "license": "ISC",
+  "license": "MIT",
   "devDependencies": {
     "typescript": "^5.0.0",
     "jest": "^29.0.0",
