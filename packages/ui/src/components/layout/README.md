@@ -6,11 +6,11 @@ Structural components for organizing and positioning content on the page.
 
 - **Card** - Flexible container with header, content, and footer sections
 - **Layout** - Complete application layout with navigation and content areas
+- **Container** - Responsive content container with max-width constraints
 
 ## Planned Components
 
 ### Container Components
-- **Container** - Responsive content container with max-width constraints
 - **Section** - Semantic page sections with proper spacing
 - **Grid** - CSS Grid-based layout system
 - **Flex** - Flexbox layout utilities and components

@@ -7,14 +7,14 @@ Interactive form elements and controls for user input and data collection.
 - **Button** - Versatile button component with multiple variants and states
 - **Input** - Flexible input field with validation and styling options
 - **Checkbox** - Single and grouped checkbox controls
+- **Radio** - Radio button groups for exclusive selection
 - **Select** - Dropdown selection with search and multi-select options
+- **Switch** - Toggle switch for boolean values
 - **Textarea** - Multi-line text input with auto-resize capabilities
 
 ## Planned Components
 
 ### Basic Input Controls
-- **Radio** - Radio button groups for exclusive selection
-- **Switch** - Toggle switch for boolean values
 - **Slider** - Range slider for numeric values
 
 ### Advanced Input Controls
