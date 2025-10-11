@@ -39,7 +39,7 @@ import { MdDashboard, MdNotifications } from 'react-icons/md';
 import { BiCoffee, BiRocket } from 'react-icons/bi';
 
 const meta: Meta<typeof Icon> = {
-  title: 'Components/Icon',
+  title: 'Media/Icon',
   component: Icon,
   parameters: {
     layout: 'centered',

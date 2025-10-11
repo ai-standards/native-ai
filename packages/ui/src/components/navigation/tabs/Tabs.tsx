@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useState, useCallback } from 'react';
-import { cn } from '../utils/cn';
+import { cn } from '@/utils/cn';
 
 // Context for managing tab state
 interface TabsContextType {

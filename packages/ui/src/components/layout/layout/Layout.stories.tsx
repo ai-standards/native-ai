@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { Layout, ActionBar, TopBar, BottomBar, Sidebar, Console, MainContent } from './Layout';
-import { Button } from '../button';
+import { Button } from '../../form/button';
 import { 
   FileIcon, 
   FolderIcon, 
@@ -9,10 +9,10 @@ import {
   TerminalIcon,
   BugIcon,
   ExtensionIcon
-} from '../icon';
+} from '../../media/icon';
 
 const meta = {
-  title: 'Components/Layout',
+  title: 'Layout/Layout',
   component: Layout,
   parameters: {
     layout: 'fullscreen',
