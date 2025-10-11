@@ -21,6 +21,9 @@
   "keywords": ["ai", "core", "native"],
   "author": "",
   "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
   "devDependencies": {
     "typescript": "^5.0.0"
   }
