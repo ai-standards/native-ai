@@ -8,6 +8,10 @@ export {
   type CardContentProps, 
   type CardFooterProps 
 } from './card';
+export {
+  Container,
+  type ContainerProps
+} from './container';
 export { 
   Layout,
   ActionBar,
