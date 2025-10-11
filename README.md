@@ -1,10 +1,6 @@
 # Native AI
 
-A comprehensive toolkit for building native AI applications with modern web technologies. This monorepo contains a c5. **Screenshots/code** - Include relevant screenshots or code snippets
-
-[Report a Bug](https://github.com/ai-standards/nativeai/issues/new?labels=bug&template=bug_report.md)
-
-### Feature Requeststion of packages designed to work together seamlessly, providing everything you need from UI components to AI functionality.
+A comprehensive toolkit for building native AI applications with modern web technologies. This monorepo contains a collection of packages designed to work together seamlessly, providing everything you need from UI components to AI functionality.
 
 ## Quick Start
 
@@ -18,10 +14,10 @@ npm install @ai-standards/nativeai-core @ai-standards/nativeai-ai
 ## Packages
 
 ### [@nativeai/ui](./packages/ui)
-A comprehensive React UI component library with VS Code-inspired design patterns.
+A comprehensive React UI component library with native design patterns and modern aesthetics.
 
 **Features:**
-- VS Code-inspired design system
+- Native-looking design system
 - Modular component architecture
 - Full TypeScript support
 - Storybook integration
@@ -133,9 +129,9 @@ If you find a bug, please create an issue with:
 5. **Actual behavior** - What actually happened
 6. **Screenshots/code** - Include relevant screenshots or code snippets
 
-[🐛 Report a Bug](https://github.com/ai-standards/nativeai/issues/new?labels=bug&template=bug_report.md)
+[Report a Bug](https://github.com/ai-standards/nativeai/issues/new?labels=bug&template=bug_report.md)
 
-### ✨ Feature Requests
+### Feature Requests
 
 Have an idea for a new feature? We'd love to hear it!
 
@@ -195,9 +191,11 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## Acknowledgments
 
-- Inspired by VS Code's design patterns and developer experience
+- Inspired by modern native application design patterns and user experience principles
 - Built with modern web technologies and best practices
 - Thanks to all contributors who help make this project better
+
+---
 
 ---
 
