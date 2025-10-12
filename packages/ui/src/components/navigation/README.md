@@ -80,18 +80,6 @@ Gesture-based navigation for mobile interfaces and touch-first experiences.
 **Features:** Horizontal swipe gestures, haptic feedback hooks, velocity thresholds, route transitions  
 **Documentation:** [SwipeNavigation README](./swipenavigation/README.md)
 
-### VirtualList
-Virtualized list navigation for efficiently handling large datasets with minimal DOM nodes.
-
-**Features:** Virtualization, infinite rendering, dynamic height support, scroll-to-index, smooth performance  
-**Documentation:** [VirtualList README](./virtuallist/README.md)
-
-### InfiniteScroll
-Continuous loading navigation component for endless scrolling experiences.
-
-**Features:** Scroll thresholds, auto-fetching, loading indicators, async data support, mobile-optimized behavior  
-**Documentation:** [InfiniteScroll README](./infinitescroll/README.md)
-
 ### SearchNavigation
 Search-driven navigation interface for quick content discovery.
 

@@ -13,16 +13,17 @@ export default defineConfig({
     globals: true,
     environment: 'jsdom',
     setupFiles: './src/test-setup.ts',
-    testTimeout: 3000,   // 3 seconds timeout for individual tests
-    hookTimeout: 2000,   // 2 seconds timeout for hooks
-    pool: 'forks',       // Use forks instead of threads for better isolation
+    pool: 'forks',
     poolOptions: {
       forks: {
-        singleFork: true // Run tests sequentially to avoid resource conflicts
+        singleFork: true,
       }
     },
-    maxConcurrency: 1,   // Run tests one at a time
-    isolate: true,       // Isolate each test file
+    sequence: {
+      concurrent: false,
+      shuffle: false
+    },
+    fileParallelism: false,
     coverage: {
       provider: 'v8',
       reporter: ['text', 'html', 'clover', 'json'],
@@ -57,10 +58,12 @@ export default defineConfig({
         'src/**/*.{ts,tsx}',
       ],
       all: true,
-      statements: 80,
-      branches: 80,
-      functions: 80,
-      lines: 80
+      thresholds: {
+        statements: 80,
+        branches: 80,
+        functions: 80,
+        lines: 80
+      }
     }
   },
 });

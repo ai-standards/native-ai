@@ -1,3 +1,6 @@
+// Content Components
+export * from './content';
+
 // Form Components
 export * from './form';
 

@@ -24,6 +24,7 @@
     "build:watch": "rollup -c -w",
     "dev": "rollup -c -w",
     "test": "vitest",
+    "test:run": "vitest --run",
     "test:ui": "vitest --ui",
     "test:coverage": "vitest --coverage",
     "lint": "eslint src --ext .ts,.tsx",
