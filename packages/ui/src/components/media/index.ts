@@ -1,3 +1,4 @@
+// Icon components
 export {
   Icon,
   FileIcon,
@@ -38,3 +39,35 @@ export {
   LoaderIcon,
   type IconProps
 } from './icon';
+
+// Avatar components
+export {
+  Avatar,
+  AvatarGroup,
+  type AvatarProps,
+  type AvatarGroupProps
+} from './avatar';
+
+// Image components
+export {
+  Image,
+  ImageGallery,
+  type ImageProps,
+  type ImageGalleryProps
+} from './image';
+
+// Badge components
+export {
+  Badge,
+  BadgeGroup,
+  type BadgeProps,
+  type BadgeGroupProps
+} from './badge';
+
+// Figure components
+export {
+  Figure,
+  FigureGallery,
+  type FigureProps,
+  type FigureGalleryProps
+} from './figure';

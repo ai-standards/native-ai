@@ -1,12 +1,40 @@
 # Media Components
 
-Components for displaying and embedding visual and audio media in a consistent, accessible, and theme-aware way. These elements are designed to integrate seamlessly with surfaces and content components. Each component includes TypeScript support, accessibility features, and Storybook examples.
+This directory contains media-related components for displaying images, icons, avatars, badges, and other visual content.
 
-### Image
-Responsive image component with support for lazy loading, aspect ratios, and flexible sizing.
+## Components
 
-**Features:** Lazy loading, aspect ratio control, responsive sizing, object-fit modes, placeholders, accessibility attributes  
-**Documentation:** [Image README](./image/README.md)
+### [Avatar](./avatar/README.md)
+User profile images with fallbacks, status indicators, and grouping functionality.
+- Multiple sizes from xs to 2xl
+- Flexible shapes (circle, square, rounded)
+- Fallback to initials when image fails to load
+- Status indicators with predefined or custom colors
+- AvatarGroup for displaying multiple avatars with overflow handling
+
+### [Badge](./badge/README.md)
+Small status and labeling components with multiple variants and interactive features.
+- Variant styles (default, success, warning, error, info, outline)
+- Multiple sizes and shapes
+- Icon support with configurable positioning
+- Removable badges with close buttons
+- Dot badges for notification indicators
+- BadgeGroup for organizing multiple badges
+
+### [Icon](./icon/README.md)
+Comprehensive icon library with VS Code-inspired design and extensible icon registry.
+- 30+ built-in Lucide icons
+- Extensible icon registry system
+- Consistent sizing and styling
+- Full TypeScript support
+
+### [Image](./image/README.md)
+Enhanced image component with loading states, error handling, and gallery functionality.
+- Multiple aspect ratios (square, video, photo, auto)
+- Configurable sizes and object fit options
+- Loading placeholders and error fallbacks
+- Overlay and hover overlay support
+- ImageGallery for grid layouts with customizable columns and spacing
 
 ### Video
 Media player component for embedding videos with built-in controls and responsive behavior.
