@@ -38,7 +38,7 @@ export const SquareImage: Story = {
       <AspectRatio ratio="square" className="bg-gradient-to-br from-blue-400 to-purple-600 rounded-lg">
         <div className="w-full h-full flex items-center justify-center text-white">
           <div className="text-center">
-            <div className="text-3xl mb-2">🖼️</div>
+            <div className="text-3xl mb-2">️</div>
             <div className="text-sm font-medium">Square Image</div>
             <div className="text-xs opacity-80">1:1 Ratio</div>
           </div>
@@ -100,7 +100,7 @@ export const CustomRatio: Story = {
         <AspectRatio ratio={2.5} className="bg-gradient-to-r from-orange-400 to-pink-500 rounded-lg">
           <div className="w-full h-full flex items-center justify-center text-white">
             <div className="text-center">
-              <div className="text-2xl mb-1">📐</div>
+              <div className="text-2xl mb-1"></div>
               <div className="text-sm font-medium">Custom 2.5:1</div>
             </div>
           </div>
@@ -112,7 +112,7 @@ export const CustomRatio: Story = {
         <AspectRatio width={800} height={300} className="bg-gradient-to-r from-teal-400 to-blue-500 rounded-lg">
           <div className="w-full h-full flex items-center justify-center text-white">
             <div className="text-center">
-              <div className="text-2xl mb-1">📏</div>
+              <div className="text-2xl mb-1"></div>
               <div className="text-sm font-medium">800×300</div>
             </div>
           </div>
@@ -131,7 +131,7 @@ export const ImageGallery: Story = {
           <AspectRatio key={i} ratio="4/3" className="bg-gray-200 rounded-lg overflow-hidden">
             <div className="w-full h-full bg-gradient-to-br from-gray-300 to-gray-400 flex items-center justify-center">
               <div className="text-center text-gray-600">
-                <div className="text-2xl mb-1">📷</div>
+                <div className="text-2xl mb-1"></div>
                 <div className="text-xs">Photo {i + 1}</div>
               </div>
             </div>
@@ -151,7 +151,7 @@ export const ProductCards: Story = {
           <div key={i} className="bg-white border rounded-lg overflow-hidden">
             <AspectRatio ratio="square">
               <div className="w-full h-full bg-gradient-to-br from-indigo-100 to-indigo-200 flex items-center justify-center">
-                <span className="text-2xl">🎁</span>
+                <span className="text-2xl"></span>
               </div>
             </AspectRatio>
             <div className="p-2">
@@ -197,7 +197,7 @@ export const MobileFirst: Story = {
           <AspectRatio ratio="9/16" className="bg-gradient-to-b from-purple-500 to-pink-600 rounded-lg">
             <div className="w-full h-full flex items-center justify-center text-white">
               <div className="text-center">
-                <div className="text-3xl mb-2">📱</div>
+                <div className="text-3xl mb-2"></div>
                 <div className="text-sm">Mobile Portrait</div>
                 <div className="text-xs opacity-80">9:16</div>
               </div>
@@ -209,7 +209,7 @@ export const MobileFirst: Story = {
           <AspectRatio ratio="21/9" className="bg-gradient-to-r from-purple-500 to-pink-600 rounded-lg">
             <div className="w-full h-full flex items-center justify-center text-white">
               <div className="text-center">
-                <div className="text-4xl mb-2">🖥️</div>
+                <div className="text-4xl mb-2">️</div>
                 <div className="text-lg">Desktop Ultrawide</div>
                 <div className="text-sm opacity-80">21:9</div>
               </div>

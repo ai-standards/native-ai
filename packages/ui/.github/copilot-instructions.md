@@ -4,7 +4,7 @@ These instructions define how Copilot should behave when generating or modifying
 
 ---
 
-## 📁 Component Architecture
+##  Component Architecture
 
 - All components must be placed in the correct category folder:  
   - `content` — text and display components  
@@ -21,7 +21,7 @@ These instructions define how Copilot should behave when generating or modifying
 
 ---
 
-## 🧪 Testing Rules
+##  Testing Rules
 
 - All components must include unit tests.  
 - Tests should use Vitest and React Testing Library.  
@@ -39,7 +39,7 @@ Run the tests with `npm run test:run` so they terminate and dont watch
 
 ---
 
-## 🧭 Storybook Guidelines
+##  Storybook Guidelines
 
 - All components must include Storybook stories.  
 - Stories should demonstrate:
@@ -51,7 +51,7 @@ Run the tests with `npm run test:run` so they terminate and dont watch
 
 ---
 
-## 📝 Documentation Rules
+##  Documentation Rules
 
 - Each component must include a `README.md` file describing:
   - Purpose and use cases
@@ -62,7 +62,7 @@ Run the tests with `npm run test:run` so they terminate and dont watch
 
 ---
 
-## 🧠 Additional Copilot Behavior
+##  Additional Copilot Behavior
 
 - Prefer **TypeScript** over JavaScript.  
 - Use **named exports** instead of default exports.  
@@ -70,4 +70,4 @@ Run the tests with `npm run test:run` so they terminate and dont watch
 - Follow semantic and accessible markup practices.  
 - Keep generated code consistent with existing patterns.
 
-✅ This ensures every component is documented, tested, and demoable with minimal extra setup.
+ This ensures every component is documented, tested, and demoable with minimal extra setup.

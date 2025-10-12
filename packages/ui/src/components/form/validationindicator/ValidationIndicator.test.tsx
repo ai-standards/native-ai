@@ -68,7 +68,7 @@ describe('ValidationIndicator', () => {
   });
 
   it('uses custom icon when provided', () => {
-    const customIcon = <span data-testid="custom-icon">✓</span>;
+    const customIcon = <span data-testid="custom-icon"></span>;
     render(
       <ValidationIndicator 
         status="valid" 

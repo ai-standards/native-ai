@@ -96,19 +96,19 @@ export const CustomIcons: Story = {
   args: { children: 'Content' },
   render: () => (
     <div className="space-y-4 max-w-lg">
-      <Callout variant="info" icon="📝" title="Documentation">
+      <Callout variant="info" icon="" title="Documentation">
         Check out the updated documentation for the latest API changes and examples.
       </Callout>
       
-      <Callout variant="success" icon="🚀" title="Feature Launch">
+      <Callout variant="success" icon="" title="Feature Launch">
         The new dashboard feature is now live! Explore the enhanced analytics and reporting tools.
       </Callout>
       
-      <Callout variant="warning" icon="⚡" title="Performance Impact">
+      <Callout variant="warning" icon="" title="Performance Impact">
         This action may affect system performance. Consider running it during off-peak hours.
       </Callout>
       
-      <Callout variant="neutral" icon="🔧" title="Under Development">
+      <Callout variant="neutral" icon="" title="Under Development">
         This feature is currently in beta. Some functionality may change in future releases.
       </Callout>
     </div>
@@ -187,11 +187,11 @@ export const ComplexContent: Story = {
         </div>
       </Callout>
       
-      <Callout variant="success" title="Deployment Successful" icon="🎉">
+      <Callout variant="success" title="Deployment Successful" icon="">
         <div className="space-y-2">
           <p>Your application has been deployed successfully to production!</p>
           <div className="flex items-center gap-4 text-sm">
-            <span>🌐 <strong>URL:</strong> https://myapp.com</span>
+            <span> <strong>URL:</strong> https://myapp.com</span>
             <span>⏱️ <strong>Deploy time:</strong> 2m 34s</span>
           </div>
           <div className="mt-3 p-2 bg-green-100 border border-green-200 rounded text-sm">

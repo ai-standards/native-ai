@@ -309,7 +309,7 @@ const ImageModal = ({ isOpen, onClose, image, images, currentIndex }) => {
               onClick={onClose}
               className="absolute top-4 right-4 bg-black bg-opacity-50 text-white p-2 rounded-full hover:bg-opacity-75"
             >
-              ✕
+              
             </button>
             
             {/* Image counter */}

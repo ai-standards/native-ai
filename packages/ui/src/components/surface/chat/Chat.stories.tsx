@@ -100,7 +100,7 @@ export const WithAvatars: Story = {
           variant="user"
           avatar={
             <div className="w-8 h-8 rounded-full bg-green-500 text-white flex items-center justify-center text-sm font-bold">
-              👤
+              
             </div>
           }
         >
@@ -219,7 +219,7 @@ export const LazyRenderingDemo: Story = {
               onClick={scrollToMiddle}
               className="px-2 py-1 bg-purple-600 text-white rounded text-xs"
             >
-              📦 Mid
+               Mid
             </button>
             <button
               onClick={() => chatRef.current?.scrollToBottom()}

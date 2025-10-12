@@ -64,10 +64,10 @@ export const Callout: React.FC<CalloutProps> = ({
 
   const defaultIcons = {
     info: 'ℹ️',
-    success: '✅',
-    warning: '⚠️',
-    error: '❌',
-    neutral: '💬',
+    success: '',
+    warning: '️',
+    error: '',
+    neutral: '',
   };
 
   const displayIcon = icon || defaultIcons[variant];
@@ -120,7 +120,7 @@ export const Callout: React.FC<CalloutProps> = ({
             )}
             aria-label="Dismiss callout"
           >
-            ✕
+            
           </button>
         )}
       </div>

@@ -29,8 +29,8 @@ const App = () => (
     
     <div className="flex flex-1">
       <Layout.ActionBar>
-        <button>📁</button>
-        <button>🔍</button>
+        <button></button>
+        <button></button>
       </Layout.ActionBar>
       
       <Layout.Sidebar side="left">
@@ -186,20 +186,20 @@ const ToggleButton = () => {
   
   <div className="flex flex-1">
     <ActionBar>
-      <button title="Explorer">📁</button>
-      <button title="Search">🔍</button>
-      <button title="Source Control">🔗</button>
-      <button title="Debug">🐛</button>
-      <button title="Extensions">🧩</button>
+      <button title="Explorer"></button>
+      <button title="Search"></button>
+      <button title="Source Control"></button>
+      <button title="Debug"></button>
+      <button title="Extensions"></button>
     </ActionBar>
     
     <Sidebar side="left" width="250px">
       <div className="space-y-2">
         <h3 className="font-semibold">Explorer</h3>
         <div className="space-y-1 text-sm">
-          <div className="hover:bg-gray-100 p-1 rounded">📁 src</div>
-          <div className="hover:bg-gray-100 p-1 rounded pl-4">📄 App.tsx</div>
-          <div className="hover:bg-gray-100 p-1 rounded pl-4">📄 index.tsx</div>
+          <div className="hover:bg-gray-100 p-1 rounded"> src</div>
+          <div className="hover:bg-gray-100 p-1 rounded pl-4"> App.tsx</div>
+          <div className="hover:bg-gray-100 p-1 rounded pl-4"> index.tsx</div>
         </div>
       </div>
     </Sidebar>
@@ -217,9 +217,9 @@ const ToggleButton = () => {
       <Console height="180px">
         <div className="space-y-1 text-sm">
           <div className="text-gray-400">$ npm run dev</div>
-          <div className="text-green-400">✓ Local: http://localhost:3000</div>
+          <div className="text-green-400"> Local: http://localhost:3000</div>
           <div className="text-blue-400">ℹ ready - started server on 0.0.0.0:3000</div>
-          <div className="text-yellow-400">⚠ Fast Refresh had to perform a full reload</div>
+          <div className="text-yellow-400"> Fast Refresh had to perform a full reload</div>
         </div>
       </Console>
     </div>
@@ -229,9 +229,9 @@ const ToggleButton = () => {
         <div>
           <h3 className="font-semibold mb-2">Outline</h3>
           <div className="text-sm space-y-1">
-            <div>🔧 App</div>
-            <div className="pl-4">📋 useState</div>
-            <div className="pl-4">📋 useEffect</div>
+            <div> App</div>
+            <div className="pl-4"> useState</div>
+            <div className="pl-4"> useEffect</div>
           </div>
         </div>
       </div>
@@ -240,7 +240,7 @@ const ToggleButton = () => {
   
   <BottomBar>
     <div className="flex items-center space-x-4">
-      <span>✓ Ready</span>
+      <span> Ready</span>
       <span className="text-blue-200">main</span>
       <span>TypeScript</span>
     </div>
@@ -266,9 +266,9 @@ const ToggleButton = () => {
   
   <div className="flex flex-1">
     <ActionBar>
-      <button title="Dashboard">📊</button>
-      <button title="Reports">📈</button>
-      <button title="Settings">⚙️</button>
+      <button title="Dashboard"></button>
+      <button title="Reports"></button>
+      <button title="Settings">️</button>
     </ActionBar>
     
     <Sidebar side="left" width="200px">
@@ -308,8 +308,8 @@ const ToggleButton = () => {
 <Layout>
   <div className="flex flex-1">
     <ActionBar>
-      <button>💾</button>
-      <button>🔍</button>
+      <button></button>
+      <button></button>
     </ActionBar>
     
     <MainContent>

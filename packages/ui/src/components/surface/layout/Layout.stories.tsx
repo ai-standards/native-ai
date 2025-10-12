@@ -78,9 +78,9 @@ const ConsoleContent = () => (
       <TerminalIcon size={12} />
       <span>npm start</span>
     </div>
-    <div className="text-green-400">✓ Server started on port 3000</div>
+    <div className="text-green-400"> Server started on port 3000</div>
     <div className="text-blue-400">ℹ Compiled successfully</div>
-    <div className="text-yellow-400">⚠ Warning: Unused variable 'x'</div>
+    <div className="text-yellow-400"> Warning: Unused variable 'x'</div>
     <div className="text-gray-400 flex items-center space-x-2">
       <TerminalIcon size={12} />
       <span>_</span>
@@ -184,7 +184,7 @@ export const Minimal: Story = {
           </MainContent>
           
           <Console height="150px">
-            <div className="text-green-400">System ready ✓</div>
+            <div className="text-green-400">System ready </div>
           </Console>
         </div>
       </div>
@@ -281,7 +281,7 @@ export const FullExpanded: Story = {
       
       <BottomBar>
         <div className="flex items-center space-x-3">
-          <span>✓ Ready</span>
+          <span> Ready</span>
           <span className="text-blue-200">main</span>
           <span>0 errors, 0 warnings</span>
         </div>
@@ -344,7 +344,7 @@ export const DarkTheme: Story = {
           <Console className="bg-black border-gray-600">
             <div className="space-y-1">
               <div className="text-gray-500">$ npm run dev</div>
-              <div className="text-green-400">✓ Development server running</div>
+              <div className="text-green-400"> Development server running</div>
               <div className="text-cyan-400">ℹ Hot reload enabled</div>
               <div className="text-gray-500">$ _</div>
             </div>

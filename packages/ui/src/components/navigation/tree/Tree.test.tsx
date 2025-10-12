@@ -131,7 +131,7 @@ describe('Tree', () => {
       { 
         id: 'with-icon', 
         label: 'With Icon',
-        icon: <span data-testid="node-icon">📁</span>
+        icon: <span data-testid="node-icon"></span>
       },
     ];
     

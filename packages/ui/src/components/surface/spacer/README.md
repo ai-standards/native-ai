@@ -207,16 +207,16 @@ Use the `flex` prop to create spacers that grow to fill available space:
 <div className="flex items-center p-3 bg-gray-50 border rounded">
   {/* Tool groups */}
   <div className="flex">
-    <button className="p-2 hover:bg-gray-200 rounded">📁</button>
-    <button className="p-2 hover:bg-gray-200 rounded">💾</button>
-    <button className="p-2 hover:bg-gray-200 rounded">✂️</button>
+    <button className="p-2 hover:bg-gray-200 rounded"></button>
+    <button className="p-2 hover:bg-gray-200 rounded"></button>
+    <button className="p-2 hover:bg-gray-200 rounded">️</button>
   </div>
   
   <Spacer size="md" axis="horizontal" />
   
   <div className="flex">
-    <button className="p-2 hover:bg-gray-200 rounded">🔍</button>
-    <button className="p-2 hover:bg-gray-200 rounded">⚙️</button>
+    <button className="p-2 hover:bg-gray-200 rounded"></button>
+    <button className="p-2 hover:bg-gray-200 rounded">️</button>
   </div>
   
   {/* Center content */}
@@ -328,11 +328,11 @@ Use the `flex` prop to create spacers that grow to fill available space:
 
 | Approach | Spacer Component | CSS Margins | Flexbox Gap |
 |----------|------------------|-------------|-------------|
-| **Consistency** | ✅ Design system tokens | ❌ Manual values | ❌ Manual values |
-| **Flexibility** | ✅ Fixed or flexible | ❌ Fixed only | ❌ Fixed only |
-| **Axis Control** | ✅ Horizontal/vertical/both | ⚠️ Requires direction classes | ❌ Both axes always |
-| **Responsive** | ✅ Easy with utilities | ⚠️ Requires responsive classes | ⚠️ Requires responsive classes |
-| **Semantic** | ✅ Explicit spacing intent | ❌ Mixed with content styling | ❌ Container-level only |
+| **Consistency** |  Design system tokens |  Manual values |  Manual values |
+| **Flexibility** |  Fixed or flexible |  Fixed only |  Fixed only |
+| **Axis Control** |  Horizontal/vertical/both | ️ Requires direction classes |  Both axes always |
+| **Responsive** |  Easy with utilities | ️ Requires responsive classes | ️ Requires responsive classes |
+| **Semantic** |  Explicit spacing intent |  Mixed with content styling |  Container-level only |
 
 ## Best Practices
 

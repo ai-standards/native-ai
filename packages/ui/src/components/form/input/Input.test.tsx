@@ -47,26 +47,26 @@ describe('Input Component', () => {
   });
 
   it('renders with left icon', () => {
-    const leftIcon = <span data-testid="left-icon">🔍</span>;
+    const leftIcon = <span data-testid="left-icon"></span>;
     render(<Input leftIcon={leftIcon} />);
     expect(screen.getByTestId('left-icon')).toBeInTheDocument();
   });
 
   it('renders with right icon', () => {
-    const rightIcon = <span data-testid="right-icon">✓</span>;
+    const rightIcon = <span data-testid="right-icon"></span>;
     render(<Input rightIcon={rightIcon} />);
     expect(screen.getByTestId('right-icon')).toBeInTheDocument();
   });
 
   it('adjusts padding when left icon is present', () => {
-    const leftIcon = <span>🔍</span>;
+    const leftIcon = <span></span>;
     render(<Input leftIcon={leftIcon} />);
     const input = screen.getByRole('textbox');
     expect(input).toHaveClass('pl-10');
   });
 
   it('adjusts padding when right icon is present', () => {
-    const rightIcon = <span>✓</span>;
+    const rightIcon = <span></span>;
     render(<Input rightIcon={rightIcon} />);
     const input = screen.getByRole('textbox');
     expect(input).toHaveClass('pr-10');

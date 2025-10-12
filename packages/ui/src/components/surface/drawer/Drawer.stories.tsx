@@ -158,9 +158,9 @@ export const ShoppingCart: Story = {
   args: { isOpen: false, onClose: () => {}, children: null },
   render: () => {
     const [cartItems] = useState([
-      { id: 1, name: 'Wireless Headphones', price: 99.99, quantity: 1, image: '🎧' },
-      { id: 2, name: 'Smartphone Case', price: 24.99, quantity: 2, image: '📱' },
-      { id: 3, name: 'USB Cable', price: 12.99, quantity: 1, image: '🔌' },
+      { id: 1, name: 'Wireless Headphones', price: 99.99, quantity: 1, image: '' },
+      { id: 2, name: 'Smartphone Case', price: 24.99, quantity: 2, image: '' },
+      { id: 3, name: 'USB Cable', price: 12.99, quantity: 1, image: '' },
     ]);
 
     const total = cartItems.reduce((sum, item) => sum + (item.price * item.quantity), 0);

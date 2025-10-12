@@ -149,7 +149,7 @@ export const ArticleHeader: React.FC<ArticleHeaderProps> = ({
           {/* Reading time */}
           {readingTime && (
             <span className="flex items-center gap-1">
-              <span>📖</span>
+              <span></span>
               {readingTime}
             </span>
           )}
@@ -237,7 +237,7 @@ export const ArticleFooter: React.FC<ArticleFooterProps> = ({
                   className="flex items-center justify-center w-10 h-10 rounded-full bg-blue-100 text-blue-600 hover:bg-blue-200 transition-colors"
                   aria-label="Share on LinkedIn"
                 >
-                  💼
+                  
                 </a>
               )}
               {shareButtons.email && (
@@ -246,7 +246,7 @@ export const ArticleFooter: React.FC<ArticleFooterProps> = ({
                   className="flex items-center justify-center w-10 h-10 rounded-full bg-gray-100 text-gray-600 hover:bg-gray-200 transition-colors"
                   aria-label="Share via Email"
                 >
-                  ✉️
+                  ️
                 </a>
               )}
             </div>

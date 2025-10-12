@@ -186,11 +186,11 @@ const StatusBadge = ({ status, message }) => {
   const getStatusConfig = (status) => {
     switch (status) {
       case 'success':
-        return { color: 'bg-green-100 text-green-800', icon: '✓' };
+        return { color: 'bg-green-100 text-green-800', icon: '' };
       case 'warning':
-        return { color: 'bg-yellow-100 text-yellow-800', icon: '⚠' };
+        return { color: 'bg-yellow-100 text-yellow-800', icon: '' };
       case 'error':
-        return { color: 'bg-red-100 text-red-800', icon: '✗' };
+        return { color: 'bg-red-100 text-red-800', icon: '' };
       default:
         return { color: 'bg-gray-100 text-gray-800', icon: 'ℹ' };
     }

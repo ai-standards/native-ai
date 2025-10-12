@@ -336,7 +336,7 @@ const FilterDrawer = ({ isOpen, onClose, filters, onFiltersChange }) => (
                     checked={filters.minRating === rating}
                     onChange={(e) => onFiltersChange({...filters, minRating: parseInt(e.target.value)})}
                   />
-                  <span className="text-sm">{'★'.repeat(rating)} & up</span>
+                  <span className="text-sm">{''.repeat(rating)} & up</span>
                 </label>
               ))}
             </div>
