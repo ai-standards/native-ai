@@ -2,7 +2,7 @@
 export * from './form';
 
 // Layout Components  
-export * from './layout';
+export * from './surface';
 
 // Navigation Components
 export * from './navigation';

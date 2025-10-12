@@ -1,56 +1,55 @@
 # Media Components
 
-Components for displaying and managing media content including images, icons, and multimedia.
+Components for displaying and embedding visual and audio media in a consistent, accessible, and theme-aware way. These elements are designed to integrate seamlessly with surfaces and content components. Each component includes TypeScript support, accessibility features, and Storybook examples.
 
-## Current Components
+### Image
+Responsive image component with support for lazy loading, aspect ratios, and flexible sizing.
 
-- **Icon** - Comprehensive icon system with built-in and dynamic icon support
+**Features:** Lazy loading, aspect ratio control, responsive sizing, object-fit modes, placeholders, accessibility attributes  
+**Documentation:** [Image README](./image/README.md)
 
-## Planned Components
+### Video
+Media player component for embedding videos with built-in controls and responsive behavior.
 
-### Image Components
-- **Image** - Enhanced image component with lazy loading and optimization
-- **Avatar** - User profile pictures with fallbacks and status indicators
-- **ImageGallery** - Interactive image gallery with lightbox functionality
-- **Thumbnail** - Optimized thumbnail display component
-- **ImageCrop** - Image cropping and editing interface
+**Features:** Native controls, autoplay/mute support, responsive sizing, aspect ratio control, caption support, poster image  
+**Documentation:** [Video README](./video/README.md)
 
-### Icon & Graphics
-- **IconButton** - Clickable icon components
-- **Badge** - Notification badges and status indicators  
-- **Logo** - Brand logo component with responsive sizing
-- **Illustration** - SVG illustration wrapper component
+### Audio
+Audio player component with playback controls and accessibility support.
 
-### Video & Audio
-- **VideoPlayer** - Custom video player with controls
-- **AudioPlayer** - Audio playback component
-- **MediaEmbed** - Embedded media from external sources
-- **Livestream** - Live video streaming component
+**Features:** Native controls, autoplay, volume control, accessibility labels, responsive container  
+**Documentation:** [Audio README](./audio/README.md)
 
-### Data Visualization
-- **Chart** - Basic chart components (bar, line, pie)
-- **Graph** - Interactive graph and network visualizations
-- **Sparkline** - Inline mini charts
-- **Progress** - Progress bars and completion indicators
-- **Meter** - Gauge and measurement displays
+### Icon
+Scalable icon component for rendering system or custom icons with flexible sizing and coloring.
 
-### Interactive Media
-- **Carousel** - Image and content carousel/slider
-- **Lightbox** - Modal image viewer
-- **Zoom** - Image zoom and pan functionality
-- **Preview** - File and content preview components
+**Features:** SVG-based rendering, size variants, color theming, inline/block display modes, accessibility labels  
+**Documentation:** [Icon README](./icon/README.md)
 
-### Media Utilities
-- **MediaQuery** - Responsive media query components
-- **LazyLoad** - Lazy loading wrapper for media content
-- **Placeholder** - Loading and empty state placeholders
-- **MediaCapture** - Camera and microphone capture interfaces
+### Avatar
+Avatar component for displaying user profile images, initials, or icons with shape and size variants.
+
+**Features:** Image or fallback text, circular/square shapes, size variants, status badge support, accessibility labels  
+**Documentation:** [Avatar README](./avatar/README.md)
+
+### Figure
+Container for media elements with optional caption support for semantic, accessible presentation.
+
+**Features:** Integrated caption, responsive sizing, flexible media content (image/video), alignment options  
+**Documentation:** [Figure README](./figure/README.md)
+
+### Carousel
+Carousel component for cycling through media content with swipe, keyboard, and autoplay support.
+
+**Features:** Horizontal scrolling, autoplay, keyboard navigation, swipe gestures, pagination controls, responsive layout  
+**Documentation:** [Carousel README](./carousel/README.md)
+
+---
 
 ## Design Principles
 
-- **Performance First** - Optimized loading and rendering for media content
-- **Accessibility** - Alt text, captions, and screen reader support
-- **Responsive Images** - Adaptive sizing for all screen sizes
-- **Loading States** - Smooth loading experiences with placeholders
-- **Error Handling** - Graceful fallbacks for failed media loads
-- **Format Support** - Wide compatibility with media formats
+- **Accessible Media** – Native HTML semantics and ARIA attributes for inclusive experiences.  
+- **Responsive First** – Media elements adapt fluidly to different screen sizes and orientations.  
+- **Composable Surfaces** – Works seamlessly within cards, modals, and sections.  
+- **Theming Support** – Full compatibility with light/dark themes and custom palettes.  
+- **Performance** – Lazy loading and optimized rendering strategies for fast loading times.

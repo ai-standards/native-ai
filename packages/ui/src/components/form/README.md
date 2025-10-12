@@ -1,10 +1,6 @@
 # Form Components
 
-Interactive form elements and controls for user input and data collection.
-
-## Current Components
-
-Complete form components ready for use in your applications. Each component includes comprehensive documentation, TypeScript support, accessibility features, and Storybook examples.
+Interactive form elements and controls for user input and data collection. Each component includes comprehensive documentation, TypeScript support, accessibility features, and Storybook examples.
 
 ### Button
 Versatile button component with multiple variants, sizes, and states for form actions and user interactions.
@@ -142,7 +138,6 @@ Visual validation status indicators for form fields with icons and optional stat
 **Features:** Status states, visual feedback, loading animation, flexible display, size variants, positioning, accessibility  
 **Documentation:** [ValidationIndicator README](./validationindicator/README.md)
 
-### Validation & Feedback
 
 ## Design Principles
 
