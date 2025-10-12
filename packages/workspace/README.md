@@ -66,9 +66,9 @@ Configure and retrieve the workspace root directory.
 Set the workspace root directory with built-in security validation to prevent dangerous paths.
 
 ```typescript
-workspace.setRootPath('/Users/john/my-project'); // ✅ Safe project path
-workspace.setRootPath('/Users/john'); // ❌ Throws: user home directory
-workspace.setRootPath('/'); // ❌ Throws: system path
+workspace.setRootPath('/Users/john/my-project'); //  Safe project path
+workspace.setRootPath('/Users/john'); //  Throws: user home directory
+workspace.setRootPath('/'); //  Throws: system path
 ```
 
 #### `getRootPath(): string`
@@ -354,13 +354,13 @@ Prevents setting workspace to sensitive system locations:
 
 ```typescript
 // All file operations go through validation
-workspace.writeFileSync('../../../etc/passwd', 'hack'); // ❌ Throws error
-workspace.readFileSync('/etc/shadow');                   // ❌ Throws error
-workspace.copyFileSync('file.txt', 'C:\\Windows\\hack'); // ❌ Throws error
+workspace.writeFileSync('../../../etc/passwd', 'hack'); //  Throws error
+workspace.readFileSync('/etc/shadow');                   //  Throws error
+workspace.copyFileSync('file.txt', 'C:\\Windows\\hack'); //  Throws error
 
 // Safe operations work normally
-workspace.writeFileSync('config/app.json', data);        // ✅ Works
-workspace.readFileSync('src/main.ts');                   // ✅ Works
+workspace.writeFileSync('config/app.json', data);        //  Works
+workspace.readFileSync('src/main.ts');                   //  Works
 ```
 
 This prevents both accidental and malicious file operations outside the intended workspace.

@@ -204,7 +204,7 @@ export const Interactive: Story = {
           <p className="text-sm font-medium text-gray-700 mb-2">Current Value:</p>
           <p className="text-lg font-mono">{value}</p>
           <p className="text-sm text-gray-600 mt-2">
-            Status: {isValid ? '✅ Valid' : '❌ Invalid'}
+            Status: {isValid ? ' Valid' : ' Invalid'}
           </p>
         </div>
       </div>

@@ -152,19 +152,19 @@ export const CustomMarkers: Story = {
       <div>
         <h3 className="text-sm font-medium mb-2">Emoji Markers</h3>
         <List marker="none">
-          <ListItem marker="🎯">Goal-oriented task</ListItem>
-          <ListItem marker="⚡">High priority item</ListItem>
-          <ListItem marker="💡">Creative idea</ListItem>
-          <ListItem marker="🔧">Technical requirement</ListItem>
+          <ListItem marker="">Goal-oriented task</ListItem>
+          <ListItem marker="">High priority item</ListItem>
+          <ListItem marker="">Creative idea</ListItem>
+          <ListItem marker="">Technical requirement</ListItem>
         </List>
       </div>
       
       <div>
         <h3 className="text-sm font-medium mb-2">Icon Markers</h3>
         <List marker="none">
-          <ListItem marker={<span className="text-green-500">✓</span>}>Completed task</ListItem>
+          <ListItem marker={<span className="text-green-500"></span>}>Completed task</ListItem>
           <ListItem marker={<span className="text-yellow-500">⏳</span>}>In progress task</ListItem>
-          <ListItem marker={<span className="text-red-500">✗</span>}>Failed task</ListItem>
+          <ListItem marker={<span className="text-red-500"></span>}>Failed task</ListItem>
           <ListItem marker={<span className="text-blue-500">→</span>}>Next action</ListItem>
         </List>
       </div>
@@ -211,9 +211,9 @@ export const MixedContent: Story = {
             <ListItem>
               Code review process
               <List nested marker="none" spacing="sm">
-                <ListItem marker="👤">Peer review</ListItem>
-                <ListItem marker="🤖">Automated testing</ListItem>
-                <ListItem marker="🔍">Security audit</ListItem>
+                <ListItem marker="">Peer review</ListItem>
+                <ListItem marker="">Automated testing</ListItem>
+                <ListItem marker="">Security audit</ListItem>
               </List>
             </ListItem>
           </List>

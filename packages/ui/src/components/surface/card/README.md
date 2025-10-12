@@ -35,9 +35,9 @@ import { Card, CardHeader, CardContent, CardFooter } from '@/lib/ui/card';
   <CardContent>
     <p>This product includes all premium features and priority support.</p>
     <ul className="mt-2 space-y-1">
-      <li>✓ Advanced analytics</li>
-      <li>✓ Priority support</li>
-      <li>✓ Custom integrations</li>
+      <li> Advanced analytics</li>
+      <li> Priority support</li>
+      <li> Custom integrations</li>
     </ul>
   </CardContent>
   <CardFooter>

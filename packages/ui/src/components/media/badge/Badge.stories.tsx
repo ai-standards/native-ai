@@ -196,7 +196,7 @@ export const DotBadges: Story = {
           </Badge>
           
           <Badge dot variant="warning">
-            <span className="text-lg">📧</span>
+            <span className="text-lg"></span>
           </Badge>
         </div>
       </div>

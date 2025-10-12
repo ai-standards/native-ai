@@ -5,7 +5,7 @@ These elements help users understand what’s happening — loading, progress, s
 
 ---
 
-## 🌀 Spinner
+##  Spinner
 A lightweight loading indicator for ongoing background processes, async actions, or pending UI updates.
 
 **Features:**  
@@ -18,7 +18,7 @@ A lightweight loading indicator for ongoing background processes, async actions,
 
 ---
 
-## 📊 Progress
+##  Progress
 A visual representation of task or process completion. Useful for file uploads, form submissions, and long-running operations.
 
 **Features:**  
@@ -31,7 +31,7 @@ A visual representation of task or process completion. Useful for file uploads, 
 
 ---
 
-## 🦴 Skeleton
+##  Skeleton
 A placeholder component that mimics the layout of content while data is loading, improving perceived performance.
 
 **Features:**  
@@ -44,7 +44,7 @@ A placeholder component that mimics the layout of content while data is loading,
 
 ---
 
-## 🚨 Alert
+##  Alert
 A static or dismissible message banner for status updates, warnings, or errors.
 
 **Features:**  
@@ -57,7 +57,7 @@ A static or dismissible message banner for status updates, warnings, or errors.
 
 ---
 
-## 🔔 Toast
+##  Toast
 A temporary, non-blocking notification component for transient messages or status updates.
 
 **Features:**  
@@ -70,7 +70,7 @@ A temporary, non-blocking notification component for transient messages or statu
 
 ---
 
-## 🧭 Design Principles
+##  Design Principles
 
 - **Non-blocking:** Feedback should inform users without stopping interaction.  
 - **Accessible by default:** Proper ARIA roles and live regions are required.  
@@ -78,4 +78,4 @@ A temporary, non-blocking notification component for transient messages or statu
 - **Lightweight and performant:** Feedback components should not add unnecessary complexity.  
 - **Composable:** Feedback elements should work seamlessly with surfaces and forms.
 
-✅ Use **feedback components** whenever the UI needs to communicate **state** or **progress**, not to display content.
+ Use **feedback components** whenever the UI needs to communicate **state** or **progress**, not to display content.

@@ -224,15 +224,15 @@ export const ResponsiveToolbar: Story = {
       <div className="flex items-center">
         <div className="flex items-center">
           <button className="p-2 hover:bg-gray-100 rounded">
-            <span className="text-sm">📁</span>
+            <span className="text-sm"></span>
           </button>
           <Spacer size="xs" axis="horizontal" />
           <button className="p-2 hover:bg-gray-100 rounded">
-            <span className="text-sm">💾</span>
+            <span className="text-sm"></span>
           </button>
           <Spacer size="xs" axis="horizontal" />
           <button className="p-2 hover:bg-gray-100 rounded">
-            <span className="text-sm">✂️</span>
+            <span className="text-sm">️</span>
           </button>
         </div>
         

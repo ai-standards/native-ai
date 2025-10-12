@@ -75,7 +75,7 @@ describe('ListItem', () => {
   });
 
   it('applies custom marker layout', () => {
-    render(<ListItem marker="★" data-testid="item">Starred item</ListItem>);
+    render(<ListItem marker="" data-testid="item">Starred item</ListItem>);
     const item = screen.getByTestId('item');
     expect(item).toHaveClass('flex', 'items-start', 'gap-2', 'list-none');
   });

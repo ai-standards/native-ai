@@ -105,7 +105,7 @@ ${bold('Available Packages:')}
     const availablePackages = ['ui', 'core', 'ai', 'utils', 'workspace'];
     
     if (!availablePackages.includes(packageName)) {
-      console.error(`${bold('❌ Error:')} Unknown package: ${yellow(packageName)}`);
+      console.error(`${bold('Error:')} Unknown package: ${yellow(packageName)}`);
       console.log(`\n${bold('Available packages:')} ${availablePackages.map(p => cyan(p)).join(', ')}`);
       console.log(`\n${dim('Use')} ${green('nativeai help add')} ${dim('for more information.')}`);
       return;
@@ -171,7 +171,7 @@ ${bold('What this does:')}
       // Create directory if it doesn't exist
       if (!fs.existsSync(targetPath)) {
         fs.mkdirSync(targetPath, { recursive: true });
-        console.log(`${green('✓')} Created directory: ${cyan(targetPath)}`);
+        console.log(`${green('Created directory:')} ${cyan(targetPath)}`);
       }
 
       // Check if package.json already exists
@@ -187,7 +187,7 @@ ${bold('What this does:')}
         ]);
 
         if (!overwrite) {
-          console.log(`${yellow('⚠')} Operation cancelled.`);
+          console.log(`${yellow('Warning:')} Operation cancelled.`);
           return;
         }
       }
@@ -229,7 +229,7 @@ ${bold('What this does:')}
       });
 
       fs.writeFileSync(packageJsonPath, JSON.stringify(packageJson, null, 2));
-      console.log(`${green('✓')} Created ${cyan('package.json')} in ${dim(targetPath)}`);
+      console.log(`${green('Created')} ${cyan('package.json')} in ${dim(targetPath)}`);
 
       // Install dependencies if any packages were selected
       if (selectedPackages.length > 0) {
@@ -259,9 +259,9 @@ ${bold('What this does:')}
         spinner.succeed(`Successfully installed ${green(selectedPackages.length.toString())} package(s)!`);
       }
 
-      console.log(`\n${green('🎉')} Project ${bold(cyan(`"${projectName}"`))} created successfully!`);
+      console.log(`\n${green('Project')} ${bold(cyan(`"${projectName}"`))} created successfully!`);
       if (projectPath) {
-        console.log(`${dim('📂 Navigate to your project:')} ${yellow(`cd ${projectPath}`)}`);
+        console.log(`${dim('Navigate to your project:')} ${yellow(`cd ${projectPath}`)}`);
       }
       
       if (selectedPackages.length > 0) {
@@ -271,7 +271,7 @@ ${bold('What this does:')}
       }
 
     } catch (error) {
-      console.error(`${bold('❌ Error:')} Failed to create project`);
+      console.error(`${bold('Error:')} Failed to create project`);
       console.error(`${error}`);
     }
   });

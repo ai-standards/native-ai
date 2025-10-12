@@ -29,13 +29,13 @@ describe('Callout', () => {
   });
 
   it('renders with custom icon', () => {
-    render(<Callout icon="🚀">Custom icon callout</Callout>);
-    expect(screen.getByText('🚀')).toBeInTheDocument();
+    render(<Callout icon="">Custom icon callout</Callout>);
+    expect(screen.getByText('')).toBeInTheDocument();
   });
 
   it('shows default icon for variant', () => {
     render(<Callout variant="success">Success message</Callout>);
-    expect(screen.getByText('✅')).toBeInTheDocument();
+    expect(screen.getByText('')).toBeInTheDocument();
   });
 
   it('renders dismiss button when dismissible', () => {

@@ -4,25 +4,25 @@ A comprehensive React component library built with TypeScript, Tailwind CSS, and
 
 ## Component Sections
 
-### 📝 [Form Components](./form/README.md)
+###  [Form Components](./form/README.md)
 Interactive form elements and controls for user input and data collection.
 
 **Current:** Button, Input  
 **Planned:** Textarea, Select, Checkbox, Radio, Switch, DatePicker, FileUpload, and more
 
-### 🏗️ [Layout Components](./layout/README.md)
+### ️ [Layout Components](./layout/README.md)
 Structural components for organizing and positioning content on the page.
 
 **Current:** Card, Layout  
 **Planned:** Container, Grid, Modal, Drawer, Accordion, Header, Footer, and more
 
-### 🧭 [Navigation Components](./navigation/README.md)  
+###  [Navigation Components](./navigation/README.md)  
 Components for user navigation and wayfinding throughout the application.
 
 **Current:** Tabs  
 **Planned:** Menu, Pagination, Stepper, Breadcrumb, BottomNavigation, and more
 
-### 🎨 [Media Components](./media/README.md)
+###  [Media Components](./media/README.md)
 Components for displaying and managing media content including images, icons, and multimedia.
 
 **Current:** Icon  

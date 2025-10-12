@@ -186,10 +186,10 @@ export const Interactive: Story = {
           <h3 className="font-semibold text-gray-900 mb-2">Validation Status</h3>
           <div className="space-y-1 text-sm">
             <p className={password.length >= 8 ? 'text-green-600' : 'text-red-600'}>
-              ✓ At least 8 characters: {password.length >= 8 ? 'Yes' : 'No'}
+               At least 8 characters: {password.length >= 8 ? 'Yes' : 'No'}
             </p>
             <p className={password === confirmPassword && password ? 'text-green-600' : 'text-red-600'}>
-              ✓ Passwords match: {password === confirmPassword && password ? 'Yes' : 'No'}
+               Passwords match: {password === confirmPassword && password ? 'Yes' : 'No'}
             </p>
           </div>
         </div>

@@ -76,11 +76,11 @@ export const Menu: Story = {
     const [isOpen, setIsOpen] = useState(false);
     
     const menuItems = [
-      { label: 'Edit', icon: '✏️' },
-      { label: 'Duplicate', icon: '📋' },
-      { label: 'Share', icon: '📤' },
+      { label: 'Edit', icon: '️' },
+      { label: 'Duplicate', icon: '' },
+      { label: 'Share', icon: '' },
       { type: 'divider' },
-      { label: 'Delete', icon: '🗑️', danger: true },
+      { label: 'Delete', icon: '️', danger: true },
     ];
     
     return (
@@ -126,7 +126,7 @@ export const UserProfile: Story = {
     const user = {
       name: 'John Doe',
       username: 'johndoe',
-      avatar: '👤',
+      avatar: '',
       bio: 'Frontend developer passionate about creating great user experiences.',
       followers: 1234,
       following: 567,
@@ -194,7 +194,7 @@ export const FilterDropdown: Story = {
             onClick={() => setIsOpen(!isOpen)}
             className="px-3 py-2 border border-gray-300 rounded-md text-sm flex items-center space-x-2"
           >
-            <span>🔍</span>
+            <span></span>
             <span>Filter</span>
           </button>
           <div className="p-4 min-w-[250px]">

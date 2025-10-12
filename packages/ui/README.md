@@ -4,14 +4,14 @@ A comprehensive React UI component library with VS Code-inspired design patterns
 
 ## Features
 
-- 🎨 **VS Code-inspired Design** - Clean, professional interface components
-- 🧩 **Modular Architecture** - Import only what you need
-- 🎯 **TypeScript First** - Full type safety and excellent IntelliSense
-- 🎪 **Storybook Integration** - Interactive component documentation
-- 🔧 **Customizable** - Built with Tailwind CSS for easy theming
-- ⚡ **Performance Focused** - Optimized bundle size and runtime performance
-- 🧪 **Well Tested** - Comprehensive test coverage with Vitest
-- 📱 **Responsive** - Mobile-first responsive design
+-  **Prebuilt GUI** - Clean, professional interface components
+-  **Modular Architecture** - Import only what you need
+-  **TypeScript First** - Full type safety and excellent IntelliSense
+-  **Storybook Integration** - Interactive component documentation
+-  **Customizable** - Built with Tailwind CSS for easy theming
+-  **Performance Focused** - Optimized bundle size and runtime performance
+-  **Well Tested** - Comprehensive test coverage with Vitest
+-  **Responsive** - Mobile-first responsive design
 
 ## Installation
 
@@ -170,6 +170,6 @@ MIT License - see the [LICENSE](LICENSE) file for details.
 
 ## Support
 
-- 📖 [Documentation](https://github.com/nativeai/ui)
-- 🐛 [Issue Tracker](https://github.com/nativeai/ui/issues)
-- 💬 [Discussions](https://github.com/nativeai/ui/discussions)
+-  [Documentation](https://github.com/nativeai/ui)
+-  [Issue Tracker](https://github.com/nativeai/ui/issues)
+-  [Discussions](https://github.com/nativeai/ui/discussions)

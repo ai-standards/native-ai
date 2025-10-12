@@ -73,7 +73,7 @@ export const FormHelp: Story = {
                   type="button"
                   className="ml-2 text-gray-400 hover:text-gray-600"
                 >
-                  <span className="text-sm">❓</span>
+                  <span className="text-sm"></span>
                 </button>
               </TooltipTrigger>
               <TooltipContent>
@@ -135,7 +135,7 @@ export const IconTooltips: Story = {
         <Tooltip>
           <TooltipTrigger>
             <button className="p-2 text-gray-400 hover:text-gray-600 hover:bg-gray-100 rounded transition-colors">
-              <span className="text-sm">🔗</span>
+              <span className="text-sm"></span>
             </button>
           </TooltipTrigger>
           <TooltipContent>
@@ -154,7 +154,7 @@ export const StatusIndicators: Story = {
       <Tooltip>
         <TooltipTrigger>
           <span className="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-green-100 text-green-800">
-            <span className="mr-1">✓</span>
+            <span className="mr-1"></span>
             Success
           </span>
         </TooltipTrigger>
@@ -166,7 +166,7 @@ export const StatusIndicators: Story = {
       <Tooltip>
         <TooltipTrigger>
           <span className="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-yellow-100 text-yellow-800">
-            <span className="mr-1">⚠</span>
+            <span className="mr-1"></span>
             Warning
           </span>
         </TooltipTrigger>
@@ -178,7 +178,7 @@ export const StatusIndicators: Story = {
       <Tooltip>
         <TooltipTrigger>
           <span className="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-red-100 text-red-800">
-            <span className="mr-1">✗</span>
+            <span className="mr-1"></span>
             Error
           </span>
         </TooltipTrigger>
