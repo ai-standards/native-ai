@@ -1,0 +1,45 @@
+{
+  "name": "@nativeai/cli",
+  "version": "0.9.2",
+  "description": "Command line interface for native AI",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "bin": {
+    "nativeai": "dist/cli.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ai-standards/nativeai.git",
+    "directory": "packages/cli"
+  },
+  "homepage": "https://github.com/ai-standards/nativeai/tree/main/packages/cli",
+  "bugs": {
+    "url": "https://github.com/ai-standards/nativeai/issues"
+  },
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "test": "jest"
+  },
+  "keywords": [
+    "ai",
+    "cli",
+    "native",
+    "command-line"
+  ],
+  "author": "",
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
+  "devDependencies": {
+    "typescript": "^5.0.0",
+    "@types/inquirer": "^9.0.0"
+  },
+  "dependencies": {
+    "colorette": "^2.0.20",
+    "commander": "^11.0.0",
+    "inquirer": "^9.0.0",
+    "ora": "^7.0.0"
+  }
+}

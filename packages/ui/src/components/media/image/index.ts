@@ -1,0 +1,1 @@
+export { Image, ImageGallery, type ImageProps, type ImageGalleryProps } from './Image';
