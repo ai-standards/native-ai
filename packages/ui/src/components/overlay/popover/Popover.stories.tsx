@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { Popover } from './Popover';
 
 const meta = {
-  title: 'Surface/Popover',
+  title: 'Overlay/Popover',
   component: Popover,
   parameters: {
     layout: 'centered',

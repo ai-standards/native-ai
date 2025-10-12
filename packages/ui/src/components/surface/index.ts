@@ -87,7 +87,7 @@ export {
   type ModalHeaderProps,
   type ModalContentProps,
   type ModalFooterProps
-} from './modal';
+} from '../overlay/modal';
 export {
   Drawer,
   DrawerHeader,
@@ -105,7 +105,7 @@ export {
   type PopoverProps,
   type PopoverTriggerProps,
   type PopoverContentProps
-} from './popover';
+} from '../overlay/popover';
 export {
   Tooltip,
   TooltipTrigger,
@@ -113,7 +113,7 @@ export {
   type TooltipProps,
   type TooltipTriggerProps,
   type TooltipContentProps
-} from './tooltip';
+} from '../overlay/tooltip';
 export { 
   Section, 
   SectionHeader, 
