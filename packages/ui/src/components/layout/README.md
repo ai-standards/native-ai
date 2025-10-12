@@ -28,12 +28,19 @@ Complete layout systems for full application structure and navigation.
 Complete application layout with navigation, sidebars, console, and content areas. Full-featured layout system.
 [View Documentation](./layout/README.md)
 
-## Planned Components
+### Flex
+Flexible container with comprehensive flexbox controls. Perfect for navigation bars, card layouts, and complex alignments.
+[View Documentation](./flex/README.md)
 
-### Container Components
-- **Flex** - Flexbox layout utilities and components
-- **Stack** - Vertical and horizontal stacking components
-- **Spacer** - Flexible spacing component for layouts
+### Stack  
+Simplified stacking component for vertical and horizontal layouts with optional dividers. Ideal for form layouts and content organization.
+[View Documentation](./stack/README.md)
+
+### Spacer
+Flexible spacing component for consistent whitespace and space distribution. Essential for precise layout control.
+[View Documentation](./spacer/README.md)
+
+## Planned Components
 
 ### Panel & Surface Components
 - **Panel** - Collapsible content panels

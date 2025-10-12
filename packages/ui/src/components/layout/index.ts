@@ -12,6 +12,18 @@ export {
   Container,
   type ContainerProps
 } from './container';
+export {
+  Flex,
+  type FlexProps
+} from './flex';
+export {
+  Stack,
+  type StackProps
+} from './stack';
+export {
+  Spacer,
+  type SpacerProps
+} from './spacer';
 export { 
   Section, 
   SectionHeader, 
