@@ -112,7 +112,7 @@ describe('ArticleHeader', () => {
     bio: 'Senior Developer'
   };
 
-  const mockDate = new Date('2024-01-15');
+  const mockDate = new Date('2024-01-15T12:00:00.000Z'); // Use noon UTC to avoid timezone issues
 
   it('renders title correctly', () => {
     render(
@@ -169,7 +169,7 @@ describe('ArticleHeader', () => {
 
     const timeElement = screen.getByText('January 15, 2024');
     expect(timeElement.tagName).toBe('TIME');
-    expect(timeElement).toHaveAttribute('datetime', '2024-01-15T00:00:00.000Z');
+    expect(timeElement).toHaveAttribute('datetime', '2024-01-15T12:00:00.000Z');
   });
 
   it('renders tags as styled badges', () => {
@@ -362,7 +362,7 @@ describe('ArticleFooter', () => {
 
 describe('Article Components Integration', () => {
   it('renders complete article structure', () => {
-    const mockDate = new Date('2024-01-15');
+    const mockDate = new Date('2024-01-15T12:00:00.000Z'); // Use noon UTC to avoid timezone issues
     const mockAuthor = {
       name: 'Jane Smith',
       avatar: 'https://example.com/jane.jpg',
