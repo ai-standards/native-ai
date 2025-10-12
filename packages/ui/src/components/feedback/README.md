@@ -70,19 +70,6 @@ A temporary, non-blocking notification component for transient messages or statu
 
 ---
 
-## 🏷 Badge
-A compact status indicator or label often used to highlight counts, statuses, or categories.
-
-**Features:**  
-- Color and shape variants  
-- Inline and standalone display  
-- Number or text support  
-- High-contrast accessible styling  
-
-**Documentation:** [Badge README](./badge/README.md)
-
----
-
 ## 🧭 Design Principles
 
 - **Non-blocking:** Feedback should inform users without stopping interaction.  

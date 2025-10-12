@@ -15,3 +15,6 @@ export * from './media';
 
 // Overlay Components
 export * from './overlay';
+
+// Feedback Components
+export * from './feedback';

@@ -56,7 +56,7 @@ Hierarchical navigation component displaying the current page’s location withi
 **Features:** Hierarchical links, separators, truncation options, keyboard navigation, ARIA landmarks  
 **Documentation:** [Breadcrumb README](./breadcrumb/README.md)
 
-### LinkTree
+### TOC
 Tree-style navigation structure for exploring nested content hierarchies.
 
 **Features:** Expand/collapse nodes, keyboard navigation, icon support, async data loading, nested routing integration  
