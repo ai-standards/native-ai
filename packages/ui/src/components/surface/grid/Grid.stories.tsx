@@ -65,16 +65,14 @@ export const Default: Story = {
   args: {
     cols: 3,
     gap: 'md',
-    children: (
-      <>
-        <DemoItem>Item 1</DemoItem>
-        <DemoItem>Item 2</DemoItem>
-        <DemoItem>Item 3</DemoItem>
-        <DemoItem>Item 4</DemoItem>
-        <DemoItem>Item 5</DemoItem>
-        <DemoItem>Item 6</DemoItem>
-      </>
-    ),
+    children: [
+      <DemoItem key="1">Item 1</DemoItem>,
+      <DemoItem key="2">Item 2</DemoItem>,
+      <DemoItem key="3">Item 3</DemoItem>,
+      <DemoItem key="4">Item 4</DemoItem>,
+      <DemoItem key="5">Item 5</DemoItem>,
+      <DemoItem key="6">Item 6</DemoItem>,
+    ],
   },
 };
 
@@ -119,16 +117,12 @@ export const Responsive: Story = {
   args: {
     responsive: true,
     gap: 'lg',
-    children: (
-      <>
-        {Array.from({ length: 8 }, (_, i) => (
-          <DemoItem key={i}>
-            <div className="text-sm font-medium">Item {i + 1}</div>
-            <div className="text-xs text-gray-600 mt-1">Responsive</div>
-          </DemoItem>
-        ))}
-      </>
-    ),
+    children: Array.from({ length: 8 }, (_, i) => (
+      <DemoItem key={i}>
+        <div className="text-sm font-medium">Item {i + 1}</div>
+        <div className="text-xs text-gray-600 mt-1">Responsive</div>
+      </DemoItem>
+    )),
   },
 };
 

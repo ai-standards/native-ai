@@ -1,21 +1,54 @@
 {
   "name": "@nativeai/ui",
-  "version": "0.9.0",
+  "version": "0.9.1",
   "type": "module",
   "description": "A comprehensive React UI component library with VS Code-inspired design patterns",
-  "main": "dist/index.js",
-  "module": "dist/index.esm.js",
-  "types": "dist/index.d.ts",
+
   "files": [
     "dist",
     "README.md",
     "LICENSE"
   ],
   "exports": {
-    ".": {
-      "import": "./dist/index.esm.js",
-      "require": "./dist/index.js",
-      "types": "./dist/index.d.ts"
+    "./content": {
+      "import": "./dist/esm/content.js",
+      "require": "./dist/content.js",
+      "types": "./dist/content.d.ts"
+    },
+    "./form": {
+      "import": "./dist/esm/form.js",
+      "require": "./dist/form.js",
+      "types": "./dist/form.d.ts"
+    },
+    "./surface": {
+      "import": "./dist/esm/surface.js",
+      "require": "./dist/surface.js",
+      "types": "./dist/surface.d.ts"
+    },
+    "./navigation": {
+      "import": "./dist/esm/navigation.js",
+      "require": "./dist/navigation.js",
+      "types": "./dist/navigation.d.ts"
+    },
+    "./media": {
+      "import": "./dist/esm/media.js",
+      "require": "./dist/media.js",
+      "types": "./dist/media.d.ts"
+    },
+    "./overlay": {
+      "import": "./dist/esm/overlay.js",
+      "require": "./dist/overlay.js",
+      "types": "./dist/overlay.d.ts"
+    },
+    "./feedback": {
+      "import": "./dist/esm/feedback.js",
+      "require": "./dist/feedback.js",
+      "types": "./dist/feedback.d.ts"
+    },
+    "./hooks": {
+      "import": "./dist/esm/hooks.js",
+      "require": "./dist/hooks.js",
+      "types": "./dist/hooks.d.ts"
     },
     "./styles": "./dist/styles.css"
   },

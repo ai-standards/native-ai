@@ -13,22 +13,36 @@ const external = [
   'react/jsx-runtime'
 ];
 
+// Define entry points using existing index files
+const entryPoints = {
+  content: 'src/components/content/index.ts',
+  form: 'src/components/form/index.ts',
+  surface: 'src/components/surface/index.ts',
+  navigation: 'src/components/navigation/index.ts',
+  media: 'src/components/media/index.ts',
+  overlay: 'src/components/overlay/index.ts',
+  feedback: 'src/components/feedback/index.ts',
+  hooks: 'src/hooks/index.ts'
+};
+
 export default [
   // Main build
   {
-    input: 'src/index.ts',
+    input: entryPoints,
     output: [
       {
-        file: pkg.main,
+        dir: 'dist',
         format: 'cjs',
         exports: 'named',
         sourcemap: true,
+        entryFileNames: '[name].js',
       },
       {
-        file: pkg.module,
+        dir: 'dist/esm',
         format: 'esm',
         exports: 'named',
         sourcemap: true,
+        entryFileNames: '[name].js',
       },
     ],
     external,
@@ -40,6 +54,7 @@ export default [
       typescript({
         tsconfig: './tsconfig.json',
         declaration: false,
+        outDir: undefined,
       }),
       postcss({
         extract: 'styles.css',
@@ -50,10 +65,11 @@ export default [
   },
   // Type declarations
   {
-    input: 'src/index.ts',
+    input: entryPoints,
     output: {
-      file: pkg.types,
+      dir: 'dist',
       format: 'es',
+      entryFileNames: '[name].d.ts',
     },
     external,
     plugins: [

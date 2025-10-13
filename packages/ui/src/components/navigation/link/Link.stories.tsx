@@ -1,9 +1,9 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { NavNavLink } from './NavLink';
+import { Link } from './Link';
 
-const meta: Meta<typeof NavLink> = {
-  title: 'Navigation/NavLink',
-  component: NavLink,
+const meta: Meta<typeof Link> = {
+  title: 'Navigation/Link',
+  component: Link,
   parameters: {
     layout: 'centered',
   },
@@ -16,7 +16,7 @@ type Story = StoryObj<typeof meta>;
 export const Default: Story = {
   args: {
     href: '#',
-    children: 'Default NavLink',
+    children: 'Default Link',
   },
 };
 
@@ -24,11 +24,11 @@ export const Variants: Story = {
   render: () => (
     <div className="space-y-4">
       <div className="space-x-4">
-        <NavLink href="#" variant="default">Default</NavLink>
-        <NavLink href="#" variant="primary">Primary</NavLink>
-        <NavLink href="#" variant="secondary">Secondary</NavLink>
-        <NavLink href="#" variant="muted">Muted</NavLink>
-        <NavLink href="#" variant="destructive">Destructive</NavLink>
+        <Link href="#" variant="default">Default</Link>
+        <Link href="#" variant="primary">Primary</Link>
+        <Link href="#" variant="secondary">Secondary</Link>
+        <Link href="#" variant="muted">Muted</Link>
+        <Link href="#" variant="destructive">Destructive</Link>
       </div>
     </div>
   ),
@@ -37,9 +37,9 @@ export const Variants: Story = {
 export const Sizes: Story = {
   render: () => (
     <div className="space-x-4">
-      <NavLink href="#" size="sm">Small NavLink</NavLink>
-      <NavLink href="#" size="md">Medium NavLink</NavLink>
-      <NavLink href="#" size="lg">Large NavLink</NavLink>
+      <Link href="#" size="sm">Small Link</Link>
+      <Link href="#" size="md">Medium Link</Link>
+      <Link href="#" size="lg">Large Link</Link>
     </div>
   ),
 };
@@ -47,9 +47,9 @@ export const Sizes: Story = {
 export const UnderlineOptions: Story = {
   render: () => (
     <div className="space-y-4">
-      <div><NavLink href="#" underline="none">No underline</NavLink></div>
-      <div><NavLink href="#" underline="hover">Underline on hover</NavLink></div>
-      <div><NavLink href="#" underline="always">Always underlined</NavLink></div>
+      <div><Link href="#" underline="none">No underline</Link></div>
+      <div><Link href="#" underline="hover">Underline on hover</Link></div>
+      <div><Link href="#" underline="always">Always underlined</Link></div>
     </div>
   ),
 };
@@ -57,20 +57,20 @@ export const UnderlineOptions: Story = {
 export const States: Story = {
   render: () => (
     <div className="space-y-4">
-      <div><NavLink href="#" isActive>Active NavLink</NavLink></div>
-      <div><NavLink href="#" disabled>Disabled NavLink</NavLink></div>
+      <div><Link href="#" isActive>Active Link</Link></div>
+      <div><Link href="#" disabled>Disabled Link</Link></div>
     </div>
   ),
 };
 
-export const ExternalNavLinks: Story = {
+export const ExternalLinks: Story = {
   render: () => (
     <div className="space-y-4">
-      <div><NavLink href="https://example.com">Automatic external</NavLink></div>
-      <div><NavLink href="#" external>Manually external</NavLink></div>
-      <div><NavLink href="https://example.com" showExternalIcon={false}>No icon</NavLink></div>
-      <div><NavLink href="mailto:test@example.com">Email link</NavLink></div>
-      <div><NavLink href="tel:+1234567890">Phone link</NavLink></div>
+      <div><Link href="https://example.com">Automatic external</Link></div>
+      <div><Link href="#" external>Manually external</Link></div>
+      <div><Link href="https://example.com" showExternalIcon={false}>No icon</Link></div>
+      <div><Link href="mailto:test@example.com">Email link</Link></div>
+      <div><Link href="tel:+1234567890">Phone link</Link></div>
     </div>
   ),
 };
@@ -78,8 +78,8 @@ export const ExternalNavLinks: Story = {
 export const InText: Story = {
   render: () => (
     <p className="text-gray-700">
-      This is a paragraph with a <NavLink href="#">link in the middle</NavLink> of the text.
-      You can also have <NavLink href="https://example.com">external links</NavLink> that 
+      This is a paragraph with a <Link href="#">link in the middle</Link> of the text.
+      You can also have <Link href="https://example.com">external links</Link> that 
       open in new tabs.
     </p>
   ),

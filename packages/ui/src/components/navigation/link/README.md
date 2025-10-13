@@ -1,6 +1,6 @@
-# NavLink Component
+# Link Component
 
-Enhanced navigation link component with active state management, external link detection, and comprehensive accessibility features.
+Enhanced link component with active state management, external link detection, and comprehensive accessibility features.
 
 ## Features
 
@@ -15,35 +15,35 @@ Enhanced navigation link component with active state management, external link d
 ## Usage
 
 ```tsx
-import { NavLink } from '@/components/navigation/link';
+import { Link } from '@/components/navigation/link';
 
 // Basic usage
-<NavLink href="/about">About Page</NavLink>
+<Link href="/about">About Page</Link>
 
 // External link (auto-detected)
-<NavLink href="https://example.com">External Site</NavLink>
+<Link href="https://example.com">External Site</Link>
 
 // With variants
-<NavLink href="/docs" variant="primary">Documentation</NavLink>
-<NavLink href="/help" variant="secondary">Help</NavLink>
+<Link href="/docs" variant="primary">Documentation</Link>
+<Link href="/help" variant="secondary">Help</Link>
 
 // Active state
-<NavLink href="/current-page" isActive>Current Page</NavLink>
+<Link href="/current-page" isActive>Current Page</Link>
 
 // Custom styling
-<NavLink 
+<Link 
   href="/profile" 
   size="lg"
   underline="always"
   variant="primary"
 >
   User Profile
-</NavLink>
+</Link>
 
 // Disabled
-<NavLink href="/unavailable" disabled>
+<Link href="/unavailable" disabled>
   Coming Soon
-</NavLink>
+</Link>
 ```
 
 ## Props

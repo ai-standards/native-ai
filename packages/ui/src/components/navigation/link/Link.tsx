@@ -1,7 +1,7 @@
 import React from 'react';
 import { cn } from '@/utils/cn';
 
-export interface NavLinkProps extends React.AnchorHTMLAttributes<HTMLAnchorElement> {
+export interface LinkProps extends React.AnchorHTMLAttributes<HTMLAnchorElement> {
   /** Visual variant */
   variant?: 'default' | 'primary' | 'secondary' | 'muted' | 'destructive';
   /** Size variant */
@@ -55,7 +55,7 @@ const ExternalIcon = () => (
   </svg>
 );
 
-export const NavLink: React.FC<NavLinkProps> = ({
+export const Link: React.FC<LinkProps> = ({
   variant = 'default',
   size = 'md',
   isActive = false,
