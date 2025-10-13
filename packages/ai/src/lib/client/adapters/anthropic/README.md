@@ -38,20 +38,22 @@ Or add it to your `.env` file:
 ANTHROPIC_API_KEY=sk-ant-your-api-key-here
 ```
 
-### 3. Usage
+## Usage
+
+### Recommended: Using clientFactory
+
+The `clientFactory` provides a unified interface with secure key storage, consistent error handling, and cross-provider compatibility:
 
 ```typescript
-import { NativeAI } from '@native-ai/client';
-import { AnthropicAdapter } from '@native-ai/client/adapters/anthropic';
+import { clientFactory, NativeAiProvider } from '@native-ai/ai';
 
-// Using environment variable
-const ai = new NativeAI(new AnthropicAdapter());
-
-// Or passing API key directly
-const ai = new NativeAI(new AnthropicAdapter('sk-ant-your-api-key-here'));
+const client = await clientFactory({
+  provider: NativeAiProvider.anthropic,
+  apiKey: 'sk-ant-your-anthropic-api-key' // Optional if using env variable
+});
 
 // Text completion
-const response = await ai.getText({
+const response = await client.getText({
   prompt: "Explain quantum computing in simple terms",
   model: "claude-3-5-sonnet-20241022", // Optional, defaults to claude-3-5-sonnet-20241022
   maxTokens: 1000,
@@ -59,7 +61,7 @@ const response = await ai.getText({
 });
 
 // Chat
-const chatResponse = await ai.chat({
+const chatResponse = await client.chat({
   messages: [
     { role: 'system', content: 'You are a helpful assistant.' },
     { role: 'user', content: 'What is the capital of France?' }
@@ -68,7 +70,7 @@ const chatResponse = await ai.chat({
 });
 
 // Streaming chat
-for await (const chunk of ai.chatStream({
+for await (const chunk of client.chatStream({
   messages: [
     { role: 'user', content: 'Tell me a story about a robot' }
   ]
@@ -79,7 +81,7 @@ for await (const chunk of ai.chatStream({
 }
 
 // Structured data extraction
-const dataResponse = await ai.getData({
+const dataResponse = await client.getData({
   prompt: "Extract the name, age, and occupation from: John Smith is a 30-year-old software engineer.",
   format: "json",
   schema: {
@@ -88,6 +90,31 @@ const dataResponse = await ai.getData({
     occupation: "string"
   }
 });
+```
+
+### Direct Adapter Usage (Opt-in)
+
+For cases where you need direct control, are building custom abstractions, or prefer minimal dependencies:
+
+```typescript
+import { AnthropicAdapter } from '@native-ai/ai/adapters/anthropic';
+
+// Using environment variable
+const anthropic = new AnthropicAdapter();
+
+// Or passing API key directly
+const anthropic = new AnthropicAdapter('sk-ant-your-api-key-here');
+
+// Same methods available as with clientFactory
+const response = await anthropic.getText({
+  prompt: "Explain quantum computing in simple terms",
+  model: "claude-3-5-sonnet-20241022",
+  maxTokens: 1000,
+  temperature: 0.7
+});
+
+// Access the underlying Anthropic client if needed
+const rawClient = anthropic.raw();
 ```
 
 ## Available Models

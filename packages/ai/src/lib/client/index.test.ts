@@ -5,6 +5,7 @@ vi.mock('../api-key');
 vi.mock('./adapters/openai');
 vi.mock('./adapters/anthropic');
 vi.mock('./adapters/mistral');
+vi.mock('./adapters/nvidia');
 vi.mock('./ai-client');
 
 import { clientFactory, createAdapter, NativeAiProvider, type NativeAiClientOptions } from './index';
@@ -12,11 +13,13 @@ import { getKey } from '../api-key';
 import { OpenAIAdapter } from './adapters/openai';
 import { AnthropicAdapter } from './adapters/anthropic';
 import { MistralAdapter } from './adapters/mistral';
+import { NvidiaAdapter } from './adapters/nvidia';
 
 const mockGetKey = vi.mocked(getKey);
 const MockOpenAIAdapter = vi.mocked(OpenAIAdapter);
 const MockAnthropicAdapter = vi.mocked(AnthropicAdapter);
 const MockMistralAdapter = vi.mocked(MistralAdapter);
+const MockNvidiaAdapter = vi.mocked(NvidiaAdapter);
 
 describe('Client Factory', () => {
   beforeEach(() => {
@@ -101,16 +104,26 @@ describe('Client Factory', () => {
       expect(MockMistralAdapter).toHaveBeenCalledWith('test-api-key');
     });
 
+    it('should create NVIDIA adapter for nvidia provider', () => {
+      const adapter = createAdapter(NativeAiProvider.nvidia, 'test-api-key');
+
+      expect(adapter).toBeDefined();
+      expect(MockNvidiaAdapter).toHaveBeenCalledWith('test-api-key');
+    });
+
     it('should throw error for unsupported provider', () => {
       expect(() => {
         createAdapter('unsupported' as NativeAiProvider, 'test-api-key');
-      }).toThrow('Unsupported provider: unsupported. Supported providers: openai, anthropic, mistral');
+      }).toThrow('Unsupported provider: unsupported. Supported providers: openai, anthropic, mistral, nvidia');
     });
   });
 
   describe('NativeAiProvider enum', () => {
     it('should have correct enum values', () => {
       expect(NativeAiProvider.openAi).toBe('openai');
+      expect(NativeAiProvider.anthropic).toBe('anthropic');
+      expect(NativeAiProvider.mistral).toBe('mistral');
+      expect(NativeAiProvider.nvidia).toBe('nvidia');
     });
   });
 });

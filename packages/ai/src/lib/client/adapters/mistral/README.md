@@ -24,26 +24,29 @@ This adapter provides integration with Mistral AI's API for the Native AI client
 
 ## Usage
 
-### Basic Text Generation
+### Recommended: Using clientFactory
+
+The `clientFactory` provides a unified interface with secure key storage, consistent error handling, and cross-provider compatibility:
 
 ```typescript
-import { MistralAdapter } from '@nativeai/ai/adapters/mistral';
+import { clientFactory, NativeAiProvider } from '@native-ai/ai';
 
-const adapter = new MistralAdapter('your-api-key');
+const client = await clientFactory({
+  provider: NativeAiProvider.mistral,
+  apiKey: 'your-mistral-api-key' // Optional if using env variable
+});
 
-const response = await adapter.getText({
+// Text generation
+const response = await client.getText({
   prompt: 'Explain quantum computing in simple terms',
   maxTokens: 100,
   temperature: 0.7
 });
 
 console.log(response.text);
-```
 
-### Chat Conversations
-
-```typescript
-const response = await adapter.chat({
+// Chat conversations
+const chatResponse = await client.chat({
   messages: [
     { role: 'system', content: 'You are a helpful assistant.' },
     { role: 'user', content: 'What is the capital of France?' }
@@ -51,13 +54,10 @@ const response = await adapter.chat({
   temperature: 0.8
 });
 
-console.log(response.message.content);
-```
+console.log(chatResponse.message.content);
 
-### Streaming Chat
-
-```typescript
-for await (const chunk of adapter.chatStream({
+// Streaming chat
+for await (const chunk of client.chatStream({
   messages: [
     { role: 'user', content: 'Tell me a story about space exploration' }
   ]
@@ -66,31 +66,36 @@ for await (const chunk of adapter.chatStream({
     process.stdout.write(chunk.delta.content);
   }
 }
-```
 
-### Structured Data Extraction
-
-```typescript
-const response = await adapter.getData({
+// Structured data extraction
+const dataResponse = await client.getData({
   prompt: 'Extract contact information: John Doe, email: john@example.com, phone: 555-1234',
   format: 'json'
 });
 
-console.log(response.data); // { name: "John Doe", email: "john@example.com", phone: "555-1234" }
+console.log(dataResponse.data);
 ```
 
-### Audio Transcription
+### Direct Adapter Usage (Opt-in)
+
+For cases where you need direct control, are building custom abstractions, or prefer minimal dependencies:
 
 ```typescript
-const audioFile = new File([audioBuffer], 'recording.wav', { type: 'audio/wav' });
+import { MistralAdapter } from '@native-ai/ai/adapters/mistral';
 
-const transcription = await adapter.transcribeAudio({
-  audio: audioFile,
-  language: 'en',
-  model: 'mistral-large-latest'
+const mistral = new MistralAdapter('your-api-key');
+
+// Same methods available as with clientFactory
+const response = await mistral.getText({
+  prompt: 'Explain quantum computing in simple terms',
+  maxTokens: 100,
+  temperature: 0.7
 });
 
-console.log(transcription.text);
+console.log(response.text);
+
+// Access the underlying Mistral client if needed
+const rawClient = mistral.raw();
 ```
 
 ## Configuration
