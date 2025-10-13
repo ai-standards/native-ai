@@ -1,11 +1,13 @@
 import { getKey } from "../api-key";
 import { NativeAiAdapter } from "../types/adapter";
 import { OpenAIAdapter } from "./adapters/openai";
+import { AnthropicAdapter } from "./adapters/anthropic";
 import { AiClient } from "./ai-client";
 import { NativeAiClient } from "../types/client";
 
 export enum NativeAiProvider {
-    openAi = 'openai'
+    openAi = 'openai',
+    anthropic = 'anthropic'
 }
 
 export interface NativeAiClientOptions {

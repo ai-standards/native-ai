@@ -1,5 +1,5 @@
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
-import { OpenAIAdapter } from './openai';
+import { OpenAIAdapter } from './index';
 import OpenAI from 'openai';
 
 // Mock OpenAI

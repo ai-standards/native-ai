@@ -16,6 +16,7 @@
   },
   "scripts": {
     "test": "npm run test --workspaces",
+    "test:run": "npm run test --workspaces --run",
     "build": "npm run build --workspaces",
     "dev": "npm run dev --workspaces"
   },

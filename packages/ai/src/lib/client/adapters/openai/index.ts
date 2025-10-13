@@ -1,5 +1,5 @@
 import OpenAI from 'openai';
-import { NativeAiAdapter } from "../../types/adapter";
+import { NativeAiAdapter } from "../../../types/adapter";
 import { 
   GetTextRequest, 
   GetTextResponse, 
@@ -14,7 +14,7 @@ import {
   GetAudioResponse,
   TranscribeAudioRequest,
   TranscribeAudioResponse
-} from "../../types/client";
+} from "../../../types/client";
 
 const DEFAULT_MODEL = 'gpt-4o-mini';
 
