@@ -8,6 +8,16 @@ export {
   type LinkProps
 } from './typography';
 
+// Import components for Typography namespace
+import { Text, Heading, Link } from './typography';
+
+// Typography namespace for grouped access
+export const Typography = {
+  Text,
+  Heading,
+  Link
+} as const;
+
 // Code
 export {
   Code,

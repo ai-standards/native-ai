@@ -12,7 +12,7 @@ export {
 
 export { Breadcrumb, type BreadcrumbProps, type BreadcrumbItem } from './breadcrumb';
 export { Pagination, type PaginationProps } from './pagination';
-export { NavLink, type NavLinkProps } from './link';
+export { Link as NavLink, type LinkProps as NavLinkProps } from './link';
 export * from './menu';
 export { Stepper, type StepperProps, type StepperStep } from './stepper';
 export { CommandMenu, type CommandMenuProps, type CommandItem } from './commandmenu';
