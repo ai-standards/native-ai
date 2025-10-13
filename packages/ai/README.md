@@ -1,11 +1,80 @@
 # Native AI Client
 
-A unified TypeScript/JavaScript client library for AI services with support for multiple providers. Currently supports OpenAI with a clean, extensible adapter pattern.
+A unified TypeScript/JavaScript client library for AI services with support for multiple providers. Currently supports OpenAI, Anthropic, Mistral, and NVIDIA with a clean, extensible adapter pattern.
 
 ## Installation
 
 ```bash
 npm install @ai-standards/ai
+```
+
+## Supported Providers
+
+The library supports multiple AI providers through a unified interface:
+
+| Provider | Models | Features |
+|----------|--------|----------|
+| **OpenAI** | GPT-4o, GPT-4, GPT-3.5, DALL-E, Whisper | Chat, Text, Images, Audio, Transcription |
+| **Anthropic** | Claude 3.5 Sonnet, Claude 3 Opus/Haiku | Chat, Text generation |
+| **Mistral** | Mistral Large, Codestral, Mixtral | Chat, Text, Code generation |
+| **NVIDIA** | 100+ models (Llama, Phi, Qwen, etc.) | Chat, Text, Code generation |
+
+### Provider Examples
+
+```typescript
+import { clientFactory, NativeAiProvider } from '@ai-standards/ai';
+```
+
+**OpenAI:**
+```typescript
+const client = await clientFactory({
+  provider: NativeAiProvider.openAi,
+  apiKey: 'your-openai-key'
+});
+```
+
+**Anthropic:**
+```typescript
+const client = await clientFactory({
+  provider: NativeAiProvider.anthropic,
+  apiKey: 'your-anthropic-key'
+});
+```
+
+**Mistral:**
+```typescript
+const client = await clientFactory({
+  provider: NativeAiProvider.mistral,
+  apiKey: 'your-mistral-key'
+});
+```
+
+**NVIDIA:**
+```typescript
+const client = await clientFactory({
+  provider: NativeAiProvider.nvidia,
+  apiKey: 'your-nvidia-key'
+});
+
+// Use specific NVIDIA models
+const response = await client.chat({
+  model: 'nvidia/llama-3.1-nemotron-70b-instruct', // Default
+  // or: 'meta/llama-3.1-405b-instruct'
+  // or: 'microsoft/phi-4-mini-instruct'
+  // or: 'deepseek-ai/deepseek-r1'
+  messages: [{ role: 'user', content: 'Hello!' }]
+});
+```
+
+### Environment Variables
+
+Each provider supports environment variables for API keys:
+
+```bash
+export OPENAI_API_KEY="your-openai-key"
+export ANTHROPIC_API_KEY="your-anthropic-key" 
+export MISTRAL_API_KEY="your-mistral-key"
+export NVIDIA_API_KEY="your-nvidia-key"
 ```
 
 ## Quick Start
@@ -15,17 +84,25 @@ npm install @ai-standards/ai
 ```typescript
 import { setKey } from '@ai-standards/ai';
 
-// Store your OpenAI API key (one-time setup)
+// Store your API key (one-time setup)
 await setKey('your-openai-api-key', 'openai');
+// or: await setKey('your-nvidia-key', 'nvidia');
+// or: await setKey('your-anthropic-key', 'anthropic');
+// or: await setKey('your-mistral-key', 'mistral');
 ```
 
 ### 2. Create and use the client
 
 ```typescript
-import { clientFactory } from '@ai-standards/ai';
+import { clientFactory, NativeAiProvider } from '@ai-standards/ai';
 
-// Client automatically uses your stored API key
+// Client automatically uses your stored API key (defaults to OpenAI)
 const client = await clientFactory();
+
+// Or specify a provider
+const nvidiaClient = await clientFactory({
+  provider: NativeAiProvider.nvidia
+});
 
 // Start using AI features immediately
 const response = await client.getText({
@@ -39,16 +116,20 @@ console.log(response.text);
 **Manual API Key (not recommended for production):**
 ```typescript
 const client = await clientFactory({
-  apiKey: 'your-openai-api-key'
+  provider: NativeAiProvider.nvidia,
+  apiKey: 'your-nvidia-api-key'
 });
 ```
 
 **Environment Variable:**
 ```bash
-export OPENAI_API_KEY="your-openai-api-key"
+export NVIDIA_API_KEY="your-nvidia-api-key"
+# or: export OPENAI_API_KEY="your-openai-api-key"
 ```
 ```typescript
-const client = await clientFactory(); // Uses environment variable
+const client = await clientFactory({
+  provider: NativeAiProvider.nvidia
+}); // Uses environment variable
 ```
 
 ## Secure API Key Storage
@@ -184,6 +265,46 @@ for await (const chunk of stream) {
 { delta: { content: " is like" }, model: "gpt-4o-mini" }
 // ... more chunks
 { delta: { content: "" }, model: "gpt-4o-mini", finishReason: "stop" }
+```
+
+#### NVIDIA Model Examples
+
+NVIDIA provides access to 100+ models through their API. Here are some popular choices:
+
+```typescript
+// Using NVIDIA's flagship model
+const client = await clientFactory({
+  provider: NativeAiProvider.nvidia
+});
+
+const response = await client.chat({
+  model: 'nvidia/llama-3.1-nemotron-70b-instruct', // Default NVIDIA model
+  messages: [{ role: 'user', content: 'Explain machine learning' }]
+});
+
+// Using Meta's Llama models via NVIDIA
+const llamaResponse = await client.chat({
+  model: 'meta/llama-3.1-405b-instruct', // Largest Llama model
+  messages: [{ role: 'user', content: 'Write a Python function' }]
+});
+
+// Using Microsoft's Phi models for efficient inference
+const phiResponse = await client.chat({
+  model: 'microsoft/phi-4-mini-instruct', // Fast and efficient
+  messages: [{ role: 'user', content: 'Summarize this article' }]
+});
+
+// Using DeepSeek for reasoning tasks
+const reasoningResponse = await client.chat({
+  model: 'deepseek-ai/deepseek-r1', // Advanced reasoning model
+  messages: [{ role: 'user', content: 'Solve this logic puzzle' }]
+});
+
+// Using Qwen for thinking/chain-of-thought
+const thinkingResponse = await client.chat({
+  model: 'qwen/qwen3-next-80b-a3b-thinking', // Shows reasoning process
+  messages: [{ role: 'user', content: 'Analyze this complex problem' }]
+});
 ```
 
 ### 4. Structured Data Extraction (`getData`)

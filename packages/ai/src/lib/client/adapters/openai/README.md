@@ -38,20 +38,22 @@ Or add it to your `.env` file:
 OPENAI_API_KEY=sk-your-api-key-here
 ```
 
-### 3. Usage
+## Usage
+
+### Recommended: Using clientFactory
+
+The `clientFactory` provides a unified interface with secure key storage, consistent error handling, and cross-provider compatibility:
 
 ```typescript
-import { NativeAI } from '@native-ai/client';
-import { OpenAIAdapter } from '@native-ai/client/adapters/openai';
+import { clientFactory, NativeAiProvider } from '@native-ai/ai';
 
-// Using environment variable
-const ai = new NativeAI(new OpenAIAdapter());
-
-// Or passing API key directly
-const ai = new NativeAI(new OpenAIAdapter('sk-your-api-key-here'));
+const client = await clientFactory({
+  provider: NativeAiProvider.openAi,
+  apiKey: 'sk-your-openai-api-key' // Optional if using env variable
+});
 
 // Text completion
-const response = await ai.getText({
+const response = await client.getText({
   prompt: "Explain quantum computing in simple terms",
   model: "gpt-4o-mini", // Optional, defaults to gpt-4o-mini
   maxTokens: 1000,
@@ -59,7 +61,7 @@ const response = await ai.getText({
 });
 
 // Chat with conversation history
-const chatResponse = await ai.chat({
+const chatResponse = await client.chat({
   messages: [
     { role: 'system', content: 'You are a helpful assistant.' },
     { role: 'user', content: 'What is the capital of France?' }
@@ -68,7 +70,7 @@ const chatResponse = await ai.chat({
 });
 
 // Streaming chat
-for await (const chunk of ai.chatStream({
+for await (const chunk of client.chatStream({
   messages: [
     { role: 'user', content: 'Tell me a story about a robot' }
   ]
@@ -79,7 +81,7 @@ for await (const chunk of ai.chatStream({
 }
 
 // Structured data extraction
-const dataResponse = await ai.getData({
+const dataResponse = await client.getData({
   prompt: "Extract the name, age, and occupation from: John Smith is a 30-year-old software engineer.",
   format: "json",
   schema: {
@@ -90,7 +92,7 @@ const dataResponse = await ai.getData({
 });
 
 // Image generation
-const imageResponse = await ai.getImage({
+const imageResponse = await client.getImage({
   prompt: "A futuristic city with flying cars",
   model: "dall-e-3",
   size: "1024x1024",
@@ -99,18 +101,43 @@ const imageResponse = await ai.getImage({
 });
 
 // Text-to-speech
-const audioResponse = await ai.getAudio({
+const audioResponse = await client.getAudio({
   input: "Hello, this is a test of OpenAI's text-to-speech.",
   model: "tts-1",
   voice: "alloy"
 });
 
 // Audio transcription
-const transcription = await ai.transcribeAudio({
+const transcription = await client.transcribeAudio({
   file: audioFile, // File, Blob, or ArrayBuffer
   model: "whisper-1",
   language: "en"
 });
+```
+
+### Direct Adapter Usage (Opt-in)
+
+For cases where you need direct control, are building custom abstractions, or prefer minimal dependencies:
+
+```typescript
+import { OpenAIAdapter } from '@native-ai/ai/adapters/openai';
+
+// Using environment variable
+const openai = new OpenAIAdapter();
+
+// Or passing API key directly
+const openai = new OpenAIAdapter('sk-your-api-key-here');
+
+// Same methods available as with clientFactory
+const response = await openai.getText({
+  prompt: "Explain quantum computing in simple terms",
+  model: "gpt-4o-mini",
+  maxTokens: 1000,
+  temperature: 0.7
+});
+
+// Access the underlying OpenAI client if needed
+const rawClient = openai.raw();
 ```
 
 ## Available Models

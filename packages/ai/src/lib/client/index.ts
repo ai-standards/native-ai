@@ -3,13 +3,15 @@ import { NativeAiAdapter } from "../types/adapter";
 import { OpenAIAdapter } from "./adapters/openai";
 import { AnthropicAdapter } from "./adapters/anthropic";
 import { MistralAdapter } from "./adapters/mistral";
+import { NvidiaAdapter } from "./adapters/nvidia";
 import { AiClient } from "./ai-client";
 import { NativeAiClient } from "../types/client";
 
 export enum NativeAiProvider {
     openAi = 'openai',
     anthropic = 'anthropic',
-    mistral = 'mistral'
+    mistral = 'mistral',
+    nvidia = 'nvidia'
 }
 
 export interface NativeAiClientOptions {
@@ -41,7 +43,9 @@ export function createAdapter(provider: NativeAiProvider, apiKey: string): Nativ
             return new AnthropicAdapter(apiKey);
         case NativeAiProvider.mistral:
             return new MistralAdapter(apiKey);
+        case NativeAiProvider.nvidia:
+            return new NvidiaAdapter(apiKey);
         default:
-            throw new Error(`Unsupported provider: ${provider}. Supported providers: openai, anthropic, mistral`);
+            throw new Error(`Unsupported provider: ${provider}. Supported providers: openai, anthropic, mistral, nvidia`);
     }
 }
