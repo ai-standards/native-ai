@@ -4,3 +4,4 @@ export * from './lib/types/client';
 export {NativeAiProvider, NativeAiClientOptions, clientFactory} from './lib/client';
 export * from './lib/api-key';
 export * from './lib/client/adapters';
+export * from './lib/queue';
