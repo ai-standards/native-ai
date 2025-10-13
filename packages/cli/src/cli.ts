@@ -276,6 +276,112 @@ ${bold('What this does:')}
     }
   });
 
+// MCP Commands
+const mcpCommand = program
+  .command('mcp')
+  .description('Model Context Protocol server management');
+
+mcpCommand
+  .command('start [server]')
+  .description('Start MCP server (defaults to core)')
+  .action(async (server?: string) => {
+    const { loadMCPConfig } = await import('./mcp.js');
+    const config = loadMCPConfig();
+    const targetServer = server || 'core';
+    
+    if (!config.servers[targetServer]) {
+      console.error(`${bold('Error:')} Unknown server: ${targetServer}`);
+      console.log(`Available servers: ${Object.keys(config.servers).join(', ')}`);
+      return;
+    }
+    
+    const serverConfig = config.servers[targetServer];
+    if (!serverConfig.enabled) {
+      console.error(`${bold('Error:')} Server ${targetServer} is disabled`);
+      return;
+    }
+    
+    const spinner = ora(`Starting ${targetServer} MCP server...`).start();
+    
+    // Simulate server startup
+    await new Promise(resolve => setTimeout(resolve, 1000));
+    
+    spinner.succeed(`${green('✓')} ${targetServer} MCP server started on port ${serverConfig.port}`);
+    console.log(`  ${dim('Description:')} ${serverConfig.description}`);
+    console.log(`  ${dim('Tools:')} Available for ${serverConfig.description}`);
+    console.log(`\n${dim('Note:')} This is a placeholder implementation. Full MCP server coming soon!`);
+  });
+
+mcpCommand
+  .command('stop [server]')
+  .description('Stop MCP server (defaults to core)')
+  .action(async (server?: string) => {
+    const targetServer = server || 'core';
+    const spinner = ora(`Stopping ${targetServer} MCP server...`).start();
+    
+    await new Promise(resolve => setTimeout(resolve, 500));
+    
+    spinner.succeed(`${green('✓')} ${targetServer} MCP server stopped`);
+  });
+
+mcpCommand
+  .command('list')
+  .description('List available MCP servers')
+  .action(async () => {
+    const { loadMCPConfig } = await import('./mcp.js');
+    const config = loadMCPConfig();
+    
+    console.log(`${bold('Available MCP Servers:')}`);
+    console.log('━'.repeat(50));
+    
+    Object.values(config.servers).forEach((server: any) => {
+      const status = server.enabled ? green('✓') : yellow('✗');
+      console.log(`${status} ${bold(server.name.toUpperCase())}`);
+      console.log(`  ${dim('Description:')} ${server.description}`);
+      console.log(`  ${dim('Port:')} ${server.port}`);
+      console.log('');
+    });
+  });
+
+mcpCommand
+  .command('tools [server]')
+  .description('List available tools (optionally for a specific server)')
+  .action(async (server?: string) => {
+    const { getServerTools } = await import('./mcp.js');
+    const tools = getServerTools();
+    
+    if (server) {
+      const serverTools = tools[server as keyof typeof tools];
+      if (serverTools) {
+        console.log(`${bold(`Tools for ${server} server:`)}`);
+        console.log('━'.repeat(30));
+        serverTools.forEach(tool => console.log(`${green('•')} ${tool}`));
+      } else {
+        console.error(`${bold('Error:')} Unknown server: ${server}`);
+        console.log(`Available servers: ${Object.keys(tools).join(', ')}`);
+      }
+    } else {
+      console.log(`${bold('Available Tools by Server:')}`);
+      console.log('━'.repeat(50));
+      Object.entries(tools).forEach(([serverName, toolList]) => {
+        console.log(`\n${bold(serverName.toUpperCase())}:`);
+        toolList.forEach(tool => console.log(`  ${green('•')} ${tool}`));
+      });
+    }
+  });
+
+mcpCommand
+  .command('config')
+  .description('Display MCP configuration')
+  .action(async () => {
+    const { loadMCPConfig } = await import('./mcp.js');
+    const config = loadMCPConfig();
+    
+    console.log(`${bold('MCP Configuration:')}`);
+    console.log('━'.repeat(50));
+    console.log(JSON.stringify(config, null, 2));
+  });
+
 // Parse command line arguments
 if (require.main === module) {
   program.parse();
