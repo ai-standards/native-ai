@@ -3,14 +3,20 @@ import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
 // Mock dependencies
 vi.mock('../api-key');
 vi.mock('./adapters/openai');
+vi.mock('./adapters/anthropic');
+vi.mock('./adapters/mistral');
 vi.mock('./ai-client');
 
 import { clientFactory, createAdapter, NativeAiProvider, type NativeAiClientOptions } from './index';
 import { getKey } from '../api-key';
 import { OpenAIAdapter } from './adapters/openai';
+import { AnthropicAdapter } from './adapters/anthropic';
+import { MistralAdapter } from './adapters/mistral';
 
 const mockGetKey = vi.mocked(getKey);
 const MockOpenAIAdapter = vi.mocked(OpenAIAdapter);
+const MockAnthropicAdapter = vi.mocked(AnthropicAdapter);
+const MockMistralAdapter = vi.mocked(MistralAdapter);
 
 describe('Client Factory', () => {
   beforeEach(() => {
@@ -81,10 +87,24 @@ describe('Client Factory', () => {
       expect(MockOpenAIAdapter).toHaveBeenCalledWith('test-api-key');
     });
 
+    it('should create Anthropic adapter for anthropic provider', () => {
+      const adapter = createAdapter(NativeAiProvider.anthropic, 'test-api-key');
+
+      expect(adapter).toBeDefined();
+      expect(MockAnthropicAdapter).toHaveBeenCalledWith('test-api-key');
+    });
+
+    it('should create Mistral adapter for mistral provider', () => {
+      const adapter = createAdapter(NativeAiProvider.mistral, 'test-api-key');
+
+      expect(adapter).toBeDefined();
+      expect(MockMistralAdapter).toHaveBeenCalledWith('test-api-key');
+    });
+
     it('should throw error for unsupported provider', () => {
       expect(() => {
         createAdapter('unsupported' as NativeAiProvider, 'test-api-key');
-      }).toThrow('Unsupported provider: unsupported. Supported providers: openai');
+      }).toThrow('Unsupported provider: unsupported. Supported providers: openai, anthropic, mistral');
     });
   });
 
