@@ -1,5 +1,5 @@
 {
-  "name": "my-test-app",
+  "name": "taskflow",
   "version": "1.0.0",
   "description": "A minimal React + TypeScript + Vite + Electron app for recipes",
   "main": "dist-electron/main.js",
@@ -17,6 +17,8 @@
     "electron:build": "npm run build && electron-builder --publish=never"
   },
   "devDependencies": {
+    "@testing-library/jest-dom": "^6.1.4",
+    "@testing-library/react": "^14.0.0",
     "@types/react": "^18.2.66",
     "@types/react-dom": "^18.2.22",
     "@typescript-eslint/eslint-plugin": "^7.2.0",
@@ -29,20 +31,18 @@
     "eslint": "^8.57.0",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.6",
+    "jsdom": "^22.1.0",
     "postcss": "^8.4.38",
     "tailwindcss": "^3.4.3",
     "typescript": "^5.2.2",
     "vite": "^5.2.0",
     "vite-plugin-electron": "^0.28.6",
     "vitest": "^1.6.0",
-    "@testing-library/react": "^14.0.0",
-    "@testing-library/jest-dom": "^6.1.4",
-    "jsdom": "^22.1.0",
     "wait-on": "^7.2.0"
   },
   "dependencies": {
     "@nativeai/ai": "^0.9.1",
-    "@nativeai/ui": "^0.9.1",
+    "@nativeai/ui": "^0.9.5",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },

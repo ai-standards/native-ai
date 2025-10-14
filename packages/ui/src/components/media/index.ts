@@ -1,4 +1,6 @@
 // Icon components
+export * as IconRegistry from 'react-icons/lu';
+
 export {
   Icon,
   FileIcon,

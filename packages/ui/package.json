@@ -1,8 +1,8 @@
 {
   "name": "@nativeai/ui",
-  "version": "0.9.2",
+  "version": "0.9.5",
   "type": "module",
-  "description": "A comprehensive React UI component library with VS Code-inspired design patterns",
+  "description": "A comprehensive React UI component library for Native OS apps",
 
   "files": [
     "dist",
