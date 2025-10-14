@@ -131,3 +131,104 @@ export const DynamicIcon: React.FC<IconProps & { name: string }> = ({
   
   return <Icon icon={IconComponent} {...props} />;
 };
+
+// SVG Icon props interface
+export interface SvgIconProps extends IconProps {
+  /** SVG path data (e.g., "M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z") */
+  path?: string;
+  /** Raw SVG source code as a string */
+  svg?: string;
+  /** Path to an SVG file (URL or file path) */
+  src?: string;
+  /** Custom viewBox for the SVG (defaults to "0 0 24 24") */
+  viewBox?: string;
+  /** Fill color (defaults to "currentColor") */
+  fill?: string;
+  /** Stroke color */
+  stroke?: string;
+  /** Stroke width */
+  strokeWidth?: number | string;
+  /** Alt text for accessibility when using src */
+  alt?: string;
+}
+
+// SVG Icon component that accepts path, raw SVG, or file source
+export const SvgIcon: React.FC<SvgIconProps> = ({
+  size = 24,
+  className,
+  color = 'currentColor',
+  path,
+  svg,
+  src,
+  viewBox = '0 0 24 24',
+  fill = 'currentColor',
+  stroke,
+  strokeWidth,
+  alt,
+  ...props
+}) => {
+  // If SVG source is provided, render it directly
+  if (svg) {
+    return (
+      <span 
+        className={cn('inline-flex items-center justify-center', className)}
+        style={{ color }}
+        {...props}
+      >
+        <div
+          style={{ width: size, height: size }}
+          dangerouslySetInnerHTML={{ __html: svg }}
+        />
+      </span>
+    );
+  }
+
+  // If src is provided, render as img element
+  if (src) {
+    return (
+      <span 
+        className={cn('inline-flex items-center justify-center', className)}
+        style={{ color }}
+        {...props}
+      >
+        <img
+          src={src}
+          alt={alt || 'SVG icon'}
+          width={size}
+          height={size}
+          style={{ 
+            display: 'block',
+            maxWidth: '100%',
+            maxHeight: '100%'
+          }}
+        />
+      </span>
+    );
+  }
+
+  // If path is provided, render as SVG path
+  if (path) {
+    return (
+      <span 
+        className={cn('inline-flex items-center justify-center', className)}
+        style={{ color }}
+        {...props}
+      >
+        <svg
+          width={size}
+          height={size}
+          viewBox={viewBox}
+          fill={fill}
+          stroke={stroke}
+          strokeWidth={strokeWidth}
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path d={path} />
+        </svg>
+      </span>
+    );
+  }
+
+  console.warn('SvgIcon: Either "path", "svg", or "src" prop must be provided');
+  return null;
+};

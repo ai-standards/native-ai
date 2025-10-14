@@ -1,21 +1,8 @@
 #!/usr/bin/env node
 
 import { Command } from 'commander';
-import inquirer from 'inquirer';
-import ora from 'ora';
 import { blue, green, yellow, cyan, bold, dim } from 'colorette';
-
-interface PackageJson {
-  name: string;
-  version: string;
-  description: string;
-  main: string;
-  scripts: Record<string, string>;
-  keywords: string[];
-  author: string;
-  license: string;
-  dependencies: Record<string, string>;
-}
+import { handleAdd, handleNew } from './commands';
 
 const program = new Command();
 
@@ -101,46 +88,7 @@ ${bold('Available Packages:')}
   ${cyan('utils')}     - Utility functions and helpers
   ${cyan('workspace')} - Workspace management tools
 `)
-  .action(async (packageName: string) => {
-    const availablePackages = ['ui', 'core', 'ai', 'utils', 'workspace'];
-    
-    if (!availablePackages.includes(packageName)) {
-      console.error(`${bold('Error:')} Unknown package: ${yellow(packageName)}`);
-      console.log(`\n${bold('Available packages:')} ${availablePackages.map(p => cyan(p)).join(', ')}`);
-      console.log(`\n${dim('Use')} ${green('nativeai help add')} ${dim('for more information.')}`);
-      return;
-    }
-
-    const spinner = ora(`Installing ${cyan(`@nativeai/${packageName}`)}...`).start();
-    
-    try {
-      const { spawn } = require('child_process');
-      
-      await new Promise<void>((resolve, reject) => {
-        const npmInstall = spawn('npm', ['install', `@nativeai/${packageName}`], {
-          stdio: 'inherit',
-          shell: true
-        });
-
-        npmInstall.on('close', (code: number) => {
-          if (code === 0) {
-            resolve();
-          } else {
-            reject(new Error(`npm install failed with code ${code}`));
-          }
-        });
-
-        npmInstall.on('error', reject);
-      });
-      
-      spinner.succeed(`Successfully installed ${green(`@nativeai/${packageName}`)}!`);
-      console.log(`\n${dim('Package added to your project. You can now import it:')}`);
-      console.log(`${cyan(`import { ... } from '@nativeai/${packageName}';`)}`);
-    } catch (error) {
-      spinner.fail(`Failed to install ${cyan(`@nativeai/${packageName}`)}`);
-      console.error(`${bold('Error:')} ${error}`);
-    }
-  });
+  .action(handleAdd);
 
 program
   .command('new [path]')
@@ -159,122 +107,7 @@ ${bold('What this does:')}
   • Installs chosen native AI packages
   • Sets up basic project structure
 `)
-  .action(async (projectPath?: string) => {
-    const fs = require('fs');
-    const path = require('path');
-    
-    // Use current directory if no path provided
-    const targetPath = projectPath ? path.resolve(projectPath) : process.cwd();
-    const projectName = projectPath ? path.basename(targetPath) : path.basename(process.cwd());
-
-    try {
-      // Create directory if it doesn't exist
-      if (!fs.existsSync(targetPath)) {
-        fs.mkdirSync(targetPath, { recursive: true });
-        console.log(`${green('Created directory:')} ${cyan(targetPath)}`);
-      }
-
-      // Check if package.json already exists
-      const packageJsonPath = path.join(targetPath, 'package.json');
-      if (fs.existsSync(packageJsonPath)) {
-        const { overwrite } = await inquirer.prompt([
-          {
-            type: 'confirm',
-            name: 'overwrite',
-            message: 'package.json already exists. Overwrite?',
-            default: false
-          }
-        ]);
-
-        if (!overwrite) {
-          console.log(`${yellow('Warning:')} Operation cancelled.`);
-          return;
-        }
-      }
-
-      // Prompt for packages to install
-      const { selectedPackages } = await inquirer.prompt([
-        {
-          type: 'checkbox',
-          name: 'selectedPackages',
-          message: 'Select native AI packages to install:',
-          choices: [
-            { name: '@nativeai/core - Core functionality', value: 'core' },
-            { name: '@nativeai/ai - AI engine and models', value: 'ai' },
-            { name: '@nativeai/ui - UI components', value: 'ui' },
-            { name: '@nativeai/utils - Utility functions', value: 'utils' },
-            { name: '@nativeai/workspace - Workspace management', value: 'workspace' }
-          ]
-        }
-      ]);
-
-      // Create package.json
-      const packageJson: PackageJson = {
-        name: projectName,
-        version: '1.0.0',
-        description: 'A native AI project',
-        main: 'index.js',
-        scripts: {
-          test: 'echo "Error: no test specified" && exit 1'
-        },
-        keywords: ['ai', 'native'],
-        author: '',
-        license: 'MIT',
-        dependencies: {}
-      };
-
-      // Add selected packages as dependencies
-      selectedPackages.forEach((pkg: string) => {
-        packageJson.dependencies[`@nativeai/${pkg}`] = '^0.9.1';
-      });
-
-      fs.writeFileSync(packageJsonPath, JSON.stringify(packageJson, null, 2));
-      console.log(`${green('Created')} ${cyan('package.json')} in ${dim(targetPath)}`);
-
-      // Install dependencies if any packages were selected
-      if (selectedPackages.length > 0) {
-        const packageList = selectedPackages.map((p: string) => cyan(p)).join(', ');
-        const spinner = ora(`Installing ${packageList}...`).start();
-        
-        const { spawn } = require('child_process');
-        
-        await new Promise<void>((resolve, reject) => {
-          const npmInstall = spawn('npm', ['install'], {
-            cwd: targetPath,
-            stdio: 'inherit',
-            shell: true
-          });
-
-          npmInstall.on('close', (code: number) => {
-            if (code === 0) {
-              resolve();
-            } else {
-              reject(new Error(`npm install failed with code ${code}`));
-            }
-          });
-
-          npmInstall.on('error', reject);
-        });
-        
-        spinner.succeed(`Successfully installed ${green(selectedPackages.length.toString())} package(s)!`);
-      }
-
-      console.log(`\n${green('Project')} ${bold(cyan(`"${projectName}"`))} created successfully!`);
-      if (projectPath) {
-        console.log(`${dim('Navigate to your project:')} ${yellow(`cd ${projectPath}`)}`);
-      }
-      
-      if (selectedPackages.length > 0) {
-        console.log(`\n${dim('Next steps:')}`);
-        console.log(`  • Start coding with your selected packages`);
-        console.log(`  • Check the documentation at ${blue('https://github.com/ai-standards/nativeai')}`);
-      }
-
-    } catch (error) {
-      console.error(`${bold('Error:')} Failed to create project`);
-      console.error(`${error}`);
-    }
-  });
+  .action(handleNew);
 
 // Parse command line arguments
 if (require.main === module) {

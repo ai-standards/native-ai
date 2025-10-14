@@ -1,0 +1,25 @@
+{
+  "name": "core",
+  "description": "Core Electron + React + TypeScript template with Vite",
+  "files": [
+    "index.html",
+    "package.json",
+    "postcss.config.js",
+    "README.md",
+    "tailwind.config.js",
+    "tsconfig.electron.json",
+    "tsconfig.json",
+    "tsconfig.node.json",
+    "vite.config.ts",
+    "vitest.config.ts",
+    "electron/main.ts",
+    "electron/preload.ts",
+    "electron/util.ts",
+    "src/App.test.tsx",
+    "src/App.tsx",
+    "src/index.css",
+    "src/main.tsx",
+    "src/test-setup.ts",
+    "src/vite-env.d.ts"
+  ]
+}

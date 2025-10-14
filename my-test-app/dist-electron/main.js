@@ -1,11 +1,12 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-var electron_1 = require("electron");
-var path = require("path");
-var util_js_1 = require("./util.js");
+import { app, BrowserWindow } from 'electron';
+import * as path from 'path';
+import { fileURLToPath } from 'url';
+import { isDev } from './util.js';
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 function createWindow() {
     // Create the browser window.
-    var mainWindow = new electron_1.BrowserWindow({
+    const mainWindow = new BrowserWindow({
         height: 600,
         width: 800,
         webPreferences: {
@@ -15,7 +16,7 @@ function createWindow() {
         }
     });
     // Load the app
-    if (util_js_1.isDev) {
+    if (isDev) {
         mainWindow.loadURL('http://localhost:5173');
         mainWindow.webContents.openDevTools();
     }
@@ -24,15 +25,15 @@ function createWindow() {
     }
 }
 // This method will be called when Electron has finished initialization
-electron_1.app.whenReady().then(function () {
+app.whenReady().then(() => {
     createWindow();
-    electron_1.app.on('activate', function () {
-        if (electron_1.BrowserWindow.getAllWindows().length === 0)
+    app.on('activate', function () {
+        if (BrowserWindow.getAllWindows().length === 0)
             createWindow();
     });
 });
 // Quit when all windows are closed, except on macOS
-electron_1.app.on('window-all-closed', function () {
+app.on('window-all-closed', () => {
     if (process.platform !== 'darwin')
-        electron_1.app.quit();
+        app.quit();
 });

@@ -2,6 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { 
   Icon,
   DynamicIcon,
+  SvgIcon,
   registerIcon,
   registerIcons,
   FileIcon, 
@@ -293,6 +294,144 @@ export const RuntimeRegistration: Story = {
         <code className="text-xs bg-gray-100 px-2 py-1 rounded">
           registerIcon('custom-example', BiRocket)
         </code>
+      </div>
+    );
+  },
+};
+
+// SvgIcon Examples - Adding to existing Icon stories
+export const SvgWithPath: Story = {
+  render: () => {
+    const starPath = "M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z";
+    
+    return (
+      <div className="flex flex-col items-center space-y-4">
+        <h3 className="text-lg font-semibold">SvgIcon with Path Data</h3>
+        <div className="flex items-center space-x-4">
+          <SvgIcon path={starPath} size={24} fill="gold" />
+          <SvgIcon path={starPath} size={32} fill="#3b82f6" />
+          <SvgIcon path={starPath} size={40} fill="#ef4444" />
+        </div>
+        <p className="text-sm text-gray-600 max-w-md text-center">
+          SVG rendered using path data - perfect for simple single-path icons.
+        </p>
+      </div>
+    );
+  },
+};
+
+export const SvgWithSource: Story = {
+  render: () => {
+    const clockSvg = '<svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="10" stroke="#3b82f6" stroke-width="2" fill="none"/><path d="M12 6v6l4 2" stroke="#3b82f6" stroke-width="2"/></svg>';
+    const heartSvg = '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" fill="#ef4444"/></svg>';
+    
+    return (
+      <div className="flex flex-col items-center space-y-4">
+        <h3 className="text-lg font-semibold">SvgIcon with Raw SVG Source</h3>
+        <div className="flex items-center space-x-6">
+          <div className="text-center">
+            <SvgIcon svg={clockSvg} size={32} />
+            <p className="text-xs mt-2">Clock</p>
+          </div>
+          <div className="text-center">
+            <SvgIcon svg={heartSvg} size={32} />
+            <p className="text-xs mt-2">Heart</p>
+          </div>
+        </div>
+        <p className="text-sm text-gray-600 max-w-md text-center">
+          SVG rendered from complete markup - supports complex multi-element graphics.
+        </p>
+      </div>
+    );
+  },
+};
+
+export const SvgWithFile: Story = {
+  render: () => {
+    // Using data URIs as examples since we don't have actual SVG files in Storybook
+    const plusIconDataUri = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23ef4444'%3E%3Cpath d='M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm5 11h-4v4h-2v-4H7v-2h4V7h2v4h4v2z'/%3E%3C/svg%3E";
+    
+    return (
+      <div className="flex flex-col items-center space-y-4">
+        <h3 className="text-lg font-semibold">SvgIcon with File Source</h3>
+        <div className="flex items-center space-x-4">
+          <SvgIcon src={plusIconDataUri} size={32} alt="Plus icon" />
+          <SvgIcon src={plusIconDataUri} size={40} alt="Plus icon" />
+        </div>
+        <p className="text-sm text-gray-600 max-w-md text-center">
+          SVG loaded from file path or URL. In practice, you'd use: <code>src="/assets/icon.svg"</code>
+        </p>
+      </div>
+    );
+  },
+};
+
+export const SvgWithStroke: Story = {
+  render: () => {
+    const plusPath = "M12 5v14m-7-7h14";
+    const circlePath = "M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z";
+    
+    return (
+      <div className="flex flex-col items-center space-y-4">
+        <h3 className="text-lg font-semibold">SvgIcon with Stroke Styling</h3>
+        <div className="flex items-center space-x-6">
+          <div className="text-center">
+            <SvgIcon 
+              path={plusPath}
+              size={32}
+              fill="none"
+              stroke="#10b981"
+              strokeWidth={2}
+              viewBox="0 0 24 24"
+            />
+            <p className="text-xs mt-2">Plus</p>
+          </div>
+          <div className="text-center">
+            <SvgIcon 
+              path={circlePath}
+              size={32}
+              fill="none"
+              stroke="#3b82f6"
+              strokeWidth={2}
+              viewBox="0 0 24 24"
+            />
+            <p className="text-xs mt-2">Circle</p>
+          </div>
+        </div>
+        <p className="text-sm text-gray-600 max-w-md text-center">
+          SVG icons with stroke styling - perfect for outline-style graphics.
+        </p>
+      </div>
+    );
+  },
+};
+
+export const SvgAllMethods: Story = {
+  render: () => {
+    const starPath = "M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z";
+    const heartSvg = '<svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" fill="#ef4444"/></svg>';
+    const dataUri = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M9 12l2 2 4-4' stroke='%2310b981' stroke-width='2' fill='none'/%3E%3C/svg%3E";
+    
+    return (
+      <div className="flex flex-col items-center space-y-4">
+        <h3 className="text-lg font-semibold">All SvgIcon Methods</h3>
+        <div className="flex items-center space-x-8">
+          <div className="text-center">
+            <SvgIcon path={starPath} size={32} fill="gold" />
+            <p className="text-xs mt-2 font-medium">Path Data</p>
+          </div>
+          <div className="text-center">
+            <SvgIcon svg={heartSvg} size={32} />
+            <p className="text-xs mt-2 font-medium">SVG Source</p>
+          </div>
+          <div className="text-center">
+            <SvgIcon src={dataUri} size={32} alt="Check" />
+            <p className="text-xs mt-2 font-medium">File Source</p>
+          </div>
+        </div>
+        <p className="text-sm text-gray-600 max-w-md text-center">
+          Comparison of all three SvgIcon methods: path data, raw SVG, and file source.
+        </p>
       </div>
     );
   },
