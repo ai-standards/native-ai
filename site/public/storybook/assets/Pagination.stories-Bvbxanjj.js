@@ -1,0 +1,60 @@
+import{j as a}from"./jsx-dev-runtime-YqEzVWbi.js";import{r as pe}from"./index-DHZDe_v1.js";import{c as u}from"./cn-BaF2GUMg.js";import"./_commonjsHelpers-BosuxZz1.js";const ge=a.jsxDEV("svg",{className:"w-4 h-4",fill:"none",stroke:"currentColor",viewBox:"0 0 24 24",children:a.jsxDEV("path",{strokeLinecap:"round",strokeLinejoin:"round",strokeWidth:2,d:"M15 19l-7-7 7-7"},void 0,!1,{fileName:"/Users/flyman/Desktop/projects/native-ai/packages/ui/src/components/navigation/pagination/Pagination.tsx",lineNumber:27,columnNumber:5},void 0)},void 0,!1,{fileName:"/Users/flyman/Desktop/projects/native-ai/packages/ui/src/components/navigation/pagination/Pagination.tsx",lineNumber:26,columnNumber:3},void 0),de=a.jsxDEV("svg",{className:"w-4 h-4",fill:"none",stroke:"currentColor",viewBox:"0 0 24 24",children:a.jsxDEV("path",{strokeLinecap:"round",strokeLinejoin:"round",strokeWidth:2,d:"M9 5l7 7-7 7"},void 0,!1,{fileName:"/Users/flyman/Desktop/projects/native-ai/packages/ui/src/components/navigation/pagination/Pagination.tsx",lineNumber:33,columnNumber:5},void 0)},void 0,!1,{fileName:"/Users/flyman/Desktop/projects/native-ai/packages/ui/src/components/navigation/pagination/Pagination.tsx",lineNumber:32,columnNumber:3},void 0),d="...",V=({currentPage:e,totalPages:s,onPageChange:E,siblingCount:c=1,showFirstLast:f=!0,showPrevNext:L=!0,previousLabel:oe=ge,nextLabel:ie=de,disabled:r=!1,className:le,...ue})=>{const ce=(()=>{if(s<=7)return Array.from({length:s},(l,g)=>g+1);const n=Math.max(e-c,1),i=Math.min(e+c,s),t=n>2,m=i<s-1;if(!t&&m){const l=3+2*c;return[...Array.from({length:l},(w,C)=>C+1),d,s]}if(t&&!m){const l=3+2*c,g=Array.from({length:l},(w,C)=>s-l+C+1);return[1,d,...g]}if(t&&m){const l=Array.from({length:i-n+1},(g,w)=>n+w);return[1,d,...l,d,s]}return[]})(),S=e>1&&!r,U=e<s&&!r,p=n=>{r||n===e||n<1||n>s||E(n)},me=(n=!1,i=!1)=>u("px-3 py-2 text-sm font-medium transition-colors duration-200","border border-gray-300 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500",{"bg-blue-600 text-white border-blue-600 hover:bg-blue-700":n,"text-gray-900 bg-white":!n&&!i,"text-gray-400 bg-gray-100 cursor-not-allowed":i}),b=(n=!1)=>u("px-3 py-2 text-sm font-medium transition-colors duration-200","border border-gray-300 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500","flex items-center justify-center",{"text-gray-900 bg-white hover:bg-gray-50":!n,"text-gray-400 bg-gray-100 cursor-not-allowed":n});return s<=1?null:a.jsxDEV("nav",{className:u("flex items-center justify-center space-x-0",le),"aria-label":"Pagination",...ue,children:a.jsxDEV("div",{className:"flex -space-x-px rounded-md shadow-sm",children:[f&&a.jsxDEV("button",{className:u(b(e===1||r),"rounded-l-md"),onClick:()=>p(1),disabled:e===1||r,"aria-label":"Go to first page",children:"First"},void 0,!1,{fileName:"/Users/flyman/Desktop/projects/native-ai/packages/ui/src/components/navigation/pagination/Pagination.tsx",lineNumber:135,columnNumber:11},void 0),L&&a.jsxDEV("button",{className:u(b(!S),f?"":"rounded-l-md"),onClick:()=>p(e-1),disabled:!S,"aria-label":"Go to previous page",children:oe},void 0,!1,{fileName:"/Users/flyman/Desktop/projects/native-ai/packages/ui/src/components/navigation/pagination/Pagination.tsx",lineNumber:146,columnNumber:11},void 0),ce.map((n,i)=>{if(n===d)return a.jsxDEV("span",{className:"px-3 py-2 text-sm text-gray-500 bg-white border border-gray-300",children:"..."},`ellipsis-${i}`,!1,{fileName:"/Users/flyman/Desktop/projects/native-ai/packages/ui/src/components/navigation/pagination/Pagination.tsx",lineNumber:159,columnNumber:15},void 0);const t=n,m=t===e;return a.jsxDEV("button",{className:me(m,r),onClick:()=>p(t),disabled:r,"aria-current":m?"page":void 0,"aria-label":`Go to page ${t}`,children:t},t,!1,{fileName:"/Users/flyman/Desktop/projects/native-ai/packages/ui/src/components/navigation/pagination/Pagination.tsx",lineNumber:172,columnNumber:13},void 0)}),L&&a.jsxDEV("button",{className:u(b(!U),f?"":"rounded-r-md"),onClick:()=>p(e+1),disabled:!U,"aria-label":"Go to next page",children:ie},void 0,!1,{fileName:"/Users/flyman/Desktop/projects/native-ai/packages/ui/src/components/navigation/pagination/Pagination.tsx",lineNumber:186,columnNumber:11},void 0),f&&a.jsxDEV("button",{className:u(b(e===s||r),"rounded-r-md"),onClick:()=>p(s),disabled:e===s||r,"aria-label":"Go to last page",children:"Last"},void 0,!1,{fileName:"/Users/flyman/Desktop/projects/native-ai/packages/ui/src/components/navigation/pagination/Pagination.tsx",lineNumber:197,columnNumber:11},void 0)]},void 0,!0,{fileName:"/Users/flyman/Desktop/projects/native-ai/packages/ui/src/components/navigation/pagination/Pagination.tsx",lineNumber:133,columnNumber:7},void 0)},void 0,!1,{fileName:"/Users/flyman/Desktop/projects/native-ai/packages/ui/src/components/navigation/pagination/Pagination.tsx",lineNumber:128,columnNumber:5},void 0)};try{V.displayName="Pagination",V.__docgenInfo={description:"",displayName:"Pagination",props:{currentPage:{defaultValue:null,description:"Current active page (1-indexed)",name:"currentPage",required:!0,type:{name:"number"}},totalPages:{defaultValue:null,description:"Total number of pages",name:"totalPages",required:!0,type:{name:"number"}},onPageChange:{defaultValue:null,description:"Callback when page changes",name:"onPageChange",required:!0,type:{name:"(page: number) => void"}},siblingCount:{defaultValue:{value:"1"},description:"Number of page buttons to show around current page",name:"siblingCount",required:!1,type:{name:"number"}},showFirstLast:{defaultValue:{value:"true"},description:"Show first/last page buttons",name:"showFirstLast",required:!1,type:{name:"boolean"}},showPrevNext:{defaultValue:{value:"true"},description:"Show previous/next buttons",name:"showPrevNext",required:!1,type:{name:"boolean"}},previousLabel:{defaultValue:{value:`(
+  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+  </svg>
+)`},description:"Custom previous button content",name:"previousLabel",required:!1,type:{name:"ReactNode"}},nextLabel:{defaultValue:{value:`(
+  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+  </svg>
+)`},description:"Custom next button content",name:"nextLabel",required:!1,type:{name:"ReactNode"}},disabled:{defaultValue:{value:"false"},description:"Disabled state",name:"disabled",required:!1,type:{name:"boolean"}}}}}catch{}const he={title:"Navigation/Pagination",component:V,parameters:{layout:"centered"},tags:["autodocs"]},o=({totalPages:e,...s})=>{const[E,c]=pe.useState(1);return a.jsxDEV(V,{...s,currentPage:E,totalPages:e,onPageChange:c},void 0,!1,{fileName:"/Users/flyman/Desktop/projects/native-ai/packages/ui/src/components/navigation/pagination/Pagination.stories.tsx",lineNumber:21,columnNumber:5},void 0)},v={render:e=>a.jsxDEV(o,{...e},void 0,!1,{fileName:"/Users/flyman/Desktop/projects/native-ai/packages/ui/src/components/navigation/pagination/Pagination.stories.tsx",lineNumber:31,columnNumber:21},void 0),args:{totalPages:10}},N={render:e=>a.jsxDEV(o,{...e},void 0,!1,{fileName:"/Users/flyman/Desktop/projects/native-ai/packages/ui/src/components/navigation/pagination/Pagination.stories.tsx",lineNumber:38,columnNumber:21},void 0),args:{totalPages:50}},x={render:e=>a.jsxDEV(o,{...e},void 0,!1,{fileName:"/Users/flyman/Desktop/projects/native-ai/packages/ui/src/components/navigation/pagination/Pagination.stories.tsx",lineNumber:45,columnNumber:21},void 0),args:{totalPages:5}},h={render:e=>a.jsxDEV(o,{...e},void 0,!1,{fileName:"/Users/flyman/Desktop/projects/native-ai/packages/ui/src/components/navigation/pagination/Pagination.stories.tsx",lineNumber:52,columnNumber:21},void 0),args:{totalPages:20,showFirstLast:!1}},k={render:e=>a.jsxDEV(o,{...e},void 0,!1,{fileName:"/Users/flyman/Desktop/projects/native-ai/packages/ui/src/components/navigation/pagination/Pagination.stories.tsx",lineNumber:60,columnNumber:21},void 0),args:{totalPages:20,showPrevNext:!1}},y={render:e=>a.jsxDEV(o,{...e},void 0,!1,{fileName:"/Users/flyman/Desktop/projects/native-ai/packages/ui/src/components/navigation/pagination/Pagination.stories.tsx",lineNumber:68,columnNumber:21},void 0),args:{totalPages:15,previousLabel:"Prev",nextLabel:"Next"}},P={render:e=>a.jsxDEV(o,{...e},void 0,!1,{fileName:"/Users/flyman/Desktop/projects/native-ai/packages/ui/src/components/navigation/pagination/Pagination.stories.tsx",lineNumber:77,columnNumber:21},void 0),args:{totalPages:30,siblingCount:3}},j={render:e=>a.jsxDEV(o,{...e},void 0,!1,{fileName:"/Users/flyman/Desktop/projects/native-ai/packages/ui/src/components/navigation/pagination/Pagination.stories.tsx",lineNumber:85,columnNumber:21},void 0),args:{totalPages:10,disabled:!0}},D={render:e=>a.jsxDEV(o,{...e},void 0,!1,{fileName:"/Users/flyman/Desktop/projects/native-ai/packages/ui/src/components/navigation/pagination/Pagination.stories.tsx",lineNumber:93,columnNumber:21},void 0),args:{totalPages:1}};var W,_,q;v.parameters={...v.parameters,docs:{...(W=v.parameters)==null?void 0:W.docs,source:{originalSource:`{
+  render: args => <PaginationWrapper {...args} />,
+  args: {
+    totalPages: 10
+  }
+}`,...(q=(_=v.parameters)==null?void 0:_.docs)==null?void 0:q.source}}};var I,M,R;N.parameters={...N.parameters,docs:{...(I=N.parameters)==null?void 0:I.docs,source:{originalSource:`{
+  render: args => <PaginationWrapper {...args} />,
+  args: {
+    totalPages: 50
+  }
+}`,...(R=(M=N.parameters)==null?void 0:M.docs)==null?void 0:R.source}}};var G,F,B;x.parameters={...x.parameters,docs:{...(G=x.parameters)==null?void 0:G.docs,source:{originalSource:`{
+  render: args => <PaginationWrapper {...args} />,
+  args: {
+    totalPages: 5
+  }
+}`,...(B=(F=x.parameters)==null?void 0:F.docs)==null?void 0:B.source}}};var A,H,$;h.parameters={...h.parameters,docs:{...(A=h.parameters)==null?void 0:A.docs,source:{originalSource:`{
+  render: args => <PaginationWrapper {...args} />,
+  args: {
+    totalPages: 20,
+    showFirstLast: false
+  }
+}`,...($=(H=h.parameters)==null?void 0:H.docs)==null?void 0:$.source}}};var O,T,z;k.parameters={...k.parameters,docs:{...(O=k.parameters)==null?void 0:O.docs,source:{originalSource:`{
+  render: args => <PaginationWrapper {...args} />,
+  args: {
+    totalPages: 20,
+    showPrevNext: false
+  }
+}`,...(z=(T=k.parameters)==null?void 0:T.docs)==null?void 0:z.source}}};var J,K,Q;y.parameters={...y.parameters,docs:{...(J=y.parameters)==null?void 0:J.docs,source:{originalSource:`{
+  render: args => <PaginationWrapper {...args} />,
+  args: {
+    totalPages: 15,
+    previousLabel: 'Prev',
+    nextLabel: 'Next'
+  }
+}`,...(Q=(K=y.parameters)==null?void 0:K.docs)==null?void 0:Q.source}}};var X,Y,Z;P.parameters={...P.parameters,docs:{...(X=P.parameters)==null?void 0:X.docs,source:{originalSource:`{
+  render: args => <PaginationWrapper {...args} />,
+  args: {
+    totalPages: 30,
+    siblingCount: 3
+  }
+}`,...(Z=(Y=P.parameters)==null?void 0:Y.docs)==null?void 0:Z.source}}};var ee,ae,ne;j.parameters={...j.parameters,docs:{...(ee=j.parameters)==null?void 0:ee.docs,source:{originalSource:`{
+  render: args => <PaginationWrapper {...args} />,
+  args: {
+    totalPages: 10,
+    disabled: true
+  }
+}`,...(ne=(ae=j.parameters)==null?void 0:ae.docs)==null?void 0:ne.source}}};var se,re,te;D.parameters={...D.parameters,docs:{...(se=D.parameters)==null?void 0:se.docs,source:{originalSource:`{
+  render: args => <PaginationWrapper {...args} />,
+  args: {
+    totalPages: 1
+  }
+}`,...(te=(re=D.parameters)==null?void 0:re.docs)==null?void 0:te.source}}};const ke=["Default","ManyPages","FewPages","WithoutFirstLast","WithoutPrevNext","CustomLabels","HighSiblingCount","Disabled","SinglePage"];export{y as CustomLabels,v as Default,j as Disabled,x as FewPages,P as HighSiblingCount,N as ManyPages,D as SinglePage,h as WithoutFirstLast,k as WithoutPrevNext,ke as __namedExportsOrder,he as default};

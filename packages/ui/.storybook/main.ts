@@ -6,11 +6,9 @@ const config: StorybookConfig = {
     "../src/**/*.stories.@(js|jsx|mjs|ts|tsx)"
   ],
   "addons": [
-    "@chromatic-com/storybook",
-    "@storybook/addon-docs",
-    "@storybook/addon-onboarding",
-    "@storybook/addon-a11y",
-    "@storybook/addon-vitest"
+    "@storybook/addon-essentials",
+    "@storybook/addon-interactions",
+    "@storybook/addon-links"
   ],
   "framework": {
     "name": "@storybook/react-vite",
@@ -21,9 +19,11 @@ const config: StorybookConfig = {
   },
   // Configure for GitHub Pages deployment
   "staticDirs": ["../public"],
-  "managerHead": (head) => `
-    ${head}
-    <base href="${process.env.NODE_ENV === 'production' ? '/native-ai/storybook/' : '/'}">
-  `
+  async viteFinal(config, { configType }) {
+    if (configType === 'PRODUCTION') {
+      config.base = '/storybook/';
+    }
+    return config;
+  }
 };
 export default config;
