@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Native AI - React UI Components for Native OS Apps</title>
+    <meta name="description" content="A comprehensive React UI component library with Native OS inspired design patterns, built for modern applications.">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #1f2328;
+            background: #ffffff;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 4rem 0;
+            text-align: center;
+        }
+
+        .logo {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .tagline {
+            font-size: 1.25rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 2rem;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .btn-primary {
+            background: #0969da;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #0860ca;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(9, 105, 218, 0.3);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: white;
+            border-color: rgba(255, 255, 255, 0.5);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: white;
+        }
+
+        .features {
+            padding: 4rem 0;
+            background: #f6f8fa;
+        }
+
+        .features h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .feature-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #1f2328;
+        }
+
+        .feature-card p {
+            color: #656d76;
+            line-height: 1.6;
+        }
+
+        .components {
+            padding: 4rem 0;
+        }
+
+        .components h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .components p {
+            text-align: center;
+            font-size: 1.2rem;
+            color: #656d76;
+            margin-bottom: 3rem;
+        }
+
+        .component-categories {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .category {
+            background: white;
+            border: 1px solid #e1e5e9;
+            border-radius: 8px;
+            padding: 1.5rem;
+        }
+
+        .category h3 {
+            color: #0969da;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .category ul {
+            list-style: none;
+        }
+
+        .category li {
+            padding: 0.5rem 0;
+            color: #656d76;
+            border-bottom: 1px solid #f6f8fa;
+        }
+
+        .category li:last-child {
+            border-bottom: none;
+        }
+
+        .getting-started {
+            background: #1f2328;
+            color: white;
+            padding: 4rem 0;
+            text-align: center;
+        }
+
+        .getting-started h2 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .code-block {
+            background: #0d1117;
+            border: 1px solid #30363d;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin: 2rem 0;
+            text-align: left;
+            overflow-x: auto;
+            font-family: 'SF Mono', Monaco, 'Cascadia Code', 'Roboto Mono', Consolas, 'Courier New', monospace;
+        }
+
+        .code-block code {
+            color: #e6edf3;
+        }
+
+        footer {
+            background: #f6f8fa;
+            padding: 3rem 0;
+            text-align: center;
+            border-top: 1px solid #e1e5e9;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: #0969da;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .footer-links a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            .tagline {
+                font-size: 1.1rem;
+            }
+            
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .features-grid,
+            .component-categories {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">🤖</div>
+            <h1>Native AI</h1>
+            <p class="tagline">A comprehensive React UI component library for Native OS apps</p>
+            <div class="cta-buttons">
+                <a href="/native-ai/storybook/" class="btn btn-primary">View Components</a>
+                <a href="https://github.com/ai-standards/native-ai" class="btn btn-secondary">View on GitHub</a>
+            </div>
+        </div>
+    </header>
+
+    <section class="features">
+        <div class="container">
+            <h2>Why Native AI?</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">⚡</div>
+                    <h3>Performance Focused</h3>
+                    <p>Optimized bundle size and runtime performance with tree-shaking support and efficient rendering.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🎨</div>
+                    <h3>Native OS Design</h3>
+                    <p>Inspired by native operating system patterns, providing familiar and intuitive user experiences.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔧</div>
+                    <h3>TypeScript First</h3>
+                    <p>Built with TypeScript for full type safety, excellent IntelliSense, and better developer experience.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🧩</div>
+                    <h3>Modular Architecture</h3>
+                    <p>Import only what you need. Each component category is separately bundled for optimal performance.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🎯</div>
+                    <h3>Well Tested</h3>
+                    <p>Comprehensive test coverage with Vitest ensuring reliability and stability across all components.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📱</div>
+                    <h3>Responsive</h3>
+                    <p>Mobile-first responsive design with Tailwind CSS for consistent experiences across all devices.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="components">
+        <div class="container">
+            <h2>70+ Components Across 8 Categories</h2>
+            <p>Everything you need to build modern, professional applications</p>
+            <div class="component-categories">
+                <div class="category">
+                    <h3>Layout & Surface</h3>
+                    <ul>
+                        <li>Layout System (ActionBar, TopBar, Sidebar)</li>
+                        <li>Card, Panel, Section</li>
+                        <li>Flex, Grid, Stack</li>
+                        <li>Accordion, Drawer</li>
+                    </ul>
+                </div>
+                <div class="category">
+                    <h3>Form Components</h3>
+                    <ul>
+                        <li>Button, Input, Select</li>
+                        <li>Checkbox, Radio, Switch</li>
+                        <li>DatePicker, ColorPicker</li>
+                        <li>Form Validation & Fields</li>
+                    </ul>
+                </div>
+                <div class="category">
+                    <h3>Navigation</h3>
+                    <ul>
+                        <li>Breadcrumb, Menu</li>
+                        <li>Tabs, Pagination</li>
+                        <li>Tree, Stepper</li>
+                        <li>Command Menu</li>
+                    </ul>
+                </div>
+                <div class="category">
+                    <h3>Content & Media</h3>
+                    <ul>
+                        <li>Typography, Code, Table</li>
+                        <li>Image, Avatar, Badge</li>
+                        <li>50+ Icons from Lucide</li>
+                        <li>Article, Quote, Callout</li>
+                    </ul>
+                </div>
+                <div class="category">
+                    <h3>Overlays</h3>
+                    <ul>
+                        <li>Modal, Popover</li>
+                        <li>Tooltip</li>
+                        <li>Context Menus</li>
+                    </ul>
+                </div>
+                <div class="category">
+                    <h3>Feedback</h3>
+                    <ul>
+                        <li>Alert, Toast</li>
+                        <li>Progress, Spinner</li>
+                        <li>Skeleton Loading</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="getting-started">
+        <div class="container">
+            <h2>Get Started in Minutes</h2>
+            <div class="code-block">
+                <code>npm install @nativeai/ui react-icons</code>
+            </div>
+            <div class="code-block">
+                <code>import { Button, Card, Layout } from '@nativeai/ui';
+import '@nativeai/ui/styles';
+
+function App() {
+  return (
+    &lt;Layout&gt;
+      &lt;Layout.TopBar&gt;My App&lt;/Layout.TopBar&gt;
+      &lt;Layout.MainContent&gt;
+        &lt;Card&gt;
+          &lt;Card.Header&gt;Welcome&lt;/Card.Header&gt;
+          &lt;Card.Content&gt;Ready to build amazing apps!&lt;/Card.Content&gt;
+          &lt;Card.Footer&gt;
+            &lt;Button&gt;Get Started&lt;/Button&gt;
+          &lt;/Card.Footer&gt;
+        &lt;/Card&gt;
+      &lt;/Layout.MainContent&gt;
+    &lt;/Layout&gt;
+  );
+}</code>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-links">
+                <a href="/native-ai/storybook/">Storybook</a>
+                <a href="/native-ai/docs/">Package Docs</a>
+                <a href="https://github.com/ai-standards/native-ai">GitHub</a>
+                <a href="https://github.com/ai-standards/native-ai/issues">Issues</a>
+                <a href="https://github.com/ai-standards/native-ai/discussions">Discussions</a>
+            </div>
+            <p>&copy; 2025 Native AI. MIT License.</p>
+        </div>
+    </footer>
+</body>
+</html>

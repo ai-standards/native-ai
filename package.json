@@ -18,10 +18,13 @@
     "test": "npm run test --workspaces",
     "test:run": "npm run test --workspaces --run",
     "build": "npm run build --workspaces",
-    "dev": "npm run dev --workspaces"
+    "dev": "npm run dev --workspaces",
+    "build:site": "npx tsx scripts/build-site.ts"
   },
   "keywords": [],
   "author": "",
   "license": "MIT",
-  "type": "commonjs"
+  "dependencies": {
+    "@nativeai/workspace": "^0.9.1"
+  }
 }

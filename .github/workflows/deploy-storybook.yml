@@ -1,0 +1,145 @@
+name: Deploy Storybook to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main
+      - develop
+    paths:
+      - 'packages/ui/**'
+  pull_request:
+    branches:
+      - main
+    paths:
+      - 'packages/ui/**'
+
+# Allow only one concurrent deployment, skipping runs queued between the run in-progress and latest queued.
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build documentation site
+        run: |
+          npx tsx scripts/build-site.ts
+
+      - name: Build Storybook
+        run: |
+          cd packages/ui
+          npm run build-storybook:gh-pages
+        env:
+          NODE_ENV: production
+
+      - name: Create site structure
+        run: |
+          mkdir -p ./site/storybook
+          cp -r ./packages/ui/storybook-static/* ./site/storybook/
+          
+          # Copy the generated docs if they exist
+          if [ -d "./site/docs" ]; then
+            echo "Documentation folder found and will be included in deployment"
+          fi
+          
+          # Create a simple index.html for the root if it doesn't exist
+          if [ ! -f "./site/index.html" ]; then
+            cat > ./site/index.html << 'EOF'
+          <!DOCTYPE html>
+          <html lang="en">
+          <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Native AI - Documentation</title>
+            <style>
+              body { 
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+                max-width: 800px; 
+                margin: 2rem auto; 
+                padding: 2rem;
+                line-height: 1.6;
+                color: #333;
+              }
+              .card { 
+                border: 1px solid #e1e5e9; 
+                border-radius: 8px; 
+                padding: 2rem; 
+                margin: 1rem 0;
+                background: #fff;
+              }
+              .card h2 { margin-top: 0; color: #1f2328; }
+              .card a { 
+                display: inline-block;
+                background: #0969da;
+                color: white;
+                padding: 0.5rem 1rem;
+                text-decoration: none;
+                border-radius: 4px;
+                margin-top: 1rem;
+              }
+              .card a:hover { background: #0860ca; }
+              header { text-align: center; margin-bottom: 3rem; }
+              h1 { color: #1f2328; }
+            </style>
+          </head>
+          <body>
+            <header>
+              <h1>🤖 Native AI</h1>
+              <p>A comprehensive React UI component library for Native OS apps</p>
+            </header>
+            
+            <div class="card">
+              <h2>📚 Component Documentation</h2>
+              <p>Explore our interactive component library with live examples and documentation.</p>
+              <a href="/native-ai/storybook/">View Storybook →</a>
+            </div>
+            
+            <div class="card">
+              <h2>🚀 Getting Started</h2>
+              <p>Learn how to install and use Native AI components in your project.</p>
+              <a href="https://github.com/ai-standards/native-ai#readme">View README →</a>
+            </div>
+            
+            <div class="card">
+              <h2>💻 Source Code</h2>
+              <p>Browse the source code, report issues, and contribute to the project.</p>
+              <a href="https://github.com/ai-standards/native-ai">View on GitHub →</a>
+            </div>
+          </body>
+          </html>
+          EOF
+          fi
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./site
+
+  deploy:
+    # Only deploy on push to main/develop, not on PRs
+    if: github.event_name == 'push'
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs: build
+    permissions:
+      pages: write
+      id-token: write
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

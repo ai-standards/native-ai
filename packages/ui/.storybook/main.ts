@@ -15,6 +15,15 @@ const config: StorybookConfig = {
   "framework": {
     "name": "@storybook/react-vite",
     "options": {}
-  }
+  },
+  "docs": {
+    "autodocs": "tag"
+  },
+  // Configure for GitHub Pages deployment
+  "staticDirs": ["../public"],
+  "managerHead": (head) => `
+    ${head}
+    <base href="${process.env.NODE_ENV === 'production' ? '/native-ai/storybook/' : '/'}">
+  `
 };
 export default config;

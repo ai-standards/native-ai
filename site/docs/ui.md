@@ -1,3 +1,10 @@
+---
+title: @nativeai/ui
+description: A comprehensive React UI component library for Native OS apps
+package: ui
+version: 0.9.5
+---
+
 # @nativeai/ui
 
 A comprehensive React UI component library with Native OS inspired design patterns, built for modern applications.
@@ -255,3 +262,6 @@ MIT License - see the [LICENSE](LICENSE) file for details.
 -  [Documentation](https://github.com/nativeai/ui)
 -  [Issue Tracker](https://github.com/nativeai/ui/issues)
 -  [Discussions](https://github.com/nativeai/ui/discussions)
+
+---
+*This documentation is automatically generated from the ui package README. [View source](https://github.com/ai-standards/native-ai/tree/main/packages/ui)*

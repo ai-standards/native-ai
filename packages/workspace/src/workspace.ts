@@ -1,10 +1,9 @@
 import * as fs from 'fs';
 import * as path from 'path';
 import { promisify } from 'util';
-import { glob as globCallback } from 'glob';
+import { glob, globSync } from 'glob';
 
-// Promisify glob for async operations
-const globAsync = promisify(globCallback);
+// Note: glob v11+ returns promises natively, no need to promisify
 
 /**
  * Workspace singleton that provides file system and path operations
@@ -632,7 +631,7 @@ class Workspace {
   public async globAsync(pattern: string, options?: { ignore?: string[]; dot?: boolean }): Promise<string[]> {
     this.ensureRootPath();
     const fullPattern = path.join(this.rootPath!, pattern);
-    const results = await globAsync(fullPattern, options);
+    const results = await glob(fullPattern, options);
     // Filter results to only include files within workspace
     return results
       .map((result: string) => path.relative(this.rootPath!, result))
@@ -647,7 +646,7 @@ class Workspace {
   public globSync(pattern: string, options?: { ignore?: string[]; dot?: boolean }): string[] {
     this.ensureRootPath();
     const fullPattern = path.join(this.rootPath!, pattern);
-    const results = globCallback.sync(fullPattern, options);
+    const results = globSync(fullPattern, options);
     // Filter results to only include files within workspace
     return results
       .map((result: string) => path.relative(this.rootPath!, result))
